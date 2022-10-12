@@ -3,6 +3,6 @@ import {useState, useEffect} from "react";
 
 
 
-export default function QANDA() {
+export default function RANDR() {
   //Fill out
 }
