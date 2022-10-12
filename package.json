@@ -9,8 +9,12 @@
   },
   "author": "Sarah Handley, Caleb Underwood, and Xincheng Zhou",
   "devDependencies": {
+    "babel-core": "^6.26.3",
+    "babel-loader": "^8.2.5",
+    "babel-preset-es2015": "^6.24.1",
     "chai": "^4.2.0",
-    "mocha": "^5.2.0"
+    "mocha": "^5.2.0",
+    "webpack": "^5.74.0"
   },
   "dependencies": {
     "express": "^4.15.0",
