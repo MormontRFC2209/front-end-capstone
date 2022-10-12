@@ -1,0 +1,22 @@
+{
+  "name": "mormont-front-end-capstone",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "react-dev": "webpack --mode development --watch",
+    "server-dev": "npx nodemon server/index.js"
+  },
+  "author": "Sarah Handley, Caleb Underwood, and Xincheng Zhou",
+  "devDependencies": {
+    "chai": "^4.2.0",
+    "mocha": "^5.2.0"
+  },
+  "dependencies": {
+    "express": "^4.15.0",
+    "jquery": "^3.1.1",
+    "mongoose": "^5.10.15",
+    "react": "^16.4",
+    "react-dom": "^16.4"
+  }
+}
