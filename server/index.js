@@ -12,9 +12,41 @@ app.use(express.static(path.join(__dirname, '../client/dist')));
 
 //ROUTES
 app.get('/info', (req, res) => {
-  axios.get(`${configs.apiServer}/products`, {headers: {Authorization: configs.token}})
-    .then((infoFromGet) => res.send(infoFromGet.data))
-    .catch((err) => console.log(err))
+  console.log(req.query.route)
+
+  var apiObject = [];
+  apiObject.push({route: req.query.route});
+  if (req.query.apiParams) {
+    apiObject.push({params: req.query.apiParams})
+  }
+
+  controllers.makeGETAPICall(apiObject, (result, err) => {
+    if (err) {
+      console.log('error retrieving data', err)
+      return;
+    }
+    res.send(result)
+  })
+});
+
+app.post('/info', (req, res) => {
+  console.log(req.query.route)
+
+  var apiObject = [];
+  apiObject.push({route: req.query.route});
+  apiObject.push({body: req.body});
+  if (req.query.apiParams) {
+    apiObject.push({params: req.query.apiParams})
+  }
+
+  controllers.makePOSTAPICall(apiObject, (result, err) => {
+    if (err) {
+      console.log('error posting')
+      return;
+    }
+    console.log('IT WORKS!')
+    res.send(result)
+  })
 });
 
 
