@@ -11,31 +11,32 @@ export default function QANDA(props) {
 
   const [currentQuestions, setQuestions] = useState(renderedQuestions);
   const [loading, setLoading] = useState(true);
+  console.log(props)
 
 
   const grabQuestions = () => {
-    axios.get('/info', {params:{route:'/qa/questions/', apiParams:{product_id: props.id, count: 25}}})
+    axios.get('/info', {params:{route:'/qa/questions/', apiParams:{product_id: props.productId, count: 25}}})
       .then((resultData) => {
 
         var rawQuestions = resultData.data.results
         for (var  i = 0; i < rawQuestions.length; i++) {
           console.log(rawQuestions[i])
-          questionsArray.push(rawQuestions[i])
+          questionsArray.push(rawQuestions[i]);
         }
         for ( var i = 0; i < count; i++) {
-          renderedQuestions.push(questionsArray[i])
+          renderedQuestions.push(questionsArray[i]);
         }
-        setQuestions(renderedQuestions)
+        setQuestions(renderedQuestions);
 
         if(loading) {
          setLoading(false);
         }
         if(questionsArray.length > 4) {
-          setList('More Answered Questions')
+          setList('More Answered Questions');
         }
       })
       .catch((error) => {
-        console.log(error)
+        console.log(error);
       })
   }
 
@@ -52,10 +53,10 @@ export default function QANDA(props) {
       for ( var i = 0; i < count; i++) {
         renderedQuestions.push(questionsArray[i])
       }
-      setQuestions(renderedQuestions)
-      setList('More Answered Questions')
+      setQuestions(renderedQuestions);
+      setList('More Answered Questions');
 
-      console.log('hello i would like to collapse')
+      console.log('hello i would like to collapse');
       return;
     }
 
@@ -66,7 +67,7 @@ export default function QANDA(props) {
     }
     if(questionsArray[count+1] === undefined) {
       count+=1;
-      setList('Collapse Questions')
+      setList('Collapse Questions');
     } else {
       count += 2;
     }
@@ -74,12 +75,15 @@ export default function QANDA(props) {
 
 
     for(currentCount; currentCount < count; currentCount++) {
-      console.log(currentCount, count)
-      addedQuestion.push(questionsArray[currentCount])
+      console.log(currentCount, count);
+      addedQuestion.push(questionsArray[currentCount]);
 
     }
+    if(questionsArray[count] === undefined) {
+      setList('Collapse Questions');
+    }
 
-    setQuestions(currentQuestions.concat(addedQuestion))
+    setQuestions(currentQuestions.concat(addedQuestion));
 
   }
 
@@ -101,7 +105,7 @@ export default function QANDA(props) {
         <h4>Questions List</h4>
         {currentQuestions.length > 0 ? <QuestionList questionList={currentQuestions}/> : null }
 
-        <h4 onClick={(e) => {e.preventDefault; manipulateAccordian()}}>{currentList}</h4>
+        <h4 onClick={(e) => {e.preventDefault; manipulateAccordian();}}>{currentList}</h4>
       </div>
     )
   }
