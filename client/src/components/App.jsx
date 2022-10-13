@@ -7,15 +7,15 @@ import axios from 'axios';
 
 
 export default function App() {
-  const getStuff = () => {
-    axios.get("/info")
-      .then((response) => console.log(response.data))
-      .catch((err) => console.log('err'))
-  };
+  // const getStuff = () => {
+  //   axios.get("/info")
+  //     .then((response) => console.log(response.data))
+  //     .catch((err) => console.log('err'))
+  // };
 
-  useEffect(() => {
-    getStuff();
-  }, []);
+  // useEffect(() => {
+  //   getStuff();
+  // }, []);
 
   return (
     <div>
