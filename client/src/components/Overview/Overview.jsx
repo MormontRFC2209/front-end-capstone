@@ -40,13 +40,7 @@ export default function Overview() {
   useEffect(() => {
     if (productId > 0) {
       getProductInfo()
-        .catch((err) => console.log(err))
-    }
-  }, [productId])
-
-  useEffect(() => {
-    if (productId > 0) {
-      getStyles()
+        .then(() => getStyles())
         .catch((err) => console.log(err))
     }
   }, [productId])
@@ -54,7 +48,7 @@ export default function Overview() {
   return (
     <div>
       <ImageGallery />
-      <ProductHeading />
+      <ProductHeading productInfo={productInfo}/>
       <StyleSelector />
       <AddToCart />
       <ProductDescription />
