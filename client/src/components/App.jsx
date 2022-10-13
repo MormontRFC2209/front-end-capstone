@@ -20,7 +20,7 @@ export default function App() {
   return (
     <div>
       <Overview />
-      <QANDA />
+      <QANDA id ={66656}/>
       <RANDR />
     </div>
   );
