@@ -7,7 +7,7 @@ import axios from 'axios';
 
 
 export default function App() {
-  const [productId, setProductId] = useState(66653);
+  const [productId, setProductId] = useState(0);
 
   const getProductId = () => {
     return axios.get("/info", {params: {route: '/products', apiParams: {page: '2', count: '5'}}})
