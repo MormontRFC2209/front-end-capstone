@@ -7,21 +7,26 @@ import axios from 'axios';
 
 
 export default function App() {
-  // const getStuff = () => {
-  //   axios.get("/info")
-  //     .then((response) => console.log(response.data))
-  //     .catch((err) => console.log('err'))
-  // };
+  const [productId, setProductId] = useState(0);
 
-  // useEffect(() => {
-  //   getStuff();
-  // }, []);
+  const getProductId = () => {
+    return axios.get("/info", {params: {route: '/products', apiParams: {page: '2', count: '5'}}})
+      .then((response) => {
+        setProductId(response.data[1].id);
+      })
+      .catch((err) => console.log('err'))
+  };
+
+  useEffect(() => {
+    getProductId()
+      .catch((err) => console.log(err))
+  }, []);
 
   return (
     <div>
-      <Overview />
-      <QANDA />
-      <RANDR />
+      <Overview productId={productId}/>
+      <QANDA productId={productId}/>
+      <RANDR productId={productId}/>
     </div>
   );
 }
