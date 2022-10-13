@@ -4,5 +4,7 @@ import {useState, useEffect} from "react";
 
 
 export default function RANDR() {
-  //Fill out
+  return (
+    <div> R and R </div>
+  );
 }

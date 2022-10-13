@@ -17,5 +17,11 @@ export default function App() {
     getStuff();
   }, []);
 
-  return (<div> Hello World! </div>);
+  return (
+    <div>
+      <Overview />
+      <QANDA />
+      <RANDR />
+    </div>
+  );
 }

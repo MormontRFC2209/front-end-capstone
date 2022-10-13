@@ -4,5 +4,7 @@ import {useState, useEffect} from "react";
 
 
 export default function QANDA() {
-  //Fill out
+  return (
+    <div> Q and A </div>
+  );
 }
