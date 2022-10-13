@@ -45,8 +45,7 @@ export default function Overview({ productId }) {
       <ProductHeading productInfo={productInfo}/>
       <StyleSelector />
       <AddToCart />
-      <ShareMedia />
-      <ProductDescription />
+      <ProductDescription productInfo={productInfo}/>
     </div>
   );
 }
