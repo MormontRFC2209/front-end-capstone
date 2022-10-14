@@ -14,6 +14,7 @@ export default function Overview({ productId }) {
   const [productInfo, setProductInfo] = useState([]);
   const [styles, setStyles] = useState([]);
   const [selectedStyleId, setSelectedStyleId] = useState(0);
+  const [selectedStylePosition, setSelectedStylePosition] = useState({rowKey: 0, styleKey: 0});
 
   const getProductInfo = () => {
     return axios.get("/info", {params: {route: `/products/${productId}`}})
@@ -25,6 +26,11 @@ export default function Overview({ productId }) {
     return axios.get("/info", {params: {route: `/products/${productId}/styles`}})
       .then((response) => setStyles(response.data.results))
       .catch((err) => console.log('err'))
+  };
+
+  const clickStyle = (rowKey, styleKey) => {
+    setSelectedStylePosition({rowKey, styleKey});
+    setSelectedStyleId(rowKey * 4 + styleKey);
   };
 
   useEffect(() => {
@@ -47,7 +53,7 @@ export default function Overview({ productId }) {
     <div>
       <ImageGallery />
       <ProductHeading productInfo={productInfo}/>
-      <StyleSelector styles={styles}/>
+      <StyleSelector styles={styles} selectedStyleId={selectedStyleId} selectedStylePosition={selectedStylePosition} clickStyle={clickStyle}/>
       <AddToCart />
       <ShareMedia />
       <ProductDescription productInfo={productInfo}/>

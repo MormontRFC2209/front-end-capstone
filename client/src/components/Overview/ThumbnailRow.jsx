@@ -1,15 +1,19 @@
 import react from 'react';
+import ThumbnailStyle from './ThumbnailStyle.jsx';
 
-export default function ThumbnailRow({ row }) {
+export default function ThumbnailRow({ rowKey, row, selectedStylePosition, clickStyle }) {
+  const isSelected = (k) => {
+    let currentSelected = false;
+    if ((rowKey === selectedStylePosition.rowKey) && (k === selectedStylePosition.styleKey)) {
+      currentSelected = true;
+    }
+    return currentSelected;
+  };
+
   return (
     <div className='styleSelectorRow'>
       {row.map((style, k) => {
-        return (
-          <div key={k} className='thumbnail-block'>
-            <img className='thumbnail' src={style.photos[0].thumbnail_url} alt={style.name}></img>
-            <i className="fa-solid fa-circle-check icon-tag"></i>
-          </div>
-        )
+        return (<ThumbnailStyle key={k} rowKey={rowKey} styleKey={k} style={style} currentSelected={isSelected(k)} clickStyle={clickStyle}/>)
       })}
     </div>
   )
