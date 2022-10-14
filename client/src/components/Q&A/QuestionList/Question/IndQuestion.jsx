@@ -42,6 +42,7 @@ export default function IndQuestion({question}) {
     console.log('answerList', answerList)
 
     setAnswerList(answerList.concat(storageArray));
+    setAccordian('Collapse answers')
 
   }
 
@@ -50,7 +51,7 @@ export default function IndQuestion({question}) {
 
   return(
     <div>
-      <h3>Q: {question.question_body}</h3><h3>Helpful?</h3><h3>Yes</h3><h3>({question.question_helpfulness})</h3><h3>  Report</h3>
+      <h3>Q: {question.question_body}</h3><h3>Helpful?</h3><h3>Yes</h3><h3>({question.question_helpfulness})</h3><h3>Add Answer</h3>
       <span>A: </span>
       <div>
       {answerList.map((singleAnswer) => {
