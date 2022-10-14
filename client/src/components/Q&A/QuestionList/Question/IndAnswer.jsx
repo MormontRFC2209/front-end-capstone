@@ -3,15 +3,15 @@ import {useState, useEffect} from "react";
 
 
 
-export default function IndAnswer({answer}) {
+export default function IndAnswer({answer, seller}) {
 
-
+  console.log(seller)
 
   return(
     <div>
       <span>{answer.body}</span>
       <div>
-      {answer.answerer_name === 'Seller' ? <span>by {answer.answerer_name}, currentDate    |</span> : <span>by {answer.answerer_name}, currentDate    |</span>}
+      {seller ? <span>BY {answer.answerer_name}, CURRENTDATE   |</span> : <span>by {answer.answerer_name}, currentDate    |</span>}
       <span>   Helpful? Yes ({answer.helpfulness})    |</span>
       <span>   Report</span>
       </div>

@@ -55,7 +55,10 @@ export default function IndQuestion({question}) {
       {answerList.length > 0 ? <div>A:</div> : null}
       <div>
       {answerList.map((singleAnswer) => {
-        return <IndAnswer key={Math.random()} answer={singleAnswer}/>
+        if(singleAnswer.answerer_name === 'Seller') {
+          return <IndAnswer key={Math.random()} answer={singleAnswer} seller={true}/>
+        }
+        return <IndAnswer key={Math.random()} answer={singleAnswer} seller={false}/>
       })}
       </div>
       {sortedAnswers.length > 2 ? <span onClick={(e) => {e.preventDefault; manipulateAnswerAccordian();}}>{accordian}</span> : null}

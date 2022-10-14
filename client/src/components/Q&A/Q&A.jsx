@@ -7,7 +7,10 @@ var renderedQuestions = [];
 var count = 4;
 
 
+
 export default function QANDA(props) {
+
+
 
   const [currentQuestions, setQuestions] = useState(renderedQuestions);
   const [loading, setLoading] = useState(true);
@@ -51,7 +54,7 @@ export default function QANDA(props) {
   const manipulateAccordian = () => {
 
     if(currentList === 'Collapse Questions') {
-      if(questionsarray.length < 4) {
+      if(questionsArray.length < 4) {
         count = questionsArray.length
       } else {
         count = 4;
