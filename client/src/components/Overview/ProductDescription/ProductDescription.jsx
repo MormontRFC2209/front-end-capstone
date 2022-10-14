@@ -3,7 +3,7 @@ import react from 'react';
 export default function ProductDescription({ productInfo }) {
   return (
     <div>
-      { productInfo.length > 0 && productInfo[0].description &&
+      {productInfo[0].description &&
         <div>
           <h4>{productInfo[0].slogan}</h4>
           <div>{productInfo[0].description}</div>

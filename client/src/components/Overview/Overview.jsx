@@ -1,17 +1,20 @@
 import {useState, useEffect} from "react";
 import axios from 'axios';
 
-import ImageGallery from './ImageGallery.jsx';
-import ProductHeading from './ProductHeading.jsx';
-import StyleSelector from './StyleSelector.jsx';
-import AddToCart from './AddToCart.jsx';
-import ProductDescription from './ProductDescription.jsx';
-import ShareMedia from './ShareMedia.jsx';
+import ImageGallery from './ImageGallery/ImageGallery.jsx';
+import ProductHeading from './ProductHeading/ProductHeading.jsx';
+import StyleSelector from './StyleSelector/StyleSelector.jsx';
+import AddToCart from './AddToCart/AddToCart.jsx';
+import ProductDescription from './ProductDescription/ProductDescription.jsx';
+import ShareMedia from './ShareMedia/ShareMedia.jsx';
 
 export default function Overview({ productId }) {
+  const [loadingProductInfo, setLoadingProductInfo] = useState(true);
+  const [loadingStyles, setLoadingStyles] = useState(true);
   const [productInfo, setProductInfo] = useState([]);
   const [styles, setStyles] = useState([]);
-  const [selectedStyle, setSelectedStyle] = useState([]);
+  const [selectedStyleId, setSelectedStyleId] = useState(0);
+  const [selectedStylePosition, setSelectedStylePosition] = useState({rowKey: 0, styleKey: 0});
 
   const getProductInfo = () => {
     return axios.get("/info", {params: {route: `/products/${productId}`}})
@@ -25,31 +28,32 @@ export default function Overview({ productId }) {
       .catch((err) => console.log('err'))
   };
 
+  const clickStyle = (rowKey, styleKey) => {
+    setSelectedStylePosition({rowKey, styleKey});
+    setSelectedStyleId(rowKey * 4 + styleKey);
+  };
+
   useEffect(() => {
-    if (productId > 0) {
-      getProductInfo()
-        .catch((err) => console.log(err))
-    }
+    getProductInfo()
+      .then(() => setLoadingProductInfo(false))
+      .catch((err) => console.log(err))
   }, [productId]);
 
   useEffect(() => {
-    if (productId > 0) {
-      getStyles()
-        .catch((err) => console.log(err))
-    }
+    getStyles()
+      .then(() => setLoadingStyles(false))
+      .catch((err) => console.log(err))
   }, [productId]);
 
-  useEffect(() => {
-    if (styles.length > 0) {
-      setSelectedStyle([styles[0]]);
-    }
-  }, [styles]);
+  if (loadingProductInfo || loadingStyles) {
+    return (<div> Loading Your Product! </div>)
+  }
 
   return (
     <div>
       <ImageGallery />
       <ProductHeading productInfo={productInfo}/>
-      <StyleSelector styles={styles} selectedStyle={selectedStyle}/>
+      <StyleSelector styles={styles} selectedStyleId={selectedStyleId} selectedStylePosition={selectedStylePosition} clickStyle={clickStyle}/>
       <AddToCart />
       <ShareMedia />
       <ProductDescription productInfo={productInfo}/>
