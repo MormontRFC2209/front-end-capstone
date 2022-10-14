@@ -12,7 +12,6 @@ app.use(express.static(path.join(__dirname, '../client/dist')));
 
 //ROUTES
 app.get('/info', (req, res) => {
-  console.log(req.query.route)
 
   var apiObject = [];
   apiObject.push({route: req.query.route});
@@ -22,7 +21,7 @@ app.get('/info', (req, res) => {
 
   controllers.makeGETAPICall(apiObject, (result, err) => {
     if (err) {
-      console.log('error retrieving data', err)
+      console.log('error retrieving data')
       return;
     }
     res.send(result)
@@ -30,7 +29,6 @@ app.get('/info', (req, res) => {
 });
 
 app.post('/info', (req, res) => {
-  console.log(req.query.route)
 
   var apiObject = [];
   apiObject.push({route: req.query.route});
@@ -56,7 +54,7 @@ const PORT = process.env.PORT || 3000;
 
 
 app.listen(PORT);
-console.log(`Serverlistening at http://localhost:${PORT}`);
+console.log(`Server listening at http://localhost:${PORT}`);
 
 
 

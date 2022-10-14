@@ -7,7 +7,6 @@ module.exports.makeGETAPICall = (apiObject, callback) => {
   var route = configs.apiServer + apiObject[0].route
 
   if(apiObject[1]) {
-    console.log(apiObject[1])
 
     var kvPair = apiObject[1].params
     axios.get(route, {headers: {Authorization: configs.token}, params: kvPair} )
