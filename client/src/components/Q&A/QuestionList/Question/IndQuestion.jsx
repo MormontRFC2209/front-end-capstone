@@ -12,7 +12,7 @@ export default function IndQuestion({question}) {
   }
 
   var sortedAnswers = rawAnswerArray.sort((a,b) => (a.helpfulness > b.helpfulness) ? -1 : 1)
-  if(sortedAnswers.length > 2) {
+  if(sortedAnswers.length < 2) {
     renderedAnswers = sortedAnswers
   } else {
     renderedAnswers = sortedAnswers.slice(2)

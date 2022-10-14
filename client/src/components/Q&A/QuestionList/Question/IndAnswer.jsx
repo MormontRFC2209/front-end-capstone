@@ -5,7 +5,6 @@ import {useState, useEffect} from "react";
 
 export default function IndAnswer({answer}) {
 
-  console.log(answer)
 
 
   return(
