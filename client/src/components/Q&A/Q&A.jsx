@@ -11,7 +11,8 @@ export default function QANDA(props) {
 
   const [currentQuestions, setQuestions] = useState(renderedQuestions);
   const [loading, setLoading] = useState(true);
-  console.log(props)
+  const [currentList, setList] = useState('');
+
 
 
   const grabQuestions = () => {
@@ -19,9 +20,12 @@ export default function QANDA(props) {
       .then((resultData) => {
 
         var rawQuestions = resultData.data.results
+
         for (var  i = 0; i < rawQuestions.length; i++) {
-          console.log(rawQuestions[i])
           questionsArray.push(rawQuestions[i]);
+        }
+        if(questionsArray.length < 4) {
+          count = questionsArray.length
         }
         for ( var i = 0; i < count; i++) {
           renderedQuestions.push(questionsArray[i]);
@@ -40,15 +44,20 @@ export default function QANDA(props) {
       })
   }
 
-  const [currentList, setList] = useState('')
+
 
 
 
   const manipulateAccordian = () => {
 
     if(currentList === 'Collapse Questions') {
+      if(questionsarray.length < 4) {
+        count = questionsArray.length
+      } else {
+        count = 4;
+      }
 
-      count = 4;
+
       renderedQuestions = [];
       for ( var i = 0; i < count; i++) {
         renderedQuestions.push(questionsArray[i])
@@ -56,7 +65,7 @@ export default function QANDA(props) {
       setQuestions(renderedQuestions);
       setList('More Answered Questions');
 
-      console.log('hello i would like to collapse');
+
       return;
     }
 
@@ -75,7 +84,6 @@ export default function QANDA(props) {
 
 
     for(currentCount; currentCount < count; currentCount++) {
-      console.log(currentCount, count);
       addedQuestion.push(questionsArray[currentCount]);
 
     }
@@ -95,14 +103,13 @@ export default function QANDA(props) {
   }, [])
 
 
-  console.log(currentList)
 
   if(loading) {
     return <span>Loading Questions...</span>
   } else {
     return (
       <div>
-        <h4>Questions List</h4>
+        <h4>Questions & Answers</h4>
         {currentQuestions.length > 0 ? <QuestionList questionList={currentQuestions}/> : null }
 
         <h4 onClick={(e) => {e.preventDefault; manipulateAccordian();}}>{currentList}</h4>

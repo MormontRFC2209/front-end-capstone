@@ -1,19 +1,17 @@
 import {useState, useEffect} from "react";
-import IndQuestion from './IndQuestion.jsx'
+import IndQuestion from './Question/IndQuestion.jsx'
 
 
 
 
 export default function QuestionList(props) {
 
-  console.log(props.questionList)
-
 
 
   return (
     <div>
       {props.questionList.map((singleQuestion) => {
-        return <IndQuestion key={Math.random() } question={singleQuestion}/>
+        return <IndQuestion key={Math.random()} question={singleQuestion}/>
       })}
     </div>
   )
