@@ -8,11 +8,13 @@ import axios from 'axios';
 
 export default function App() {
   const [productId, setProductId] = useState(0);
+  const [loading, setLoading] = useState(true);
 
   const getProductId = () => {
     return axios.get("/info", {params: {route: '/products', apiParams: {page: '2', count: '5'}}})
       .then((response) => {
         setProductId(response.data[1].id);
+        setLoading(false);
       })
       .catch((err) => console.log('err'))
   };
@@ -21,6 +23,10 @@ export default function App() {
     getProductId()
       .catch((err) => console.log(err))
   }, []);
+
+  if (loading) {
+    return <div>Currently Loading...</div>
+  }
 
   return (
     <div>

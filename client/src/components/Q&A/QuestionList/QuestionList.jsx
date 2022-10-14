@@ -1,4 +1,5 @@
 import {useState, useEffect} from "react";
+import IndQuestion from './IndQuestion.jsx'
 
 
 
@@ -12,7 +13,7 @@ export default function QuestionList(props) {
   return (
     <div>
       {props.questionList.map((singleQuestion) => {
-        return <h3 key={Math.random()}>This is a test question</h3>
+        return <IndQuestion key={Math.random() } question={singleQuestion}/>
       })}
     </div>
   )
