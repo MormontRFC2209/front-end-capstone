@@ -11,7 +11,7 @@ export default function QANDA(props) {
 
   const [currentQuestions, setQuestions] = useState(renderedQuestions);
   const [loading, setLoading] = useState(true);
-  console.log(props)
+
 
 
   const grabQuestions = () => {
@@ -55,7 +55,7 @@ export default function QANDA(props) {
       setQuestions(renderedQuestions);
       setList('More Answered Questions');
 
-      console.log('hello i would like to collapse');
+
       return;
     }
 
@@ -74,7 +74,6 @@ export default function QANDA(props) {
 
 
     for(currentCount; currentCount < count; currentCount++) {
-      console.log(currentCount, count);
       addedQuestion.push(questionsArray[currentCount]);
 
     }
@@ -94,7 +93,6 @@ export default function QANDA(props) {
   }, [])
 
 
-  console.log(currentList)
 
   if(loading) {
     return <span>Loading Questions...</span>

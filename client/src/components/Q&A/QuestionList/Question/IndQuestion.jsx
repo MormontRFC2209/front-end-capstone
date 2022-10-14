@@ -13,7 +13,6 @@ export default function IndQuestion({question}) {
   var sortedAnswers = rawAnswerArray.sort((a,b) => (a.helpfulness > b.helpfulness) ? -1 : 1)
   var renderedAnswers = sortedAnswers.slice(2)
 
-  console.log('renderedAnswers',renderedAnswers)
 
   const [accordian, setAccordian] = useState('See more answers')
   const [answerList, setAnswerList] = useState(renderedAnswers)
@@ -25,21 +24,16 @@ export default function IndQuestion({question}) {
 
       setAnswerList(renderedAnswers);
       setAccordian('More Answered Questions');
-
-      console.log('hello i would like to collapse');
       return;
     }
     var storageArray = [];
 
-    console.log(sortedAnswers.length)
 
     for(var i = 2; i < sortedAnswers.length; i++) {
-      console.log('hello')
       storageArray.push(sortedAnswers[i])
     }
 
-    console.log('storageArray', storageArray)
-    console.log('answerList', answerList)
+
 
     setAnswerList(answerList.concat(storageArray));
     setAccordian('Collapse answers')
@@ -52,7 +46,7 @@ export default function IndQuestion({question}) {
   return(
     <div>
       <h3>Q: {question.question_body}</h3><h3>Helpful?</h3><h3>Yes</h3><h3>({question.question_helpfulness})</h3><h3>Add Answer</h3>
-      <span>A: </span>
+      {answerList.length > 0 ? <div>A:</div> : null}
       <div>
       {answerList.map((singleAnswer) => {
         return <IndAnswer key={Math.random()} answer={singleAnswer}/>
