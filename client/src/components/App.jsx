@@ -13,7 +13,6 @@ export default function App() {
   const getProductId = () => {
     return axios.get("/info", {params: {route: '/products', apiParams: {page: '2', count: '5'}}})
       .then((response) => {
-        console.log(response.data)
         setProductId(response.data[1].id);
         setLoading(false);
       })

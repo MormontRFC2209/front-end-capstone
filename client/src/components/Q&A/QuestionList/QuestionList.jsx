@@ -11,7 +11,6 @@ export default function QuestionList(props) {
   return (
     <div>
       {props.questionList.map((singleQuestion) => {
-        console.log('hello')
         return <IndQuestion key={Math.random()} question={singleQuestion}/>
       })}
     </div>
