@@ -68,10 +68,10 @@
   display: flex;
  }
 
- /* .thumbnail-block {
+ .thumbnail-block {
   position: relative;
   display: inline-flex;
- } */
+ }
 
  .thumbnail {
   vertical-align: middle;
@@ -81,11 +81,11 @@
   border-radius: 50%;
  }
 
- /* .icon-tag {
+ .icon-tag {
   position: absolute;
   top: 0;
   right: 0;
   z-index: 1;
   width: 12px !important;
   height: 12px !important;
- } */
+ }

@@ -51,6 +51,7 @@ export default function Overview({ productId }) {
       <ProductHeading productInfo={productInfo}/>
       <StyleSelector styles={styles} selectedStyle={selectedStyle}/>
       <AddToCart />
+      <ShareMedia />
       <ProductDescription productInfo={productInfo}/>
     </div>
   );
