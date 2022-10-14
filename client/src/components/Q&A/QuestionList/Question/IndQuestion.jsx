@@ -5,13 +5,19 @@ import IndAnswer from './IndAnswer.jsx'
 
 export default function IndQuestion({question}) {
   var rawAnswerArray = [];
+  var renderedAnswers;
 
   for (var key in question.answers) {
     rawAnswerArray.push(question.answers[key])
   }
 
   var sortedAnswers = rawAnswerArray.sort((a,b) => (a.helpfulness > b.helpfulness) ? -1 : 1)
-  var renderedAnswers = sortedAnswers.slice(2)
+  if(sortedAnswers.length > 2) {
+    renderedAnswers = sortedAnswers
+  } else {
+    renderedAnswers = sortedAnswers.slice(2)
+  }
+
 
 
   const [accordian, setAccordian] = useState('See more answers')

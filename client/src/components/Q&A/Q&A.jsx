@@ -11,6 +11,7 @@ export default function QANDA(props) {
 
   const [currentQuestions, setQuestions] = useState(renderedQuestions);
   const [loading, setLoading] = useState(true);
+  const [currentList, setList] = useState('');
 
 
 
@@ -19,8 +20,12 @@ export default function QANDA(props) {
       .then((resultData) => {
 
         var rawQuestions = resultData.data.results
+
         for (var  i = 0; i < rawQuestions.length; i++) {
           questionsArray.push(rawQuestions[i]);
+        }
+        if(questionsArray.length < 4) {
+          count = questionsArray.length
         }
         for ( var i = 0; i < count; i++) {
           renderedQuestions.push(questionsArray[i]);
@@ -39,15 +44,20 @@ export default function QANDA(props) {
       })
   }
 
-  const [currentList, setList] = useState('')
+
 
 
 
   const manipulateAccordian = () => {
 
     if(currentList === 'Collapse Questions') {
+      if(questionsarray.length < 4) {
+        count = questionsArray.length
+      } else {
+        count = 4;
+      }
 
-      count = 4;
+
       renderedQuestions = [];
       for ( var i = 0; i < count; i++) {
         renderedQuestions.push(questionsArray[i])
