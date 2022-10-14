@@ -1,12 +1,12 @@
 import {useState, useEffect} from "react";
 import axios from 'axios';
 
-import ImageGallery from './ImageGallery.jsx';
-import ProductHeading from './ProductHeading.jsx';
-import StyleSelector from './StyleSelector.jsx';
-import AddToCart from './AddToCart.jsx';
-import ProductDescription from './ProductDescription.jsx';
-import ShareMedia from './ShareMedia.jsx';
+import ImageGallery from './ImageGallery/ImageGallery.jsx';
+import ProductHeading from './ProductHeading/ProductHeading.jsx';
+import StyleSelector from './StyleSelector/StyleSelector.jsx';
+import AddToCart from './AddToCart/AddToCart.jsx';
+import ProductDescription from './ProductDescription/ProductDescription.jsx';
+import ShareMedia from './ShareMedia/ShareMedia.jsx';
 
 export default function Overview({ productId }) {
   const [loadingProductInfo, setLoadingProductInfo] = useState(true);
