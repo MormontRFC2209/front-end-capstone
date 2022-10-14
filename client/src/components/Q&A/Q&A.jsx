@@ -20,7 +20,6 @@ export default function QANDA(props) {
 
         var rawQuestions = resultData.data.results
         for (var  i = 0; i < rawQuestions.length; i++) {
-          console.log(rawQuestions[i])
           questionsArray.push(rawQuestions[i]);
         }
         for ( var i = 0; i < count; i++) {
@@ -102,7 +101,7 @@ export default function QANDA(props) {
   } else {
     return (
       <div>
-        <h4>Questions List</h4>
+        <h4>Questions & Answers</h4>
         {currentQuestions.length > 0 ? <QuestionList questionList={currentQuestions}/> : null }
 
         <h4 onClick={(e) => {e.preventDefault; manipulateAccordian();}}>{currentList}</h4>
