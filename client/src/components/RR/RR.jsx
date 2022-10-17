@@ -8,16 +8,31 @@ export default function RANDR(props) {
 
 
   useEffect(() => {
-    axios.get("/info", {params: {route: '/reviews/', apiParams: {product_id:66643}}})
+    if(props.productId > 0){
+      axios.get("/info", {params: {route: '/reviews/', apiParams: {product_id:66653}}})
       .then((response) => {
         setReviews(response.data.results);
       })
-  }, []);
+    }
+  }, [props.productId]);
+
+  const usefulClick = ()=>{
+
+  }
+
+  const addReview = ()=>{
+
+  }
+
+  const report = ()=>{
+
+  }
+
 
   return (
     <>
     <h5>RATINGS  REVIEWS</h5>
-    <ReviewList reviews={reviews}/>
+    {reviews.length>0?<ReviewList reviews={reviews} usefulClick={usefulClick} addReview={addReview} report={report}/>:null}
     </>
   )
 }
