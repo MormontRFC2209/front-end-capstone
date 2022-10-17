@@ -1,11 +1,15 @@
 import {useState, useEffect} from "react";
-import IndAnswer from './IndAnswer.jsx'
+import IndAnswer from './IndAnswer.jsx';
+import useModal from '../../../../components/subComponents/modalHook.jsx';
+import AnswerModal from '../../Modal/AnswerModal.jsx'
 
 
 
 export default function IndQuestion({question}) {
   var rawAnswerArray = [];
   var renderedAnswers;
+
+  const {isShowing, toggle} = useModal();
 
   for (var key in question.answers) {
     rawAnswerArray.push(question.answers[key])
@@ -51,8 +55,12 @@ export default function IndQuestion({question}) {
 
   return(
     <div>
-      <h3>Q: {question.question_body}</h3><h3>Helpful?</h3><h3>Yes</h3><h3>({question.question_helpfulness})</h3><h3>Add Answer</h3>
+      <h3>Q: {question.question_body}</h3><h3>Helpful?</h3><h3>Yes</h3><h3>({question.question_helpfulness})</h3><h3 onClick={toggle} className="link">Add Answer</h3>
       {answerList.length > 0 ? <div>A:</div> : null}
+      <AnswerModal
+        isShowing={isShowing}
+        hide={toggle}
+      />
       <div>
       {answerList.map((singleAnswer) => {
         if(singleAnswer.answerer_name === 'Seller') {

@@ -5,8 +5,6 @@ import {useState, useEffect} from "react";
 
 export default function IndAnswer({answer, seller}) {
 
-  console.log(seller)
-
   return(
     <div>
       <span>{answer.body}</span>
