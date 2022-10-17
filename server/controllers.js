@@ -40,7 +40,9 @@ module.exports.makePOSTAPICall = (apiObject, callback) => {
 
     var paramsObject = apiObject[2].params
 
-    axios.post(route, kvPair ,{headers: {Authorization: configs.token}, params: paramsObject})
+    console.log(route, bodyObject, paramsObject)
+
+    axios.post(route, bodyObject ,{headers: {Authorization: configs.token}, params: paramsObject})
       .then((result) => {
         callback(result.data, null)
       })

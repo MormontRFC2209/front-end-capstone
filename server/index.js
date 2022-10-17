@@ -39,7 +39,7 @@ app.post('/info', (req, res) => {
 
   controllers.makePOSTAPICall(apiObject, (result, err) => {
     if (err) {
-      console.log('error posting')
+      console.log('error posting', err)
       return;
     }
     console.log('IT WORKS!')

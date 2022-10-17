@@ -5,11 +5,14 @@ import AnswerModal from '../../Modal/AnswerModal.jsx'
 
 
 
-export default function IndQuestion({question}) {
+export default function IndQuestion({question, id}) {
   var rawAnswerArray = [];
   var renderedAnswers;
 
+  console.log(id)
+
   const {isShowing, toggle} = useModal();
+
 
   for (var key in question.answers) {
     rawAnswerArray.push(question.answers[key])
@@ -21,6 +24,8 @@ export default function IndQuestion({question}) {
   } else {
     renderedAnswers = sortedAnswers.slice(2)
   }
+
+
 
 
 
@@ -60,6 +65,7 @@ export default function IndQuestion({question}) {
       <AnswerModal
         isShowing={isShowing}
         hide={toggle}
+        id={question.question_id}
       />
       <div>
       {answerList.map((singleAnswer) => {

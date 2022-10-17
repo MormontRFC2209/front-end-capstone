@@ -10,6 +10,8 @@ var count = 4;
 
 export default function QANDA(props) {
 
+  console.log(props)
+
 
 
   const [currentQuestions, setQuestions] = useState(renderedQuestions);
@@ -105,6 +107,8 @@ export default function QANDA(props) {
 
   }, [])
 
+  console.log(props.product_id)
+
 
 
   if(loading) {
@@ -113,7 +117,7 @@ export default function QANDA(props) {
     return (
       <div>
         <h4>Questions & Answers</h4>
-        {currentQuestions.length > 0 ? <QuestionList questionList={currentQuestions}/> : null }
+        {currentQuestions.length > 0 ? <QuestionList questionList={currentQuestions} id={props.productId}/> : null }
 
         <h4 onClick={(e) => {e.preventDefault; manipulateAccordian();}}>{currentList}</h4>
       </div>
