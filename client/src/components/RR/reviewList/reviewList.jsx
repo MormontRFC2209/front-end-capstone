@@ -4,10 +4,10 @@ import ReviewListEntry from "./reviewListEntry.jsx";
 
 
 let num = 2;
-export default function ReviewList({reviews}) {
+export default function ReviewList(props) {
 
   const sortRelevant = ()=>{
-    reviews.sort((a,b)=> {
+    props.reviews.sort((a,b)=> {
       if((b.helpfulness - a.helpfulness) !== 0){
         return b.helpfulness - a.helpfulness
       }
@@ -19,38 +19,39 @@ export default function ReviewList({reviews}) {
 
   const change = (e) =>{
     e.preventDefault();
-    num = 2;
     if(e.target.value  === 'Relevant' ){
       sortRelevant();
-      setList(reviews.slice(0,num))
+      setList(props.reviews.slice(0,num))
     }
     if(e.target.value  === 'Helpful' ){
-      reviews.sort((a,b)=>b.helpfulness - a.helpfulness);
-      setList(reviews.slice(0,num))
+      props.reviews.sort((a,b)=>b.helpfulness - a.helpfulness);
+      setList(props.reviews.slice(0,num))
     }
     if(e.target.value  === 'Newest' ){
-      reviews.sort((a,b)=> new Date(b.date).getTime() - new Date(a.date).getTime());
-      setList(reviews.slice(0,num))
+      props.reviews.sort((a,b)=> new Date(b.date).getTime() - new Date(a.date).getTime());
+      setList(props.reviews.slice(0,num))
     }
 
   }
   const onClick = ()=>{
     console.log(num);
-    if(reviews.length <= num){
-      alert('no more reviews')
-    }
-    if(reviews.length > num){
+    if(props.reviews.length > num){
       num += 2;
+      setList(props.reviews.slice(0,num))
+      if(props.reviews.length <= num){
+        setLoadReviews('NO MORE REVIEWS');
+        loading?setLoading(false):setLoading(true);
+      }
     }
-    setList(reviews.slice(0,num))
   }
   sortRelevant()
-  const [list,setList] = useState(reviews.slice(0,num));
+  const [list,setList] = useState(props.reviews.slice(0,num));
+  const [loading, setLoading] = useState(false);
+  const [loadReviews,setLoadReviews] = useState('MORE REVIEWS')
 
   return (
     <div>
-      {console.log(reviews)}
-      <h5>{reviews.length} reviews,sorted by
+      <h5>{props.reviews.length} reviews,sorted by
       <select id='state' onChange={change}>
       <option value="Relevant">Relevant</option>
       <option value="Helpful">Helpful</option>
@@ -58,9 +59,10 @@ export default function ReviewList({reviews}) {
       </select>
       </h5>
       {list.map((review,key)=>{
-        return <ReviewListEntry key={key} review={review}/>
+        return <ReviewListEntry key={key} review={review} usefulClick={props.usefulClick} addReview={props.addReview} report={props.report}/>
       })}
-      <button onClick={onClick}>Add more reviews</button>
+      <button onClick={onClick} disabled={loading}>{loadReviews}</button>
+      <button>ADD A REVIEWS +</button>
        </div>
   )
 }
