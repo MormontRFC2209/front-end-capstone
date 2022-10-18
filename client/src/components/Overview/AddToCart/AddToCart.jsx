@@ -39,12 +39,6 @@ export default function AddToCart({ styles, selectedStyleId }) {
       .catch((err) => console.log(err))
   };
 
-  const getCart = (e) => {
-    return axios.get("/info", {params: {route: `/cart`}})
-      .then((response) => console.log(response.data))
-      .catch((err) => console.log('err'))
-  }
-
   const clickWithoutSize = (e) => {
     setSelectSizeAfterClick(true);
   };
@@ -93,7 +87,6 @@ export default function AddToCart({ styles, selectedStyleId }) {
       {selectSize === 'Select Size' &&
         <button onClick={clickWithoutSize}> Add to Cart </button>
       }
-      <button onClick={getCart}>get cart</button>
     </div>
   );
 };
