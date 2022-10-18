@@ -6,7 +6,6 @@ export default function ShareMedia({ styles, selectedStyleId }) {
 
   return (
     <div>
-      {console.log(siteLink)}
       <div> Share this product </div>
 
       <a target="_blank" href={"https://www.facebook.com/"}>
