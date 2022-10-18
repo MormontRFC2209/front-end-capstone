@@ -1,9 +1,11 @@
 import { useState, useEffect } from 'react';
+import axios from 'axios';
 
 export default function AddToCart({ styles, selectedStyleId }) {
   const [skus, setSkus] = useState([]);
-  const [selectSize, setSelectSize] = useState('');
-  const [selectQuantity, setSelectQuantity] = useState('');
+  const [selectSize, setSelectSize] = useState('Select Size');
+  const [selectSizeAfterClick, setSelectSizeAfterClick] = useState(false);
+  const [selectQuantity, setSelectQuantity] = useState('1');
 
   const makeSkuArray = () => {
     setSkus([styles[selectedStyleId].skus]);
@@ -19,17 +21,41 @@ export default function AddToCart({ styles, selectedStyleId }) {
     return countingNums;
   };
 
-  const clickWithSize = (e) => {
-    console.log('will add to cart');
+  const postToCart = () => {
+    return axios.post("/info", {sku_id: selectSize}, {params: {route: '/cart'}})
+      .catch((err) => console.log(err))
   };
 
+  const clickWithSize = (e) => {
+    console.log('sku of item added to cart:', selectSize);
+    let count = 0;
+    let postPromises = [];
+    while (count < Number(selectQuantity)) {
+      postPromises.push(postToCart());
+      count++;
+    }
+    return Promise.all(postPromises)
+      .then(() => console.log('posted all to cart'))
+      .catch((err) => console.log(err))
+  };
+
+  const getCart = (e) => {
+    return axios.get("/info", {params: {route: `/cart`}})
+      .then((response) => console.log(response.data))
+      .catch((err) => console.log('err'))
+  }
+
   const clickWithoutSize = (e) => {
-    console.log('will drop size dropdown menu');
+    setSelectSizeAfterClick(true);
   };
 
   useEffect(() => {
     makeSkuArray();
   }, [selectedStyleId]);
+
+  useEffect(() => {
+    setSelectSizeAfterClick(false);
+  }, [selectSize]);
 
   return (
     <div>
@@ -37,6 +63,9 @@ export default function AddToCart({ styles, selectedStyleId }) {
         <select name='size' disabled>
           <option>OUT OF STOCK</option>
         </select>
+      }
+      {!styles[selectedStyleId].skus.null && skus.length > 0 && selectSizeAfterClick &&
+        <div>Please Select Size</div>
       }
       {!styles[selectedStyleId].skus.null && skus.length > 0 &&
         <select name='size' onChange={(e) => setSelectSize(e.target.value)}>
@@ -46,24 +75,25 @@ export default function AddToCart({ styles, selectedStyleId }) {
           })}
         </select>
       }
-      {(selectSize === '' || selectSize === 'Select Size') &&
+      {selectSize === 'Select Size' &&
         <select name='quantity' disabled>
           <option> - </option>
         </select>
       }
-      {selectSize !== '' && selectSize !== 'Select Size' &&
+      {selectSize !== 'Select Size' &&
         <select name='quantity' onChange={(e) => setSelectQuantity(e.target.value)}>
           {createQuantityArray(skus[0][selectSize].quantity).map((num, j) => {
             return <option key={j}>{num}</option>
           })}
         </select>
       }
-      {selectSize !== '' && selectSize !== 'Select Size' && selectQuantity !== '' &&
+      {selectSize !== 'Select Size' &&
         <button onClick={clickWithSize}> Add to Cart </button>
       }
-      {(selectSize === '' || selectSize === 'Select Size') &&
+      {selectSize === 'Select Size' &&
         <button onClick={clickWithoutSize}> Add to Cart </button>
       }
+      <button onClick={getCart}>get cart</button>
     </div>
   );
 };

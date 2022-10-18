@@ -19,13 +19,13 @@ export default function Overview({ productId }) {
   const getProductInfo = () => {
     return axios.get("/info", {params: {route: `/products/${productId}`}})
       .then((response) => setProductInfo([response.data]))
-      .catch((err) => console.log('err'))
+      .catch((err) => console.log(err))
   };
 
   const getStyles = () => {
     return axios.get("/info", {params: {route: `/products/${productId}/styles`}})
       .then((response) => setStyles(response.data.results))
-      .catch((err) => console.log('err'))
+      .catch((err) => console.log(err))
   };
 
   const clickStyle = (rowKey, styleKey) => {
