@@ -155,3 +155,8 @@ button {
 .link {
   cursor: pointer;
 }
+
+.answerThumbnail {
+  padding: 5px; /* Some padding */
+  width: 75px; /* Set a small width */
+}

@@ -2,6 +2,7 @@ import {useState, useEffect} from "react";
 import IndAnswer from './IndAnswer.jsx';
 import useModal from '../../../../components/subComponents/modalHook.jsx';
 import AnswerModal from '../../Modal/AnswerModal.jsx'
+import axios from 'axios';
 
 
 
@@ -12,6 +13,14 @@ export default function IndQuestion({question, id}) {
   console.log(id)
 
   const {isShowing, toggle} = useModal();
+
+  // axios.get("/info", {params: {route: '/qa/questions/'+ question.question_id+'/answers'}})
+  //   .then((info) => {
+  //     console.log(info)
+  //   })
+  //   .catch((error) => {
+  //     console.log(error)
+  //   })
 
 
   for (var key in question.answers) {

@@ -8,8 +8,15 @@ import axios from 'axios';
 const initialValues = {
   answerform:"",
   username:"",
-  email:""
+  email:"",
+  answerImageURL: ""
+
 }
+// const initialImageValue = {
+
+// }
+
+var submittedImages = [];
 
 
 const Modal = ({isShowing, hide, id}) => {
@@ -17,6 +24,7 @@ const Modal = ({isShowing, hide, id}) => {
   console.log(id)
 
   const [currentInput, setInput] = useState(initialValues)
+  const [imageInput, setImageInput] = useState([])
 
   var handleInputChange = (event) => {
     const {name, value} = event.target;
@@ -36,7 +44,6 @@ const Modal = ({isShowing, hide, id}) => {
       name: currentInput.username,
       email: currentInput.email,
       photos: []
-
     }
 
     axios.post('/info',answerObject, {params: {route: '/qa/questions/'+ id +'/answers', apiParams: {question_id: id}}})
@@ -46,6 +53,21 @@ const Modal = ({isShowing, hide, id}) => {
       .catch((error) => {
         console.log('failed', error)
       })
+  }
+
+  var submitImage = (event) => {
+    event.preventDefault();
+    const {name} = event.target
+
+    submittedImages.push(currentInput.answerImageURL)
+
+
+    setInput({
+      ...currentInput,
+      [name]: ''
+    })
+
+
   }
 
 
@@ -74,6 +96,7 @@ const Modal = ({isShowing, hide, id}) => {
               autoComplete="off"
               value={currentInput.name}
               onChange={handleInputChange}
+
               ></textarea>
             </label>
             <label>What is your username?
@@ -98,6 +121,12 @@ const Modal = ({isShowing, hide, id}) => {
               onChange={handleInputChange}
               ></textarea>
             For authentication reasons, you will not be emailed.</label>
+            <input type="file" name="answerImageURL" value={currentInput.answerImageURL} onChange={handleInputChange} placeholder="Example: https://images.unsplash.com/photo-1548430395-ec39e…cHBfaWQiOjEyMDd9"/>
+            {submittedImages.length < 5 ? <button onClick={submitImage}>Submit Image</button> : null}
+            {submittedImages.length > 0 ? submittedImages.map((singleImage) => {
+              return <img className="answerThumbnail" src={singleImage} key={Math.random()}></img>
+            }): null}
+
             <button onClick={submitAnswer}>Submit Answer.</button>
           </form>
         </div>
