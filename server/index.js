@@ -48,6 +48,47 @@ app.post('/info', (req, res) => {
 });
 
 
+app.put('/info', (req, res) => {
+
+
+  var apiObject = [];
+  apiObject.push({route: req.query.route});
+  if (req.query.apiParams) {
+    apiObject.push({params: req.query.apiParams})
+  }
+
+  controllers.makePUTAPICall(apiObject, (result, err) => {
+    if (err) {
+      console.log('error putting')
+      return;
+    }
+
+    console.log('successful put')
+    res.send(result)
+  })
+})
+
+app.post('/image', (req, res) => {
+
+
+  var apiObject = [];
+  apiObject.push({body: req.body});
+  if (req.query.apiParams) {
+    apiObject.push({params: req.query.apiParams})
+  }
+
+  controllers.makeImageAPIPOSTCall(apiObject, (result, err) => {
+    if (err) {
+      console.log('error posting image', err)
+      return;
+    }
+
+    res.send(result)
+
+  })
+})
+
+
 
 
 const PORT = process.env.PORT || 3000;
