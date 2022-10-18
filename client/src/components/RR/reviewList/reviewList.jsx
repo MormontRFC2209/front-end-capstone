@@ -1,12 +1,12 @@
 import {useState, useEffect} from "react";
 import ReviewListEntry from "./reviewListEntry.jsx";
-import PopupCnter from "./writeReview.jsx";
+import WriteRview from "./writeReview.jsx";
 
 
-
+let contro = 0;
 let num = 2;
 export default function ReviewList(props) {
-
+  console.log('test2',props.characteristics)
   const sortRelevant = ()=>{
     props.reviews.sort((a,b)=> {
       if((b.helpfulness - a.helpfulness) !== 0){
@@ -47,7 +47,7 @@ export default function ReviewList(props) {
   }
 
   const writeReview = ()=>{
-    setWrite(true);
+    setWrite(true)
   }
   sortRelevant()
   const [list,setList] = useState(props.reviews.slice(0,num));
@@ -71,7 +71,7 @@ export default function ReviewList(props) {
       </div>
       <button onClick={onClick} disabled={loading}>{loadReviews}</button>
       <button onClick={writeReview}>ADD A REVIEWS +</button>
-      {write?<PopupCnter />:null}
+      {write?<WriteRview addReview={props.addReview} setWrite={setWrite} product_id={props.product_id}/>:null}
        </div>
   )
 }
