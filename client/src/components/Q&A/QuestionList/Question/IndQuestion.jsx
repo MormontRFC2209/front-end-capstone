@@ -1,4 +1,5 @@
 import {useState, useEffect} from "react";
+
 import IndAnswer from './IndAnswer.jsx';
 import useModal from '../../../../components/subComponents/modalHook.jsx';
 import AnswerModal from '../../Modal/AnswerModal.jsx'
@@ -14,6 +15,7 @@ export default function IndQuestion({question, id}) {
   const {isShowing, toggle} = useModal();
 
 
+
   for (var key in question.answers) {
     rawAnswerArray.push(question.answers[key])
   }
@@ -24,9 +26,6 @@ export default function IndQuestion({question, id}) {
   } else {
     renderedAnswers = sortedAnswers.slice(2)
   }
-
-
-
 
 
   const [accordian, setAccordian] = useState('See more answers')
@@ -60,6 +59,7 @@ export default function IndQuestion({question, id}) {
 
   return(
     <div>
+
       <h3>Q: {question.question_body}</h3><h3>Helpful?</h3><h3>Yes</h3><h3>({question.question_helpfulness})</h3><h3 onClick={toggle} className="link">Add Answer</h3>
       {answerList.length > 0 ? <div>A:</div> : null}
       <AnswerModal
@@ -73,6 +73,7 @@ export default function IndQuestion({question, id}) {
           return <IndAnswer key={Math.random()} answer={singleAnswer} seller={true}/>
         }
         return <IndAnswer key={Math.random()} answer={singleAnswer} seller={false}/>
+
       })}
       </div>
       {sortedAnswers.length > 2 ? <span onClick={(e) => {e.preventDefault; manipulateAnswerAccordian();}}>{accordian}</span> : null}

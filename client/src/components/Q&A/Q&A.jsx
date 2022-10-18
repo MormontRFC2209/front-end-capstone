@@ -56,6 +56,7 @@ export default function QANDA(props) {
   const manipulateAccordian = () => {
 
     if(currentList === 'Collapse Questions') {
+
       if(questionsArray.length < 4) {
         count = questionsArray.length
       } else {
@@ -117,6 +118,7 @@ export default function QANDA(props) {
     return (
       <div>
         <h4>Questions & Answers</h4>
+
         {currentQuestions.length > 0 ? <QuestionList questionList={currentQuestions} id={props.productId}/> : null }
 
         <h4 onClick={(e) => {e.preventDefault; manipulateAccordian();}}>{currentList}</h4>
