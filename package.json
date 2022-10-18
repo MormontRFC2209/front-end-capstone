@@ -25,7 +25,6 @@
     "dotenv": "^16.0.3",
     "express": "^4.15.0",
     "imagekit": "^4.1.1",
-    "node-sass": "^7.0.3",
     "react": "^16.4",
     "react-dom": "^16.4"
   }
