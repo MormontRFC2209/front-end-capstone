@@ -8,16 +8,35 @@ module.exports = {
         path: path.join(__dirname, '/client/dist'),
         filename: 'bundle.js'
     },
+    // module: {
+    //     rules: [
+    //         {
+    //           test: /\.(js|jsx)$/,
+    //           exclude: /nodeModules/,
+    //           use: {
+    //             loader: "babel-loader",
+    //           },
+    //         }
+    //     ]
+    // },
     module: {
-        rules: [
-            {
-              test: /\.(js|jsx)$/,
-              exclude: /nodeModules/,
-              use: {
-                loader: "babel-loader",
-              },
-            }
-        ]
+      rules: [
+        {
+          test: /\.(js|jsx)$/,
+          exclude: /nodeModules/,
+          use: {
+            loader: "babel-loader",
+          },
+        },
+        {
+          test: /\.css$/i,
+          use: [{ loader: "style-loader" },{ loader: "css-loader" }]
+        },
+        {
+          test: /\.(png|svg|jpg|jpeg|gif)$/i,
+          type: "asset/resource",
+        },
+      ],
     },
     devtool: 'source-map'
 };

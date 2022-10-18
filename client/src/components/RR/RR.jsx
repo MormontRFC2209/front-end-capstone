@@ -1,6 +1,7 @@
 import {useState, useEffect} from "react";
 import axios from 'axios';
 import ReviewList from "./reviewList/reviewList.jsx";
+import BreakDown from './reviewBreakDown/breakDown.jsx';
 
 
 export default function RANDR(props) {
@@ -9,7 +10,7 @@ export default function RANDR(props) {
 
   useEffect(() => {
     if(props.productId > 0){
-      axios.get("/info", {params: {route: '/reviews/', apiParams: {product_id:66653}}})
+      axios.get("/info", {params: {route: '/reviews/', apiParams: {product_id:props.productId}}})
       .then((response) => {
         setReviews(response.data.results);
       })
@@ -32,7 +33,10 @@ export default function RANDR(props) {
   return (
     <>
     <h5>RATINGS  REVIEWS</h5>
+    <div style={{display:'flex'}}>
+    {reviews.length>0?<BreakDown reviews={reviews}/>:null}
     {reviews.length>0?<ReviewList reviews={reviews} usefulClick={usefulClick} addReview={addReview} report={report}/>:null}
+    </div>
     </>
   )
 }
