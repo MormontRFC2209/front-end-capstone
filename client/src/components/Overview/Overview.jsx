@@ -51,7 +51,7 @@ export default function Overview({ productId }) {
 
   return (
     <div>
-      <ImageGallery />
+      <ImageGallery styles={styles} selectedStyleId={selectedStyleId}/>
       <ProductHeading productInfo={productInfo} styles={styles} selectedStyleId={selectedStyleId}/>
       <StyleSelector styles={styles} selectedStyleId={selectedStyleId} selectedStylePosition={selectedStylePosition} clickStyle={clickStyle}/>
       <AddToCart styles={styles} selectedStyleId={selectedStyleId}/>
