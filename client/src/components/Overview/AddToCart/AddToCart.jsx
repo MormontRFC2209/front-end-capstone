@@ -84,7 +84,7 @@ export default function AddToCart({ styles, selectedStyleId }) {
       {selectSize !== 'Select Size' &&
         <button onClick={clickWithSize}> Add to Cart </button>
       }
-      {selectSize === 'Select Size' &&
+      {!styles[selectedStyleId].skus.null && selectSize === 'Select Size' &&
         <button onClick={clickWithoutSize}> Add to Cart </button>
       }
     </div>
