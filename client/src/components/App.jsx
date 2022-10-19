@@ -13,7 +13,7 @@ export default function App() {
   const getProductId = () => {
     return axios.get("/info", {params: {route: '/products', apiParams: {page: '1', count: '5'}}})
       .then((response) => {
-        setProductId(response.data[4].id);
+        setProductId(response.data[2].id);
         setLoading(false);
       })
       .catch((err) => console.log('err'))
@@ -30,6 +30,9 @@ export default function App() {
 
   return (
     <div>
+      <div className='website-banner'>
+        <h1 className='website-title'> <em>HOUSE MORMONT</em> </h1>
+      </div>
       <Overview productId={productId}/>
       <QANDA productId={productId}/>
       <RANDR productId={productId}/>

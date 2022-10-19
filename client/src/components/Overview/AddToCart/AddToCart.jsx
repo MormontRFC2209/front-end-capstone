@@ -45,6 +45,11 @@ export default function AddToCart({ styles, selectedStyleId }) {
 
   useEffect(() => {
     makeSkuArray();
+    setSelectSize('Select Size');
+    let $select = document.querySelector('.size');
+    if ($select) {
+      $select.value = 'Select Size';
+    }
   }, [selectedStyleId]);
 
   useEffect(() => {
@@ -52,40 +57,42 @@ export default function AddToCart({ styles, selectedStyleId }) {
   }, [selectSize]);
 
   return (
-    <div>
-      {styles[selectedStyleId].skus.null &&
-        <select name='size' disabled>
-          <option>OUT OF STOCK</option>
-        </select>
-      }
-      {!styles[selectedStyleId].skus.null && skus.length > 0 && selectSizeAfterClick &&
-        <div>Please Select Size</div>
-      }
-      {!styles[selectedStyleId].skus.null && skus.length > 0 &&
-        <select name='size' onChange={(e) => setSelectSize(e.target.value)}>
-          <option>Select Size</option>
-          {Object.keys(skus[0]).map((sku, i) => {
-            return (<option key={i} value={sku}>{skus[0][sku].size}</option>)
-          })}
-        </select>
-      }
-      {selectSize === 'Select Size' &&
-        <select name='quantity' disabled>
-          <option> - </option>
-        </select>
-      }
+    <div className='addToCart-container'>
+      <div className='dropdown-container'>
+        {styles[selectedStyleId].skus.null &&
+          <select className='addToCart-selectSize' disabled>
+            <option>OUT OF STOCK</option>
+          </select>
+        }
+        {!styles[selectedStyleId].skus.null && skus.length > 0 && selectSizeAfterClick &&
+          <div>Please Select Size</div>
+        }
+        {!styles[selectedStyleId].skus.null && skus.length > 0 &&
+          <select className='size addToCart-selectSize' onChange={(e) => setSelectSize(e.target.value)}>
+            <option>Select Size</option>
+            {Object.keys(skus[0]).map((sku, i) => {
+              return (<option key={i} value={sku}>{skus[0][sku].size}</option>)
+            })}
+          </select>
+        }
+        {selectSize === 'Select Size' &&
+          <select className='addToCart-selectQuant' disabled>
+            <option> - </option>
+          </select>
+        }
+        {selectSize !== 'Select Size' &&
+          <select className='quantity addToCart-selectQuant' onChange={(e) => setSelectQuantity(e.target.value)}>
+            {createQuantityArray(skus[0][selectSize].quantity).map((num, j) => {
+              return <option key={j}>{num}</option>
+            })}
+          </select>
+        }
+      </div>
       {selectSize !== 'Select Size' &&
-        <select name='quantity' onChange={(e) => setSelectQuantity(e.target.value)}>
-          {createQuantityArray(skus[0][selectSize].quantity).map((num, j) => {
-            return <option key={j}>{num}</option>
-          })}
-        </select>
-      }
-      {selectSize !== 'Select Size' &&
-        <button onClick={clickWithSize}> Add to Cart </button>
+        <button className='addToCart-btn' onClick={clickWithSize}> Add to Cart </button>
       }
       {!styles[selectedStyleId].skus.null && selectSize === 'Select Size' &&
-        <button onClick={clickWithoutSize}> Add to Cart </button>
+        <button className='addToCart-btn' onClick={clickWithoutSize}> Add to Cart </button>
       }
     </div>
   );
