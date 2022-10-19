@@ -27,6 +27,6 @@
     "node-sass": "^7.0.3",
     "react": "^16.4",
     "react-dom": "^16.4",
-    "sass-loader": "^13.1.0"
+    "imagekit": "^4.1.1"
   }
 }
