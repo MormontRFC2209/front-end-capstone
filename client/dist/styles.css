@@ -59,6 +59,71 @@
    margin: auto;
  }
 
+ .main-image {
+  vertical-align: middle;
+  width: 750px;
+  height: 600px;
+  object-fit: cover;
+ }
+
+ .thumbnail-image-view {
+  position: absolute;
+  top: 50px;
+  bottom: 0;
+  right: 50px;
+  left: 0;
+ }
+
+ .thumbnail-image {
+  vertical-align: middle;
+  width: 62px;
+  height: 62px;
+  object-fit: cover;
+  border: 2px solid black;
+  margin: 4px 8px 2px 8px;
+ }
+
+ .line-under-thumbnail {
+  width: 62px;
+  height: 0;
+  border: 2px solid black;
+  margin: 0 8px;
+ }
+
+ .noline-under-thumbnail {
+  width: 62px;
+  height: 4px;
+  margin: 0 8px;
+ }
+
+ .arrow-icon {
+  margin: 8px 32px;
+ }
+
+ .arrow-placeholder {
+  height: 32px;
+ }
+
+ .backward-arrow {
+  height: 15px;
+  width: 15px;
+  position: absolute;
+  top: 325px;
+  bottom: 0px;
+  right: 0;
+  left: 95px;
+ }
+
+ .forward-arrow {
+  height: 15px;
+  width: 15px;
+  position: absolute;
+  top: 325px;
+  bottom: 0px;
+  right: 0;
+  left: 710px;
+ }
+
  .styleSelectorRowsContainer {
   display: flex;
   flex-direction: column;
@@ -75,8 +140,8 @@
 
  .thumbnail {
   vertical-align: middle;
-  width: 45px;
-  height: 45px;
+  width: 60px;
+  height: 60px;
   object-fit: cover;
   border-radius: 50%;
  }

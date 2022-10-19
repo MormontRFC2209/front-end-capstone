@@ -5,7 +5,7 @@ import RatingStars from '../ratingStars/singleRatingStars.jsx';
 export default function ReviewListEntry(props) {
   const options = { weekday: undefined, year: 'numeric', month: 'long', day: 'numeric' };
   let date = new Date(props.review.date).toLocaleDateString(undefined,options);
-  console.log(props);
+
   const onClick = ()=>{
 
   }

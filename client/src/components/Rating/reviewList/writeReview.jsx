@@ -24,7 +24,7 @@ export default function WriteRview(props) {
       photos:[],
       // characteristics:
     }
-    console.log(newReview)
+
     handleClick()
     props.setWrite(false);
   }
