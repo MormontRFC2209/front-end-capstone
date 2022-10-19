@@ -6,7 +6,7 @@ import WriteRview from "./writeReview.jsx";
 let contro = 0;
 let num = 2;
 export default function ReviewList(props) {
-  console.log('test2',props.characteristics)
+
   const sortRelevant = ()=>{
     props.reviews.sort((a,b)=> {
       if((b.helpfulness - a.helpfulness) !== 0){
@@ -35,7 +35,7 @@ export default function ReviewList(props) {
 
   }
   const onClick = ()=>{
-    console.log(num);
+
     if(props.reviews.length > num){
       num += 2;
       setList(props.reviews.slice(0,num))
