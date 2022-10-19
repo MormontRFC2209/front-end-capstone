@@ -68,7 +68,9 @@
 
  .thumbnail-image-view {
   position: absolute;
-  top: 50px;
+  width: 80px;
+  height: 600px;
+  top: 45px;
   bottom: 0;
   right: 50px;
   left: 0;
@@ -96,31 +98,60 @@
   margin: 0 8px;
  }
 
- .arrow-icon {
-  margin: 8px 32px;
- }
-
  .arrow-placeholder {
-  height: 32px;
+  height: 31px;
  }
 
- .backward-arrow {
-  height: 15px;
-  width: 15px;
+ .backward-arrow-container,
+ .forward-arrow-container,
+ .up-arrow-container,
+ .down-arrow-container,
+ .expand-icon-container {
+  background-color: rgba(255, 255, 255, 0.2);
+  border-radius: 50%;
+  height: 25px;
+  width: 25px;
+  justify-content: center;
+ }
+
+ .up-arrow-container {
+  margin: 0 0 10px 26px;
+ }
+
+ .down-arrow-container {
+  margin: 5px 0 0 26px;
+ }
+
+ .backward-arrow-container,
+ .forward-arrow-container,
+ .expand-icon-container {
   position: absolute;
-  top: 325px;
   bottom: 0px;
   right: 0;
+ }
+
+ .backward-arrow-container,
+ .forward-arrow-container {
+  top: 325px;
+ }
+
+ .backward-arrow,
+ .forward-arrow,
+ .arrow-icon,
+ .expand-icon {
+  margin: 4.5px 5.5px;
+ }
+
+ .backward-arrow-container {
   left: 95px;
  }
 
- .forward-arrow {
-  height: 15px;
-  width: 15px;
-  position: absolute;
-  top: 325px;
-  bottom: 0px;
-  right: 0;
+ .forward-arrow-container {
+  left: 710px;
+ }
+
+ .expand-icon-container {
+  top: 50px;
   left: 710px;
  }
 
@@ -150,7 +181,6 @@
   position: absolute;
   top: 0;
   right: 0;
-  z-index: 1;
-  width: 12px !important;
-  height: 12px !important;
+  width: 14px !important;
+  height: 14px !important;
  }
