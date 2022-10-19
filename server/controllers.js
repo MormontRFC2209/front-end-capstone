@@ -79,11 +79,10 @@ module.exports.makePOSTAPICall = (apiObject, callback) => {
 
 module.exports.makePUTAPICall = (apiObject, callback) => {
   var route = configs.apiServer + apiObject[0].route
-
   if(apiObject[1]) {
 
     var kvPair = apiObject[1].params
-    axios.put(route, {headers: {Authorization: configs.token}, params: kvPair} )
+    axios.put(route,null ,{headers: {Authorization: configs.token}, params: kvPair} )
     .then((result) => {
       callback(result.data, null)
     })
@@ -93,7 +92,7 @@ module.exports.makePUTAPICall = (apiObject, callback) => {
 
   } else {
 
-    axios.put(route, {headers: {Authorization: configs.token}})
+    axios.put(route,null, {headers: {Authorization: configs.token}})
       .then((result) => {
         callback(result.data, null)
       })

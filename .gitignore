@@ -3,3 +3,4 @@ node_modules/
 *bundle.js
 *.map
 .env
+package-lock.json

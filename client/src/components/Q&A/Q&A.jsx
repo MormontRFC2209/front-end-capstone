@@ -1,6 +1,10 @@
 import {useState, useEffect} from "react";
 import axios from 'axios';
-import QuestionList from './QuestionList/QuestionList.jsx'
+import QuestionList from './QuestionList/QuestionList.jsx';
+import useModal from '../../components/subComponents/modalHook.jsx';
+import QuestionModal from './Modal/QuestionModal.jsx';
+
+
 
 const questionsArray = [];
 var renderedQuestions = [];
@@ -12,7 +16,7 @@ export default function QANDA(props) {
 
   console.log(props)
 
-
+  const {isShowing, toggle} = useModal();
 
   const [currentQuestions, setQuestions] = useState(renderedQuestions);
   const [loading, setLoading] = useState(true);
@@ -118,6 +122,13 @@ export default function QANDA(props) {
     return (
       <div>
         <h4>Questions & Answers</h4>
+
+        <button onClick={toggle}>Add a Question</button>
+        <QuestionModal
+        isShowing={isShowing}
+        hide={toggle}
+        id={props.productId}
+        />
 
         {currentQuestions.length > 0 ? <QuestionList questionList={currentQuestions} id={props.productId}/> : null }
 

@@ -50,16 +50,18 @@ app.post('/info', (req, res) => {
 
 app.put('/info', (req, res) => {
 
-
+  console.log(req.body)
   var apiObject = [];
-  apiObject.push({route: req.query.route});
-  if (req.query.apiParams) {
-    apiObject.push({params: req.query.apiParams})
+  apiObject.push({route: req.body.route});
+  if (req.body.apiParams) {
+    apiObject.push({params: req.body.apiParams})
   }
+
+  console.log(apiObject)
 
   controllers.makePUTAPICall(apiObject, (result, err) => {
     if (err) {
-      console.log('error putting')
+      console.log('error putting',err)
       return;
     }
 

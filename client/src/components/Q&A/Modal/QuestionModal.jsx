@@ -12,27 +12,12 @@ const initialValues = {
   answerImageURL: ""
 
 }
-// const initialImageValue = {
-
-// }
-
-
-
-var submittedImages = [];
-
 
 const Modal = ({isShowing, hide, id}) => {
 
-  function useForceUpdate(){
-    const [value, setValue] = useState(0);
-    return () => setValue(value => value + 1);
-  }
-
-  var forceUpdate = useForceUpdate();
 
 
-  const [currentInput, setInput] = useState(initialValues)
-  const [imageInput, setImageInput] = useState(submittedImages)
+  const [currentInput, setInput] = useState(initialValues);
 
   var handleInputChange = (event) => {
     const {name, value} = event.target;
@@ -43,34 +28,22 @@ const Modal = ({isShowing, hide, id}) => {
     })
   }
 
-  var getBase64 = (file, cb) => {
-    let reader = new FileReader();
-    reader.readAsDataURL(file);
-    reader.onload = function () {
-        cb(reader.result)
-    };
-    reader.onerror = function (error) {
-        console.log('Error: ', error);
-    };
-  }
 
   var submitAnswer = () => {
     event.preventDefault();
 
 
-    var answerObject = {
+    var questionObject = {
       body: currentInput.answerform,
       name: currentInput.username,
       email: currentInput.email,
-      photos: submittedImages
+      product_id: id
     }
 
-    axios.post('/info',answerObject, {params: {route: '/qa/questions/'+ id +'/answers', apiParams: {question_id: id}}})
+    axios.post('/info',questionObject, {params: {route: '/qa/questions/', apiParams: {question_id: id}}})
       .then((result) => {
-        console.log('answer submitted', result)
+        console.log('question submitted', result)
         setInput(initialValues);
-        submittedImages = [];
-        setImageInput(submittedImages)
         hide();
       })
       .catch((error) => {
@@ -78,32 +51,7 @@ const Modal = ({isShowing, hide, id}) => {
       })
   }
 
-  var submitImage = (event) => {
-    event.preventDefault();
 
-    var name = event.target.files[0].name
-    console.log(event.target.files[0])
-
-    getBase64(event.target.files[0], (result) => {
-
-      var apiObject = {base64Img: result,nameGiven: name}
-      axios.post('/image', apiObject )
-        .then((apiCallResult) => {
-          submittedImages.push(apiCallResult.data.url)
-
-
-
-          setImageInput(submittedImages)
-
-          forceUpdate();
-
-        })
-    })
-
-
-
-
-  }
 
 
 
@@ -128,7 +76,6 @@ const Modal = ({isShowing, hide, id}) => {
               <textarea
               type="text"
               name="answerform"
-              placeholder="Place your answer here..."
               required=""
               autoComplete="off"
               value={currentInput.name}
@@ -140,7 +87,7 @@ const Modal = ({isShowing, hide, id}) => {
               <textarea
               type="text"
               name="username"
-              placeholder="Example: jack543!"
+              placeholder="Example: jackson11!"
               required=""
               autoComplete="off"
               value={currentInput.name}
@@ -151,18 +98,13 @@ const Modal = ({isShowing, hide, id}) => {
               <textarea
               type="text"
               name="email"
-              placeholder="Example: jack@email.com"
+              placeholder="Why did you like the product or not?"
               required=""
               autoComplete="off"
               value={currentInput.name}
               onChange={handleInputChange}
               ></textarea>
             For authentication reasons, you will not be emailed.</label>
-            <input type="file" name="answerImageURL" onChange={submitImage} />
-            {imageInput.length < 5 ? <button onClick={submitImage}>Submit Image</button> : null}
-            {imageInput.length > 0 ? imageInput.map((singleImage) => {
-              return <img className="answerThumbnail" src={singleImage} key={Math.random()}></img>
-            }): null}
 
             <button onClick={submitAnswer}>Submit Answer.</button>
           </form>
