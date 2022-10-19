@@ -2,7 +2,7 @@ import react from 'react';
 
 export default function ShareMedia({ styles, selectedStyleId }) {
   let siteLink = window.location.origin.split(':').join('%3A').split('/').join('%2F');
-  let stylePhoto = styles[selectedStyleId].photos[0].url.split(':').join('%3A');
+  let stylePhoto = styles[selectedStyleId].photos[0].url ? styles[selectedStyleId].photos[0].url.split(':').join('%3A') : 'Default.jpg';
 
   return (
     <div>
