@@ -105,9 +105,10 @@ module.exports.makePUTAPICall = (apiObject, callback) => {
 
 module.exports.makeImageAPIPOSTCall = (apiObject, callback) => {
 
+  console.log(apiObject)
 
-  var base64Img = apiObject.body.base64Img;
-  var nameGiven = apiObject.body.nameGiven;
+  var base64Img = apiObject[0].body.base64Img;
+  var nameGiven = apiObject[0].body.nameGiven;
 
 
 

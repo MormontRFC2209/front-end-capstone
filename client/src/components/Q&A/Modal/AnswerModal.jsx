@@ -16,15 +16,25 @@ const initialValues = {
 
 // }
 
+
+
 var submittedImages = [];
 
 
 const Modal = ({isShowing, hide, id}) => {
 
-  console.log(id)
+  function useForceUpdate(){
+    const [value, setValue] = useState(0); // integer state
+    return () => setValue(value => value + 1); // update state to force render
+    // An function that increment 👆🏻 the previous state like here
+    // is better than directly setting `value + 1`
+  }
+
+  var forceUpdate = useForceUpdate();
+
 
   const [currentInput, setInput] = useState(initialValues)
-  const [imageInput, setImageInput] = useState([])
+  const [imageInput, setImageInput] = useState(submittedImages)
 
   var handleInputChange = (event) => {
     const {name, value} = event.target;
@@ -33,6 +43,17 @@ const Modal = ({isShowing, hide, id}) => {
       ...currentInput,
       [name]: value
     })
+  }
+
+  var getBase64 = (file, cb) => {
+    let reader = new FileReader();
+    reader.readAsDataURL(file);
+    reader.onload = function () {
+        cb(reader.result)
+    };
+    reader.onerror = function (error) {
+        console.log('Error: ', error);
+    };
   }
 
   var submitAnswer = () => {
@@ -57,18 +78,34 @@ const Modal = ({isShowing, hide, id}) => {
 
   var submitImage = (event) => {
     event.preventDefault();
-    const {name} = event.target
 
-    submittedImages.push(currentInput.answerImageURL)
+    var name = event.target.files[0].name
+    console.log(event.target.files[0])
+
+    getBase64(event.target.files[0], (result) => {
+
+      var apiObject = {base64Img: result,nameGiven: name}
+      axios.post('/image', apiObject )
+        .then((apiCallResult) => {
+          submittedImages.push(apiCallResult.data.url)
+
+          console.log(submittedImages)
 
 
-    setInput({
-      ...currentInput,
-      [name]: ''
+
+          setImageInput(submittedImages)
+
+          forceUpdate();
+
+        })
     })
 
 
+
+
   }
+
+
 
 
 
@@ -121,9 +158,9 @@ const Modal = ({isShowing, hide, id}) => {
               onChange={handleInputChange}
               ></textarea>
             For authentication reasons, you will not be emailed.</label>
-            <input type="file" name="answerImageURL" value={currentInput.answerImageURL} onChange={handleInputChange} placeholder="Example: https://images.unsplash.com/photo-1548430395-ec39e…cHBfaWQiOjEyMDd9"/>
-            {submittedImages.length < 5 ? <button onClick={submitImage}>Submit Image</button> : null}
-            {submittedImages.length > 0 ? submittedImages.map((singleImage) => {
+            <input type="file" name="answerImageURL" onChange={submitImage} />
+            {imageInput.length < 5 ? <button onClick={submitImage}>Submit Image</button> : null}
+            {imageInput.length > 0 ? imageInput.map((singleImage) => {
               return <img className="answerThumbnail" src={singleImage} key={Math.random()}></img>
             }): null}
 

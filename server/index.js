@@ -70,7 +70,7 @@ app.put('/info', (req, res) => {
 
 app.post('/image', (req, res) => {
 
-
+  // console.log(req.body)
   var apiObject = [];
   apiObject.push({body: req.body});
   if (req.query.apiParams) {
