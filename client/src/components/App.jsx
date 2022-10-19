@@ -11,9 +11,9 @@ export default function App() {
   const [loading, setLoading] = useState(true);
 
   const getProductId = () => {
-    return axios.get("/info", {params: {route: '/products', apiParams: {page: '2', count: '5'}}})
+    return axios.get("/info", {params: {route: '/products', apiParams: {page: '1', count: '5'}}})
       .then((response) => {
-        setProductId(response.data[1].id);
+        setProductId(response.data[4].id);
         setLoading(false);
       })
       .catch((err) => console.log('err'))

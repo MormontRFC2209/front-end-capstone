@@ -52,7 +52,7 @@ export default function ImageGallery({ styles, selectedStyleId }) {
   return (
     <div>
       {expanded &&
-        <ExpandedImageGallery styles={styles} selectedStyleId={selectedStyleId} expanded={expanded} setExpanded={setExpanded}/>
+        <ExpandedImageGallery photos={photos} photoId={photoId} expanded={expanded} setExpanded={setExpanded}/>
       }
       <img className='main-image' src={photos[photoId].url} alt={styles[selectedStyleId].name}></img>
       <div className='thumbnail-image-view'>
