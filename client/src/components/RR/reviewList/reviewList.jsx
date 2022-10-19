@@ -1,11 +1,12 @@
 import {useState, useEffect} from "react";
 import ReviewListEntry from "./reviewListEntry.jsx";
+import WriteRview from "./writeReview.jsx";
 
 
-
+let contro = 0;
 let num = 2;
 export default function ReviewList(props) {
-
+  console.log('test2',props.characteristics)
   const sortRelevant = ()=>{
     props.reviews.sort((a,b)=> {
       if((b.helpfulness - a.helpfulness) !== 0){
@@ -44,13 +45,18 @@ export default function ReviewList(props) {
       }
     }
   }
+
+  const writeReview = ()=>{
+    setWrite(true)
+  }
   sortRelevant()
   const [list,setList] = useState(props.reviews.slice(0,num));
   const [loading, setLoading] = useState(false);
   const [loadReviews,setLoadReviews] = useState('MORE REVIEWS')
+  const [write,setWrite] = useState(false)
 
   return (
-    <div>
+    <div style={{flex:'5'}}>
       <h5>{props.reviews.length} reviews,sorted by
       <select id='state' onChange={change}>
       <option value="Relevant">Relevant</option>
@@ -58,11 +64,14 @@ export default function ReviewList(props) {
       <option value="Newest">Newest</option>
       </select>
       </h5>
+      <div>
       {list.map((review,key)=>{
         return <ReviewListEntry key={key} review={review} usefulClick={props.usefulClick} addReview={props.addReview} report={props.report}/>
       })}
+      </div>
       <button onClick={onClick} disabled={loading}>{loadReviews}</button>
-      <button>ADD A REVIEWS +</button>
+      <button onClick={writeReview}>ADD A REVIEWS +</button>
+      {write?<WriteRview addReview={props.addReview} setWrite={setWrite} product_id={props.product_id}/>:null}
        </div>
   )
 }
