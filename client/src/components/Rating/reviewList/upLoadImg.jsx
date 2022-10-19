@@ -5,7 +5,7 @@ export default function UpLoadImg(props) {
 
   const addPhoto= (e) => {
     var img = new FormData();
-    console.log(e.target.files);
+
     img.append("image", e.target.files[0]);
   }
 

@@ -26,7 +26,6 @@
     "express": "^4.15.0",
     "imagekit": "^4.1.1",
     "react": "^16.4",
-    "react-dom": "^16.4",
-    "imagekit": "^4.1.1"
+    "react-dom": "^16.4"
   }
 }

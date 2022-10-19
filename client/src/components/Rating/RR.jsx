@@ -14,11 +14,11 @@ export default function RANDR(props) {
       axios.get("/info", {params: {route: '/reviews/', apiParams: {product_id:props.productId}}})
       .then((response) => {
         setReviews(response.data.results);
-        console.log(response)
+
       })
       axios.get("/info", {params: {route: '/reviews/meta', apiParams: {product_id:props.productId}}})
       .then((response) => {
-        console.log('test',response)
+
         setMetaData(response.data)
       })
     }
