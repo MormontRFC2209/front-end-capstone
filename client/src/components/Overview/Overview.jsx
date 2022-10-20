@@ -51,11 +51,15 @@ export default function Overview({ productId }) {
 
   return (
     <div>
-      <ImageGallery styles={styles} selectedStyleId={selectedStyleId}/>
-      <ProductHeading productInfo={productInfo} styles={styles} selectedStyleId={selectedStyleId}/>
-      <StyleSelector styles={styles} selectedStyleId={selectedStyleId} selectedStylePosition={selectedStylePosition} clickStyle={clickStyle}/>
-      <AddToCart styles={styles} selectedStyleId={selectedStyleId}/>
-      <ShareMedia styles={styles} selectedStyleId={selectedStyleId}/>
+      <div className='top-product-overview'>
+        <ImageGallery styles={styles} selectedStyleId={selectedStyleId}/>
+        <div className='right-product-overview'>
+          <ProductHeading productInfo={productInfo} styles={styles} selectedStyleId={selectedStyleId}/>
+          <StyleSelector styles={styles} selectedStyleId={selectedStyleId} selectedStylePosition={selectedStylePosition} clickStyle={clickStyle}/>
+          <AddToCart styles={styles} selectedStyleId={selectedStyleId}/>
+          <ShareMedia styles={styles} selectedStyleId={selectedStyleId}/>
+        </div>
+      </div>
       <ProductDescription productInfo={productInfo}/>
     </div>
   );

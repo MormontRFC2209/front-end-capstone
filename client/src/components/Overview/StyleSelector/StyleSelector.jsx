@@ -10,7 +10,7 @@ export default function StyleSelector({ styles, selectedStyleId, selectedStylePo
   }
   return (
     <div className='styleSelectorRowsContainer'>
-      <div> Style > {styles[selectedStyleId].name} </div>
+      <div className='style-name'> <b> Style > </b> {styles[selectedStyleId].name} </div>
       {rows.map((row, i) => {
         return (<ThumbnailRow key={i} rowKey={i} row={row} selectedStylePosition={selectedStylePosition} clickStyle={clickStyle}/>)
       })}
