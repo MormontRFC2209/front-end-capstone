@@ -67,7 +67,7 @@ const Modal = ({isShowing, hide, id}) => {
 
     axios.post('/info',answerObject, {params: {route: '/qa/questions/'+ id +'/answers', apiParams: {question_id: id}}})
       .then((result) => {
-        console.log('answer submitted', result)
+
         setInput(initialValues);
         submittedImages = [];
         setImageInput(submittedImages)
@@ -82,7 +82,7 @@ const Modal = ({isShowing, hide, id}) => {
     event.preventDefault();
 
     var name = event.target.files[0].name
-    console.log(event.target.files[0])
+
 
     getBase64(event.target.files[0], (result) => {
 

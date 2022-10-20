@@ -8,13 +8,13 @@ import IndQuestion from './Question/IndQuestion.jsx'
 export default function QuestionList(props) {
 
 
-  console.log(props)
+
 
   return (
     <div>
       {props.questionList.map((singleQuestion) => {
 
-        return <IndQuestion key={Math.random()} question={singleQuestion} id={props.id} />
+        return <IndQuestion key={Math.random()} question={singleQuestion} id={props.id} trackingFunction={props.trackingFunction} />
       })}
     </div>
   )
