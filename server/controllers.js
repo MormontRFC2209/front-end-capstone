@@ -50,7 +50,9 @@ module.exports.makePOSTAPICall = (apiObject, callback) => {
 
     var paramsObject = apiObject[2].params
 
-    axios.post(route, kvPair ,{headers: {Authorization: configs.token}, params: paramsObject})
+    console.log(route, bodyObject, paramsObject)
+
+    axios.post(route, bodyObject ,{headers: {Authorization: configs.token}, params: paramsObject})
       .then((result) => {
         callback(result.data, null)
       })
@@ -77,11 +79,10 @@ module.exports.makePOSTAPICall = (apiObject, callback) => {
 
 module.exports.makePUTAPICall = (apiObject, callback) => {
   var route = configs.apiServer + apiObject[0].route
-
   if(apiObject[1]) {
 
     var kvPair = apiObject[1].params
-    axios.put(route, {headers: {Authorization: configs.token}, params: kvPair} )
+    axios.put(route,null ,{headers: {Authorization: configs.token}, params: kvPair} )
     .then((result) => {
       callback(result.data, null)
     })
@@ -91,7 +92,7 @@ module.exports.makePUTAPICall = (apiObject, callback) => {
 
   } else {
 
-    axios.put(route, {headers: {Authorization: configs.token}})
+    axios.put(route,null, {headers: {Authorization: configs.token}})
       .then((result) => {
         callback(result.data, null)
       })
@@ -103,9 +104,10 @@ module.exports.makePUTAPICall = (apiObject, callback) => {
 
 module.exports.makeImageAPIPOSTCall = (apiObject, callback) => {
 
+  console.log(apiObject)
 
-  var base64Img = apiObject.body.base64Img;
-  var nameGiven = apiObject.body.nameGiven;
+  var base64Img = apiObject[0].body.base64Img;
+  var nameGiven = apiObject[0].body.nameGiven;
 
 
 
