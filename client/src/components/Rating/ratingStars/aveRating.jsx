@@ -11,11 +11,11 @@ export default function AveRating({reviews,aveRating}) {
   }
 
   return (
-    <ul style={{display: 'inline-block',float: 'left'}}>
+    <ul style={{display: 'inline-block'}}>
        {countArr.map((id,key)=>{
           const outlineStar = {
             display: 'inline-block',
-            width: `3.5px`,
+            width: `4px`,
             height: '14px',
             float:'left',
             caretColor: 'transparent',
@@ -28,7 +28,7 @@ export default function AveRating({reviews,aveRating}) {
 
           const solidStar = {
             display: 'inline-block',
-            width: `3.5px`,
+            width: `4px`,
             height: '14px',
             float:'left',
             caretColor: 'transparent',
@@ -38,7 +38,7 @@ export default function AveRating({reviews,aveRating}) {
             listStyle: 'none',
             backgroundSize: `14px auto`,
           }
-          imgLocate = imgLocate === 10.5 ? 0 : imgLocate+3.5;
+          imgLocate = imgLocate === 12 ? 0 : imgLocate+4;
         return (
         <li style={id<=aveRating?solidStar:outlineStar} id={id} key={key}></li>
         )
