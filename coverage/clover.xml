@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<coverage generated="1666310392004" clover="3.2.0">
+  <project timestamp="1666310392004" name="All files">
+    <metrics statements="1" coveredstatements="0" conditionals="4" coveredconditionals="0" methods="1" coveredmethods="0" elements="6" coveredelements="0" complexity="0" loc="1" ncloc="1" packages="1" files="1" classes="1"/>
+    <file name="ProductHeading.jsx" path="/Users/sarahhandley/front-end-capstone/client/src/components/Overview/ProductHeading/ProductHeading.jsx">
+      <metrics statements="1" coveredstatements="0" conditionals="4" coveredconditionals="0" methods="1" coveredmethods="0"/>
+      <line num="4" count="0" type="stmt"/>
+    </file>
+  </project>
+</coverage>
