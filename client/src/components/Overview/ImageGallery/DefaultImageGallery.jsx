@@ -1,8 +1,12 @@
 import { useState, useEffect } from 'react';
 import ThumbnailPhoto from './ThumbnailPhoto.jsx';
 import ExpandedImageGallery from './ExpandedImageGallery.jsx';
+import UpArrow from './UpArrow.jsx';
+import DownArrow from './DownArrow.jsx';
+import BackArrow from './BackArrow.jsx';
+import ForwardArrow from './ForwardArrow.jsx';
 
-export default function ImageGallery({ styles, selectedStyleId }) {
+export default function DefaultImageGallery({ styles, selectedStyleId }) {
   const [expanded, setExpanded] = useState(false);
   const [photos, setPhotos] = useState(styles[selectedStyleId].photos);
   const [columnId, setColumnId] = useState(0);
@@ -52,14 +56,12 @@ export default function ImageGallery({ styles, selectedStyleId }) {
   return (
     <div>
       {expanded &&
-        <ExpandedImageGallery photos={photos} photoId={photoId} expanded={expanded} setExpanded={setExpanded}/>
+        <ExpandedImageGallery photos={photos} photoId={photoId} setExpanded={setExpanded}/>
       }
       <img className='main-image' src={photos[photoId].url} alt={styles[selectedStyleId].name}></img>
       <div className='thumbnail-image-view'>
         {columnId !== 0 &&
-          <div className="up-arrow-container" onClick={handleUpArrowClick}>
-            <i className="fa-solid fa-angle-up arrow-icon"></i>
-          </div>
+          <UpArrow handleUpArrowClick={handleUpArrowClick}/>
         }
         {columnId === 0 &&
           <div className='arrow-placeholder'></div>
@@ -68,20 +70,14 @@ export default function ImageGallery({ styles, selectedStyleId }) {
           return (<ThumbnailPhoto key={k} photoKey={k} columnId={columnId} photo={photo} photoId={photoId} setPhotoId={setPhotoId}/>)
         })}
         {columnId !== (columnsOfThumbnails - 1) &&
-          <div className="down-arrow-container" onClick={handleDownArrowClick}>
-            <i className="fa-solid fa-angle-down arrow-icon"></i>
-          </div>
+          <DownArrow handleDownArrowClick={handleDownArrowClick}/>
         }
       </div>
       {photoId !== 0 &&
-        <div className="backward-arrow-container" onClick={handleBackArrowClick}>
-          <i className="fa-solid fa-arrow-left backward-arrow" ></i>
-        </div>
+        <BackArrow handleBackArrowClick={handleBackArrowClick}/>
       }
       {photoId !== (photos.length - 1) &&
-        <div className="forward-arrow-container" onClick={handleForwardArrowClick}>
-          <i className="fa-solid fa-arrow-right forward-arrow"></i>
-        </div>
+        <ForwardArrow handleForwardArrowClick={handleForwardArrowClick}/>
       }
       <div className="expand-icon-container" onClick={() => setExpanded(true)}>
         <i className="fa-solid fa-expand expand-icon"></i>
