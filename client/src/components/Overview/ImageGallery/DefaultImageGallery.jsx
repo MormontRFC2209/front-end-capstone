@@ -56,7 +56,7 @@ export default function DefaultImageGallery({ styles, selectedStyleId }) {
   return (
     <div>
       {expanded &&
-        <ExpandedImageGallery photos={photos} photoId={photoId} setExpanded={setExpanded}/>
+        <ExpandedImageGallery photos={photos} photoId={photoId} expanded={expanded} setExpanded={setExpanded} setPhotoId={setPhotoId} handleBackArrowClick={handleBackArrowClick} handleForwardArrowClick={handleForwardArrowClick}/>
       }
       <img className='main-image' src={photos[photoId].url} alt={styles[selectedStyleId].name}></img>
       <div className='thumbnail-image-view'>
@@ -74,10 +74,10 @@ export default function DefaultImageGallery({ styles, selectedStyleId }) {
         }
       </div>
       {photoId !== 0 &&
-        <BackArrow handleBackArrowClick={handleBackArrowClick}/>
+        <BackArrow expanded={expanded} handleBackArrowClick={handleBackArrowClick}/>
       }
       {photoId !== (photos.length - 1) &&
-        <ForwardArrow handleForwardArrowClick={handleForwardArrowClick}/>
+        <ForwardArrow expanded={expanded} handleForwardArrowClick={handleForwardArrowClick}/>
       }
       <div className="expand-icon-container" onClick={() => setExpanded(true)}>
         <i className="fa-solid fa-expand expand-icon"></i>

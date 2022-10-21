@@ -1,9 +1,11 @@
 import react from 'react';
 
-export default function ForwardArrow({ handleForwardArrowClick }) {
+export default function ForwardArrow({ expanded, handleForwardArrowClick }) {
+  const forwardArrowClassName = expanded ? 'expanded-thumbnail-shadow' : 'forward-arrow-container';
+
   return (
-    <div className="forward-arrow-container" onClick={handleForwardArrowClick}>
-      <i className="fa-solid fa-arrow-right forward-arrow"></i>
+    <div className={forwardArrowClassName} onClick={handleForwardArrowClick}>
+      <i className="fa-solid fa-arrow-right"></i>
     </div>
   );
 };

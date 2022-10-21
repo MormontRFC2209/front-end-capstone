@@ -1,9 +1,11 @@
 import react from 'react';
 
-export default function BackArrow({ handleBackArrowClick }) {
+export default function BackArrow({ expanded, handleBackArrowClick }) {
+  const backArrowClassName = expanded ? 'expanded-thumbnail-shadow' : 'backward-arrow-container';
+
   return (
-    <div className="backward-arrow-container" onClick={handleBackArrowClick}>
-      <i className="fa-solid fa-arrow-left backward-arrow" ></i>
+    <div className={backArrowClassName} onClick={handleBackArrowClick}>
+      <i className="fa-solid fa-arrow-left" ></i>
     </div>
   );
 };
