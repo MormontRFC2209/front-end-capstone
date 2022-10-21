@@ -4,3 +4,4 @@ node_modules/
 *.map
 .env
 package-lock.json
+.DS_Store
