@@ -29,7 +29,7 @@ export default function NewRating(props) {
 
   const outlineStar = {
     display: 'inline-block',
-    width: `14px`,
+    width: `18px`,
     height: '14px',
     float:'left',
     caretColor: 'transparent',
@@ -43,7 +43,7 @@ export default function NewRating(props) {
 
   const solidStar = {
     display: 'inline-block',
-    width: `14px`,
+    width: `18px`,
     height: '14px',
     float:'left',
     caretColor: 'transparent',

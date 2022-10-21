@@ -14,7 +14,7 @@ export default function RatingStars({rating}) {
       {countArr.map((id,key)=>{
           const outlineStar = {
             display: 'inline-block',
-            width: `3.5px`,
+            width: `4px`,
             height: '14px',
             float:'left',
             caretColor: 'transparent',
@@ -27,7 +27,7 @@ export default function RatingStars({rating}) {
 
           const solidStar = {
             display: 'inline-block',
-            width: `3.5px`,
+            width: `4px`,
             height: '14px',
             float:'left',
             caretColor: 'transparent',
@@ -37,7 +37,7 @@ export default function RatingStars({rating}) {
             listStyle: 'none',
             backgroundSize: `14px auto`,
           }
-          imgLocate = imgLocate === 10.5 ? 0 : imgLocate+3.5;
+          imgLocate = imgLocate === 12 ? 0 : imgLocate+4;
         return (
         <li style={id<=rating?solidStar:outlineStar} id={id} key={key}></li>
         )

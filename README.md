@@ -17,7 +17,13 @@ Node 6.13.0
 
 From within the root directory:
 
+npm config set legacy-peer-deps true
+
 ```sh
 npm install
 ```
 npm install imagekit --save
+
+npm install --save-dev css-loader
+
+npm install --save-dev style-loader
