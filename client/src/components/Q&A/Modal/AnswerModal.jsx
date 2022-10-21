@@ -158,8 +158,8 @@ const Modal = ({isShowing, hide, id}) => {
               onChange={handleInputChange}
               ></textarea>
             For authentication reasons, you will not be emailed.</label>
-            <input type="file" name="answerImageURL" onChange={submitImage} />
-            {imageInput.length < 5 ? <button onClick={submitImage}>Submit Image</button> : null}
+
+            {imageInput.length < 5 ? <input type="file" name="answerImageURL" onChange={submitImage} /> : null}
             {imageInput.length > 0 ? imageInput.map((singleImage) => {
               return <img className="answerThumbnail" src={singleImage} key={Math.random()}></img>
             }): null}
