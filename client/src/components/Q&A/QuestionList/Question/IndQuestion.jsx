@@ -7,7 +7,7 @@ import axios from 'axios';
 
 
 
-export default function IndQuestion({question, id}) {
+export default function IndQuestion({question, id, trackingFunction}) {
   var rawAnswerArray = [];
   var renderedAnswers;
 
@@ -45,6 +45,7 @@ export default function IndQuestion({question, id}) {
   const [answerList, setAnswerList] = useState(renderedAnswers)
   const [count, setCount] = useState(helpfulCount)
   const [helpfulClicked, sethelpfulClicked] = useState(false)
+  const [reportedClicked, setReportedClicked] = useState('Report?')
 
   const addNewAnswer = (answer) => {
     sortedAnswers.push(answer);
@@ -81,9 +82,21 @@ export default function IndQuestion({question, id}) {
     axios.put('/info', {route: '/qa/questions/'+question.question_id+'/helpful', apiParams:{question_id: question.question_id}})
       .then((result) => {
         helpfulCount++
-        console.log(helpfulCount);
         setCount(helpfulCount);
         sethelpfulClicked(true);
+      })
+      .catch((error) => {
+        console.log(error)
+      })
+  }
+  const reportQuestion = (event) => {
+    event.preventDefault();
+    if (reportedClicked === 'Reported') {
+      return;
+    }
+    axios.put('/info', {route: '/qa/questions/'+answer.id+'/report', apiParams:{answer_id: answer.id}})
+      .then((result) => {
+        setReportedClicked('Reported');
       })
       .catch((error) => {
         console.log(error)
@@ -96,25 +109,31 @@ export default function IndQuestion({question, id}) {
   return(
     <div>
 
-      <h3>Q: {question.question_body}</h3><h3 >Helpful? ({count})</h3><h3 onClick={increaseHelpfulCount}>Yes</h3><h3 onClick={toggle} className="link">Add Answer</h3>
-      {answerList.length > 0 ? <div>A:</div> : null}
+      <h3 onClick={trackingFunction}className="QANDA" id="Q-HEADER">Q: {question.question_body}</h3>
+      <h3 onClick={trackingFunction}className="QANDA" id="QHELPFUL">Helpful? ({count})</h3>
+      <h3 onClick={(e)=>{increaseHelpfulCount(e); trackingFunction(e);} }className="QANDA" id="QYES">Yes</h3>
+      <h3 onClick={(e)=>{increaseHelpfulCount(e); trackingFunction(e);} }className="QANDA" id="QREPORT">Report?</h3>
+
+      <h3 onClick={(e)=>{toggle(); trackingFunction(e);}} className="QANDA" id="QADDANSWER">Add Answer</h3>
+      {answerList.length > 0 ? <div onClick={trackingFunction} className="QANDA" id="A-HEADER">A:</div> : null}
       <AnswerModal
         isShowing={isShowing}
         hide={toggle}
         id={question.question_id}
         addAnswerFunction={addNewAnswer}
+        trackingFunction={trackingFunction}
       />
       <div>
       {answerList.map((singleAnswer) => {
-        console.log(singleAnswer)
+
         if(singleAnswer.answerer_name === 'Seller') {
-          return <IndAnswer key={Math.random()} answer={singleAnswer} seller={true}/>
+          return <IndAnswer key={Math.random()} answer={singleAnswer} seller={true} trackingFunction={trackingFunction}/>
         }
-        return <IndAnswer key={Math.random()} answer={singleAnswer} seller={false}/>
+        return <IndAnswer key={Math.random()} answer={singleAnswer} seller={false} trackingFunction={trackingFunction}/>
 
       })}
       </div>
-      {sortedAnswers.length > 2 ? <span onClick={(e) => {e.preventDefault; manipulateAnswerAccordian();}}>{accordian}</span> : null}
+      {sortedAnswers.length > 2 ? <span className="QANDA" id="ANSWERACCORDIAN" onClick={(e) => {e.preventDefault(); manipulateAnswerAccordian(); trackingFunction(e)}}>{accordian}</span> : null}
     </div>
   )
 }

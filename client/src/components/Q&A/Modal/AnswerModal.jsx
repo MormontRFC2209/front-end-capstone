@@ -67,7 +67,7 @@ const Modal = ({isShowing, hide, id}) => {
 
     axios.post('/info',answerObject, {params: {route: '/qa/questions/'+ id +'/answers', apiParams: {question_id: id}}})
       .then((result) => {
-        console.log('answer submitted', result)
+
         setInput(initialValues);
         submittedImages = [];
         setImageInput(submittedImages)
@@ -82,7 +82,7 @@ const Modal = ({isShowing, hide, id}) => {
     event.preventDefault();
 
     var name = event.target.files[0].name
-    console.log(event.target.files[0])
+
 
     getBase64(event.target.files[0], (result) => {
 
@@ -158,8 +158,8 @@ const Modal = ({isShowing, hide, id}) => {
               onChange={handleInputChange}
               ></textarea>
             For authentication reasons, you will not be emailed.</label>
-            <input type="file" name="answerImageURL" onChange={submitImage} />
-            {imageInput.length < 5 ? <button onClick={submitImage}>Submit Image</button> : null}
+
+            {imageInput.length < 5 ? <input type="file" name="answerImageURL" onChange={submitImage} /> : null}
             {imageInput.length > 0 ? imageInput.map((singleImage) => {
               return <img className="answerThumbnail" src={singleImage} key={Math.random()}></img>
             }): null}
