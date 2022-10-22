@@ -332,10 +332,32 @@
  }
 
  .expanded-main-image {
+  margin: 40px auto;
   vertical-align: middle;
-  width: 100%;
+  width: 90%;
   max-height: 92%;
   object-fit: contain;
+  cursor: zoom-in;
+ }
+
+ .zoomed-main-image {
+  overflow: hidden;
+  vertical-align: middle;
+  margin: 40px auto;
+  width: 90%;
+  max-height: 90%;
+  cursor: zoom-out;
+  background-repeat: no-repeat;
+ }
+
+ .zoomed-main-image img:hover {
+  opacity: 0;
+ }
+
+ .zoomed-main-image img {
+  transition: opacity 0.5s;
+  display: block;
+  width: 100%;
  }
 
  .expanded-thumbnail-view {
