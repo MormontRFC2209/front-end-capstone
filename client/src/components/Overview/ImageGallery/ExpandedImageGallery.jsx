@@ -9,7 +9,7 @@ export default function ExpandedImageGallery({ photos, photoId, expanded, setExp
 
   const handleZoomClick = (e) => {
     setZoom(true);
-    setExpandedDimensions([e.currentTarget.clientWidth, e.currentTarget.clientHeight]);
+    setExpandedDimensions([e.clientX/e.currentTarget.clientWidth*100, e.clientY/e.currentTarget.clientHeight*100]);
     if (e.currentTarget.clientWidth >= e.currentTarget.clientHeight) {
       setZoomSize(`${e.currentTarget.clientWidth * 2.5}px auto`);
     } else {
@@ -23,10 +23,8 @@ export default function ExpandedImageGallery({ photos, photoId, expanded, setExp
     let clientY = 0;
     e.clientX ? clientX = e.clientX : clientX = e.pageX;
     e.clientY ? clientY = e.clientY : clientX = e.pageX;
-    let offsetX = clientX + zoomTarget.offsetWidth - zoomTarget.clientWidth;
-    let offsetY = clientY + zoomTarget.offsetWidth - zoomTarget.clientWidth;
-    let x = offsetX/zoomTarget.offsetWidth*100;
-    let y = offsetY/zoomTarget.offsetHeight*100;
+    let x = clientX/zoomTarget.clientWidth*100;
+    let y = clientY/zoomTarget.clientHeight*100;
     zoomTarget.style.backgroundPosition = x + '%' + y + '%';
   };
 
@@ -39,7 +37,8 @@ export default function ExpandedImageGallery({ photos, photoId, expanded, setExp
         {zoom &&
           <figure className='zoomed-main-image' style={{
             backgroundImage: `url(${photos[photoId].url})`,
-            backgroundSize: `${zoomSize}`
+            backgroundSize: `${zoomSize}`,
+            backgroundPosition: `${expandedDimensions[0]}% ${expandedDimensions[1]}%`
             }} onMouseMove={zoomIn} onClick={() => setZoom(false)}>
             <img src={photos[photoId].url} alt='zoomed main image'></img>
           </figure>
