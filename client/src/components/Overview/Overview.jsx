@@ -8,7 +8,7 @@ import AddToCart from './AddToCart/AddToCart.jsx';
 import ProductDescription from './ProductDescription/ProductDescription.jsx';
 import ShareMedia from './ShareMedia/ShareMedia.jsx';
 
-export default function Overview({ productId }) {
+export default function Overview({ productId, reviews }) {
   const [loadingProductInfo, setLoadingProductInfo] = useState(true);
   const [loadingStyles, setLoadingStyles] = useState(true);
   const [productInfo, setProductInfo] = useState([]);
@@ -54,7 +54,7 @@ export default function Overview({ productId }) {
       <div className='top-product-overview'>
         <DefaultImageGallery styles={styles} selectedStyleId={selectedStyleId}/>
         <div className='right-product-overview'>
-          <ProductHeading productInfo={productInfo} styles={styles} selectedStyleId={selectedStyleId}/>
+          <ProductHeading productInfo={productInfo} styles={styles} selectedStyleId={selectedStyleId} reviews={reviews}/>
           <StyleSelector styles={styles} selectedStyleId={selectedStyleId} selectedStylePosition={selectedStylePosition} clickStyle={clickStyle}/>
           <AddToCart styles={styles} selectedStyleId={selectedStyleId}/>
           <ShareMedia styles={styles} selectedStyleId={selectedStyleId}/>
