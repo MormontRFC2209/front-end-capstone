@@ -3,6 +3,7 @@ import axios from 'axios';
 import QuestionList from './QuestionList/QuestionList.jsx';
 import useModal from '../../components/subComponents/modalHook.jsx';
 import QuestionModal from './Modal/QuestionModal.jsx';
+import './QANDA.css';
 
 
 
@@ -155,7 +156,7 @@ export default function QANDA(props) {
     return <span>Loading Questions...</span>
   } else {
     return (
-      <div>
+      <div className="QANDA" id="QACONTAINER">
         <h4 className="QANDA"id="QATITLE"onClick={props.trackingFunction}>Questions & Answers</h4>
 
         <input className="QANDA" id="QASEARCH"type="text" onClick={props.trackingFunction} onChange={handleChange} placeholder="Have a Question? Search for an Answer..." ></input>
@@ -163,12 +164,15 @@ export default function QANDA(props) {
         {currentQuestions.length > 0 ? <QuestionList questionList={currentQuestions} id={props.productId} trackingFunction={props.trackingFunction}/> : null }
 
         {currentQuestions.length < 4 ? null : <button className="QANDA" id="QAACCORDIAN" onClick={(event) => {event.preventDefault(); manipulateAccordian(); props.trackingFunction(event);}}>{currentList}</button>}<button onClick={toggle}>Add a Question</button>
-        <QuestionModal
-        isShowing={isShowing}
-        hide={toggle}
-        id={props.productId}
-        trackingFunction={props.trackingFunction}
-        />
+        <div id="QuestionFlex">
+          <QuestionModal
+          isShowing={isShowing}
+          hide={toggle}
+          id={props.productId}
+          trackingFunction={props.trackingFunction}
+          />
+        </div>
+
       </div>
     )
   }

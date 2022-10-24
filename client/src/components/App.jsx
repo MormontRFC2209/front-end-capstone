@@ -48,7 +48,7 @@ export default function App() {
 
 
   return (
-    <div>
+    <div className="">
       <div className='website-banner'>
         <h1 className='website-title'> <em>HOUSE MORMONT</em> </h1>
       </div>
