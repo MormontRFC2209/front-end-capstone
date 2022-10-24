@@ -1,16 +1,17 @@
 require("dotenv").config();
 
 const express = require("express");
+const app = express();
 const path = require("path");
 const controllers = require("./controllers.js");
 const configs = require('../config.js');
 const axios = require('axios');
 
-const app = express();
-app.use(express.json());
+
+app.use(express.json({limit: '50mb'}));
+app.use(express.urlencoded({limit: '50mb'}));
 app.use(express.static(path.join(__dirname, '../client/dist')));
 
-//ROUTES
 app.get('/info', (req, res) => {
 
   var apiObject = [];
@@ -36,6 +37,7 @@ app.post('/info', (req, res) => {
   if (req.query.apiParams) {
     apiObject.push({params: req.query.apiParams})
   }
+  console.log('apiObject',apiObject)
 
   controllers.makePOSTAPICall(apiObject, (result, err) => {
     if (err) {
