@@ -8,12 +8,15 @@ import axios from 'axios';
 
 export default function App() {
   const [productId, setProductId] = useState(0);
+  const [productName, setProductName] = useState('');
   const [loading, setLoading] = useState(true);
+  const [reviews, setReviews] = useState([]);
 
   const getProductId = () => {
-    return axios.get("/info", {params: {route: '/products', apiParams: {page: '1', count: '5'}}})
+    return axios.get("/info", {params: {route: '/products', apiParams: {page: '2', count: '5'}}})
       .then((response) => {
-        setProductId(response.data[4].id);
+        setProductId(response.data[1].id);
+        setProductName(response.data[4].name);
         setLoading(false);
       })
       .catch((err) => console.log('err'))
@@ -49,9 +52,10 @@ export default function App() {
       <div className='website-banner'>
         <h1 className='website-title'> <em>HOUSE MORMONT</em> </h1>
       </div>
-      <Overview productId={productId}/>
+      <Overview productId={productId} reviews={reviews}/>
       <QANDA productId={productId} trackingFunction={trackingFunction}/>
-      <RANDR productId={productId}/>
+      <a id='ratings-reviews-section'></a>
+      <RANDR productId={productId} productName={productName} setReviews={setReviews} reviews={reviews}/>
     </div>
   );
 }

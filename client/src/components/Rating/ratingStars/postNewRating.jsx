@@ -56,7 +56,7 @@ export default function NewRating(props) {
   }
 
   return (
-    <ul style={{display: 'block'}}>
+    <ul style={{display: 'inline-block'}}>
       <h5>YOUR RATING</h5>
       {countArr.map((id,key)=>{
         return (

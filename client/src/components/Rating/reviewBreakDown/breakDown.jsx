@@ -1,6 +1,6 @@
 import {useState, useEffect} from "react";
 import AveRating from '../ratingStars/aveRating.jsx';
-import Characteristics from './characteristics.jsx'
+import ProductBreakDown from './productBreakDown.jsx'
 import StarRateBar from './starRateBar.jsx'
 
 let aveRating = 0;
@@ -9,19 +9,6 @@ let ratingSum = 0;
 let sortList = {}
 let order = 0;
 export default function BreakDown(props) {
-
-    // const setSortList = (arr,cb)=> {
-    //     sortList[order]=arr
-    //     cb(order)
-    //     order++
-    //   props.setSortList(sortList)
-    // }
-
-    // const removeSortList = (order)=>{
-    //   delete sortList[order]
-    //   props.setSortList(sortList)
-    // }
-
     let ratings = props.metaData.ratings;
     for(var k in ratings){
       scordSum+=Number(k) * Number(ratings[k])
@@ -40,22 +27,24 @@ export default function BreakDown(props) {
     <div style={{width:'30%',float:'left'}}>
     <h1 style={{display: 'inline-block'}}>{aveRating}</h1>
     <AveRating reviews={props.reviews} aveRating={aveRating}/>
-    <div>
+    <div style={{marginTop:'5px'}}>
     <h5 style={{display: 'block'}}>{recommendRate} of reviews recommend this product</h5>
-    </div>
+    </div >
     {[5,4,3,2,1].map((star,key)=>{
+      // console.log(props.reviews)
+       let currentList = props.reviews.filter(review=>review.rating===star)
       return (
         <StarRateBar
         star={star}
         key={key}
         ratings={props.metaData.ratings[star]}
         ratingSum={ratingSum}
-        reviews={props.reviews}
+        reviews={currentList}
         setSortByStar={props.setSortByStar}
         />
       )
     })}
-    <Characteristics metaData={props.metaData}/>
+    <ProductBreakDown metaData={props.metaData}/>
     </div>
     </>
   )
