@@ -31,6 +31,22 @@ export default function App() {
     return <div>Currently Loading...</div>
   }
 
+  var trackingFunction = (event) => {
+    event.preventDefault();
+
+    var currentEvent = event
+
+    var today = new Date();
+    var date = today.getFullYear()+'-'+(today.getMonth()+1)+'-'+today.getDate();
+    var time = today.getHours() + ":" + today.getMinutes() + ":" + today.getSeconds();
+    var dateTime = date+' '+time;
+
+
+    var trackingObject = {Module: event.target.className, Location: event.target.id, Time: dateTime}
+    console.log(trackingObject)
+  }
+
+
   return (
     <div>
       {console.log('isReviews',reviews)}
@@ -38,7 +54,7 @@ export default function App() {
         <h1 className='website-title'> <em>HOUSE MORMONT</em> </h1>
       </div>
       <Overview productId={productId} reviews={reviews}/>
-      <QANDA productId={productId}/>
+      <QANDA productId={productId} trackingFunction={trackingFunction}/>
       <RANDR productId={productId} productName={productName} setReviews={setReviews} reviews={reviews}/>
     </div>
   );
