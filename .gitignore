@@ -5,8 +5,5 @@ node_modules/
 .env
 package-lock.json
 .DS_Store
-<<<<<<< HEAD
 jest.config.js
-=======
 coverage/
->>>>>>> 5201e2ef1b93c4d6ea90dc46cd40591211d2b2a5
