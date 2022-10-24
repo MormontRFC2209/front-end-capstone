@@ -22,6 +22,7 @@ export default function RANDR(props) {
       axios.get("/info", {params: {route: '/reviews/meta', apiParams: {product_id:props.productId}}})
       .then((response) => {
         setMetaData(response.data)
+        props.setReviews(response.data)
         let ave = 0;
         let scordSum = 0;
         let sum = 0;
@@ -33,7 +34,6 @@ export default function RANDR(props) {
         ave = (scordSum/sum).toFixed(2);
         setAveRate(ave)
         setRatingTotal(sum)
-        props.setReviews(ave)
       })
     }
   }, [props.productId]);
@@ -68,6 +68,7 @@ export default function RANDR(props) {
 
   return (
     <>
+
     <h5>RATINGS  REVIEWS</h5>
     {/* <AveRating aveRating={'3.4'}/> */}
     <div style={{width:'80%',margin:'0 300px',position:'relative'}}>
