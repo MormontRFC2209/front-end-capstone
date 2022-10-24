@@ -2,12 +2,15 @@ import {useState, useEffect} from "react";
 import axios from 'axios';
 import ReviewList from "./reviewList/reviewList.jsx";
 import BreakDown from './reviewBreakDown/breakDown.jsx';
+// import AveRating from './ratingStars/aveRating.jsx';
 
 let starList = []
 export default function RANDR(props) {
   const [reviews,setReviews]=useState([]);
   const [metaData,setMetaData]=useState({})
   const [sortReviewsByStar,setSortReviewsByStar]=useState([])
+  const [aveRate,setAveRate]=useState('')
+  const [ratingTotal,setRatingTotal]=useState('')
 
 
   useEffect(() => {
@@ -19,7 +22,18 @@ export default function RANDR(props) {
       axios.get("/info", {params: {route: '/reviews/meta', apiParams: {product_id:props.productId}}})
       .then((response) => {
         setMetaData(response.data)
-        props.setReviews(response.data)
+        let ave = 0;
+        let scordSum = 0;
+        let sum = 0;
+        let ratings = response.data.ratings;
+        for(var k in ratings){
+          scordSum+=Number(k) * Number(ratings[k])
+          sum+=Number(ratings[k])
+        }
+        ave = (scordSum/sum).toFixed(2);
+        setAveRate(ave)
+        setRatingTotal(sum)
+        props.setReviews(ave)
       })
     }
   }, [props.productId]);
@@ -54,12 +68,11 @@ export default function RANDR(props) {
 
   return (
     <>
-    {/* {console.log('props.reviews',props.reviews)} */}
-    {/* {console.log(sortReviewsByStar)} */}
     <h5>RATINGS  REVIEWS</h5>
+    {/* <AveRating aveRating={'3.4'}/> */}
     <div style={{width:'80%',margin:'0 300px',position:'relative'}}>
-    {(reviews.length>0 && Object.keys(metaData).length > 0)?<BreakDown reviews={reviews} metaData={metaData} setSortByStar={setSortByStar}/>:null}
-    {(reviews.length>0 && Object.keys(metaData).length > 0)?<ReviewList metaData={metaData} product_id={props.productId} reviews={reviews} usefulClick={usefulClick} addReview={addReview} report={report} sortReviewsByStar={sortReviewsByStar} productName={props.productName}/>:null}
+    {(reviews.length>0 && Object.keys(metaData).length > 0)?<BreakDown reviews={reviews} metaData={metaData} setSortByStar={setSortByStar} aveRate={aveRate}/>:null}
+    {(reviews.length>0 && Object.keys(metaData).length > 0)?<ReviewList metaData={metaData} product_id={props.productId} reviews={reviews} usefulClick={usefulClick} addReview={addReview} report={report} sortReviewsByStar={sortReviewsByStar} productName={props.productName} aveRate={aveRate} ratingTotal={ratingTotal}/>:null}
     </div>
     </>
   )

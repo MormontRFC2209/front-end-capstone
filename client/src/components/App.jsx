@@ -37,9 +37,9 @@ export default function App() {
       <div className='website-banner'>
         <h1 className='website-title'> <em>HOUSE MORMONT</em> </h1>
       </div>
-      <Overview productId={productId} reviews={reviews}/>
+      <Overview productId={productId} reviews={reviews} />
       <QANDA productId={productId}/>
-      <RANDR productId={productId} productName={productName} setReviews={setReviews} reviews={reviews}/>
+      <RANDR productId={productId} productName={productName} setReviews={setReviews} />
     </div>
   );
 }
