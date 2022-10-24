@@ -1,14 +1,14 @@
 import {useState, useEffect} from "react";
 import axios from 'axios';
 
-import ImageGallery from './ImageGallery/ImageGallery.jsx';
+import DefaultImageGallery from './ImageGallery/DefaultImageGallery.jsx';
 import ProductHeading from './ProductHeading/ProductHeading.jsx';
 import StyleSelector from './StyleSelector/StyleSelector.jsx';
 import AddToCart from './AddToCart/AddToCart.jsx';
 import ProductDescription from './ProductDescription/ProductDescription.jsx';
 import ShareMedia from './ShareMedia/ShareMedia.jsx';
 
-export default function Overview({ productId }) {
+export default function Overview({ productId, reviews }) {
   const [loadingProductInfo, setLoadingProductInfo] = useState(true);
   const [loadingStyles, setLoadingStyles] = useState(true);
   const [productInfo, setProductInfo] = useState([]);
@@ -52,9 +52,9 @@ export default function Overview({ productId }) {
   return (
     <div>
       <div className='top-product-overview'>
-        <ImageGallery styles={styles} selectedStyleId={selectedStyleId}/>
+        <DefaultImageGallery styles={styles} selectedStyleId={selectedStyleId}/>
         <div className='right-product-overview'>
-          <ProductHeading productInfo={productInfo} styles={styles} selectedStyleId={selectedStyleId}/>
+          <ProductHeading productInfo={productInfo} styles={styles} selectedStyleId={selectedStyleId} reviews={reviews}/>
           <StyleSelector styles={styles} selectedStyleId={selectedStyleId} selectedStylePosition={selectedStylePosition} clickStyle={clickStyle}/>
           <AddToCart styles={styles} selectedStyleId={selectedStyleId}/>
           <ShareMedia styles={styles} selectedStyleId={selectedStyleId}/>

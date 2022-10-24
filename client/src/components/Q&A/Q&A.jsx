@@ -3,24 +3,28 @@ import axios from 'axios';
 import QuestionList from './QuestionList/QuestionList.jsx';
 import useModal from '../../components/subComponents/modalHook.jsx';
 import QuestionModal from './Modal/QuestionModal.jsx';
+import './QANDA.css';
 
 
 
 const questionsArray = [];
 var renderedQuestions = [];
+var searchResultArray = [];
+
 var count = 4;
 
 
 
 export default function QANDA(props) {
 
-  console.log(props)
+
 
   const {isShowing, toggle} = useModal();
 
   const [currentQuestions, setQuestions] = useState(renderedQuestions);
   const [loading, setLoading] = useState(true);
   const [currentList, setList] = useState('');
+  const [searchInput, setSearchInput] = useState('')
 
 
 
@@ -106,13 +110,45 @@ export default function QANDA(props) {
   }
 
 
+  const handleChange = (e) => {
+    e.preventDefault();
+    setSearchInput(e.target.value)
+
+    if(searchInput.length > 2) {
+      //search result array
+      searchResultArray = [];
+
+      //iterate through the questions array
+      for(let i = 0; i < count; i++) {
+        var questionBody = questionsArray[i].question_body.toUpperCase();
+        console.log(questionsArray[i].question_body)
+        //every question that contains the string add to the array
+        if(questionBody.includes(searchInput.toUpperCase())) {
+          searchResultArray.push(questionsArray[i])
+        }
+      }
+
+      //set the currentQuestions to be our search result array
+
+      setQuestions(searchResultArray)
+
+    }
+
+    if(searchInput.length < 3) {
+
+      setQuestions(renderedQuestions)
+    }
+  };
+
+
+
+
   useEffect( () => {
 
     grabQuestions();
 
   }, [])
 
-  console.log(props.product_id)
 
 
 
@@ -120,19 +156,23 @@ export default function QANDA(props) {
     return <span>Loading Questions...</span>
   } else {
     return (
-      <div>
-        <h4>Questions & Answers</h4>
+      <div className="QANDA" id="QACONTAINER">
+        <h4 className="QANDA"id="QATITLE"onClick={props.trackingFunction}>Questions & Answers</h4>
 
-        <button onClick={toggle}>Add a Question</button>
-        <QuestionModal
-        isShowing={isShowing}
-        hide={toggle}
-        id={props.productId}
-        />
+        <input className="QANDA" id="QASEARCH"type="text" onClick={props.trackingFunction} onChange={handleChange} placeholder="Have a Question? Search for an Answer..." ></input>
 
-        {currentQuestions.length > 0 ? <QuestionList questionList={currentQuestions} id={props.productId}/> : null }
+        {currentQuestions.length > 0 ? <QuestionList questionList={currentQuestions} id={props.productId} trackingFunction={props.trackingFunction}/> : null }
 
-        <h4 onClick={(e) => {e.preventDefault; manipulateAccordian();}}>{currentList}</h4>
+        {currentQuestions.length < 4 ? null : <button className="QANDA" id="QAACCORDIAN" onClick={(event) => {event.preventDefault(); manipulateAccordian(); props.trackingFunction(event);}}>{currentList}</button>}<button onClick={toggle}>Add a Question</button>
+        <div id="QuestionFlex">
+          <QuestionModal
+          isShowing={isShowing}
+          hide={toggle}
+          id={props.productId}
+          trackingFunction={props.trackingFunction}
+          />
+        </div>
+
       </div>
     )
   }

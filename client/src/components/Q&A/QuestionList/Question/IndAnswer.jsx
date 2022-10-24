@@ -1,11 +1,12 @@
 import {useState, useEffect} from "react";
 import axios from 'axios';
+import '../../QANDA.css';
 
 
 
 
 
-export default function IndAnswer({answer, seller}) {
+export default function IndAnswer({answer, seller, trackingFunction}) {
 
   console.log(answer)
   var helpfulCount = answer.helpfulness
@@ -21,7 +22,7 @@ export default function IndAnswer({answer, seller}) {
     axios.put('/info', {route: '/qa/answers/'+answer.id+'/helpful', apiParams:{answer_id: answer.id}})
       .then((result) => {
         helpfulCount++
-        console.log(helpfulCount);
+
         setCount(helpfulCount);
         setHelpfulClicked(true);
       })
@@ -44,15 +45,23 @@ export default function IndAnswer({answer, seller}) {
       })
   }
 
+
+
   return(
-    <div>
-      <span>{answer.body}</span>
+    <div className="QANDA" id="ANSWERCONTAINER" >
+      <span className="QANDA" id="ANSWERBODY"onClick={trackingFunction}>{answer.body}</span>
       <div>
 
-      {seller ? <span>BY {answer.answerer_name}, CURRENTDATE   |</span> : <span>by {answer.answerer_name}, currentDate    |</span>}
+      {seller ? <span className="QANDA" id="ANSWERNAME" onClick={trackingFunction}>BY {answer.answerer_name}, CURRENTDATE   |</span> : <span  className="QANDA" id="ANSWERNAME" onClick={trackingFunction}>by {answer.answerer_name}, currentDate    |</span>}
 
-      <span onClick={increaseHelpfulCount}>   Helpful? Yes ({count})    |</span>
-      <span onClick={reportComment}>   {reportedClicked}</span>
+      <span  className="QANDA" id="ANSWERHELPFUL" onClick={(e)=>{trackingFunction(e); increaseHelpfulCount(e);}}>   Helpful? Yes ({count})    |</span>
+      <span  className="QANDA" id="ANSWERREPORT" onClick={(e)=>{trackingFunction(e); reportComment(e);}}>   {reportedClicked}</span>
+      <div className="QANDA" id="ANSWERPHOTOBOX">
+        { answer.photos.length > 0 ? answer.photos.map((singleImage) => {
+              return <img className="QANDA" id="ANSWERPHOTO" src={singleImage} key={Math.random()}></img>
+            }): null}
+      </div>
+
       </div>
 
 
