@@ -89,6 +89,7 @@ const Modal = ({isShowing, hide, id}) => {
       var apiObject = {base64Img: result,nameGiven: name}
       axios.post('/image', apiObject )
         .then((apiCallResult) => {
+          console.log(apiCallResult)
           submittedImages.push(apiCallResult.data.url)
 
 
@@ -105,6 +106,11 @@ const Modal = ({isShowing, hide, id}) => {
 
   }
 
+  var resetValues = () => {
+    setInput(initialValues);
+    setImageInput([]);
+  }
+
 
 
 
@@ -119,7 +125,7 @@ const Modal = ({isShowing, hide, id}) => {
       <div className="modal-wrapper" aria-modal aria-hidden tabIndex={-1} role="dialog">
         <div className="modal">
           <div className="modal-header">
-            <button type="button" className="modal-close-button" data-dismiss="modal" aria-label="Close" onClick={hide}>
+            <button type="button" className="modal-close-button" data-dismiss="modal" aria-label="Close" onClick={()=>{hide(); resetValues();}}>
               <span aria-hidden="true">&times;</span>
             </button>
           </div>

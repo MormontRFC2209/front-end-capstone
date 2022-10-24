@@ -114,7 +114,7 @@ export default function IndQuestion({question, id, trackingFunction}) {
       <h3 onClick={(e)=>{increaseHelpfulCount(e); trackingFunction(e);} }className="QANDA" id="QYES">Yes</h3>
       <h3 onClick={(e)=>{increaseHelpfulCount(e); trackingFunction(e);} }className="QANDA" id="QREPORT">Report?</h3>
 
-      <h3 onClick={(e)=>{toggle(); trackingFunction(e);}} className="QANDA" id="QADDANSWER">Add Answer</h3>
+      <h3 data-testid="addanswer" onClick={(e)=>{toggle(); trackingFunction(e);}} className="QANDA" id="QADDANSWER">Add Answer</h3>
       {answerList.length > 0 ? <div onClick={trackingFunction} className="QANDA" id="A-HEADER">A:</div> : null}
       <AnswerModal
         isShowing={isShowing}

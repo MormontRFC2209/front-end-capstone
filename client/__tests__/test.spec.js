@@ -1,12 +1,22 @@
-import renderer from 'react-test-renderer';
-import QANDA from '../src/components/Q&A/Q&A.jsx'
-import Adapter from 'enzyme-adapter-react-16';
-// React 16 Enzyme adapter
-configure({ adapter: new Adapter() });
-import { shallow, render, mount, configure } from 'enzyme';
+import React from 'react';
+import '@testing-library/jest-dom';
+import userEvent from '@testing-library/user-event';
+import {render, screen, waitFor} from '@testing-library/react';
+import App from '../src/components/App.jsx';
+import axios from 'axios';
 
 
-test('Should pull questions from API', () => {
-  shallow(<QANDA/>)
+axios.defaults.baseURL='http://localhost:3000';
 
-});
+
+describe('Jest Workshop', function() {
+  const user = userEvent.setup();
+
+  it('should render the App', () => {
+    render(<App />)
+    return waitFor(() => expect(screen.queryByText(/Loading/)).not.toBeInTheDocument())
+      .then(() => {
+        console.log('hello')
+      })
+  })
+})

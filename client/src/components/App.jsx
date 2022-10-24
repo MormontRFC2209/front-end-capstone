@@ -24,10 +24,6 @@ export default function App() {
       .catch((err) => console.log(err))
   }, []);
 
-  if (loading) {
-    return <div>Currently Loading...</div>
-  }
-
   var trackingFunction = (event) => {
     event.preventDefault();
 
@@ -42,6 +38,12 @@ export default function App() {
     var trackingObject = {Module: event.target.className, Location: event.target.id, Time: dateTime}
     console.log(trackingObject)
   }
+
+  if (loading) {
+    return <div>Currently Loading...</div>
+  }
+
+
 
 
   return (
