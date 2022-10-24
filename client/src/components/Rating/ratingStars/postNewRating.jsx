@@ -12,19 +12,24 @@ export default function NewRating(props) {
   const [rating,setRating]=useState(0)
   const [zero,setZero]=useState(true)
   const [comfirm,setComfirm]=useState(false)
+  const [selectEmoji,setSelectEmoji]=useState('')
 
+  const emoji = ['😫','😞','😐','😊','🤩']
   const onClick = (e)=>{
     setRating(e.target.id);
+    setSelectEmoji(emoji[e.target.id-1])
     props.getRating(e.target.id);
     setComfirm(true);
   }
 
   const onMouseOver = (e)=>{
     setRating(e.target.id);
+    setSelectEmoji(emoji[e.target.id-1])
   }
 
   const onMouseOut = (e) => {
     setRating(0);
+    setSelectEmoji('')
   }
 
   const outlineStar = {
@@ -57,7 +62,7 @@ export default function NewRating(props) {
 
   return (
     <ul style={{display: 'inline-block'}}>
-      <h5>YOUR RATING</h5>
+      <h5>YOUR RATING {selectEmoji}</h5>
       {countArr.map((id,key)=>{
         return (
         <li onClick={onClick} onMouseOver={!comfirm?onMouseOver:null} onMouseOut={!comfirm?onMouseOut:null} style={id<=rating?solidStar:outlineStar} id={id} key={key}></li>
