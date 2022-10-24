@@ -1,5 +1,6 @@
 import {useState, useEffect} from "react";
 import axios from 'axios';
+import '../../QANDA.css';
 
 
 
@@ -7,7 +8,7 @@ import axios from 'axios';
 
 export default function IndAnswer({answer, seller, trackingFunction}) {
 
-
+  console.log(answer)
   var helpfulCount = answer.helpfulness
   const [count, setCount] = useState(helpfulCount)
   const [reportedClicked, setReportedClicked] = useState('Report?')
@@ -47,7 +48,7 @@ export default function IndAnswer({answer, seller, trackingFunction}) {
 
 
   return(
-    <div >
+    <div className="QANDA" id="ANSWERCONTAINER" >
       <span className="QANDA" id="ANSWERBODY"onClick={trackingFunction}>{answer.body}</span>
       <div>
 
@@ -55,6 +56,12 @@ export default function IndAnswer({answer, seller, trackingFunction}) {
 
       <span  className="QANDA" id="ANSWERHELPFUL" onClick={(e)=>{trackingFunction(e); increaseHelpfulCount(e);}}>   Helpful? Yes ({count})    |</span>
       <span  className="QANDA" id="ANSWERREPORT" onClick={(e)=>{trackingFunction(e); reportComment(e);}}>   {reportedClicked}</span>
+      <div className="QANDA" id="ANSWERPHOTOBOX">
+        { answer.photos.length > 0 ? answer.photos.map((singleImage) => {
+              return <img className="QANDA" id="ANSWERPHOTO" src={singleImage} key={Math.random()}></img>
+            }): null}
+      </div>
+
       </div>
 
 

@@ -4,6 +4,7 @@ import IndAnswer from './IndAnswer.jsx';
 import useModal from '../../../../components/subComponents/modalHook.jsx';
 import AnswerModal from '../../Modal/AnswerModal.jsx'
 import axios from 'axios';
+import '../../QANDA.css';
 
 
 
@@ -107,7 +108,7 @@ export default function IndQuestion({question, id, trackingFunction}) {
 
 
   return(
-    <div>
+    <div className="QANDA" id="INDQUESTIONCONTAINER">
 
       <h3 onClick={trackingFunction}className="QANDA" id="Q-HEADER">Q: {question.question_body}</h3>
       <h3 onClick={trackingFunction}className="QANDA" id="QHELPFUL">Helpful? ({count})</h3>
