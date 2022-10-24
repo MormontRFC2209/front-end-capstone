@@ -177,6 +177,20 @@
   left: 750px;
  }
 
+ .rating-star-view {
+  margin: 0 0 18px 0;
+  display: flex;
+ }
+
+ .overview-stars {
+  margin: 2px 3px 0 0;
+ }
+
+ .reviews-link {
+  color: black;
+  font-size: 12px;
+ }
+
  .product-name {
   font-size: 35px;
  }
