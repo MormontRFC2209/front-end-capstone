@@ -1,11 +1,11 @@
-import { useState, useEffect } from 'react';
-import BackArrow from './BackArrow.jsx';
-import ForwardArrow from './ForwardArrow.jsx';
+import { useState, useEffect } from "react";
+import BackArrow from "./BackArrow.jsx";
+import ForwardArrow from "./ForwardArrow.jsx";
 
 export default function ExpandedImageGallery({ photos, photoId, expanded, setExpanded, setPhotoId, handleBackArrowClick, handleForwardArrowClick }) {
   const [zoom, setZoom] = useState(false);
   const [expandedDimensions, setExpandedDimensions] = useState([0, 0]);
-  const [zoomSize, setZoomSize] = useState('');
+  const [zoomSize, setZoomSize] = useState("");
 
   const handleZoomClick = (e) => {
     setZoom(true);
@@ -25,46 +25,46 @@ export default function ExpandedImageGallery({ photos, photoId, expanded, setExp
     e.clientY ? clientY = e.clientY : clientX = e.pageX;
     let x = clientX/zoomTarget.clientWidth*100;
     let y = clientY/zoomTarget.clientHeight*100;
-    zoomTarget.style.backgroundPosition = x + '%' + y + '%';
+    zoomTarget.style.backgroundPosition = x + "%" + y + "%";
   };
 
   return (
-    <div className='expanded-image-gallery'>
-      <section className='expanded-image-container'>
-        <div className='close-expanded' onClick={() => setExpanded(false)}>
-          <i className="fa-solid fa-xmark"></i>
+    <div id="expanded-image-gallery" className="overview">
+      <section id="expanded-image-container" className="overview">
+        <div id="close-expanded" className="overview" onClick={() => setExpanded(false)}>
+          <i className="overview fa-solid fa-xmark"></i>
         </div>
         {zoom &&
-          <figure className='zoomed-main-image' style={{
+          <figure id="zoomed-main-image" className="overview" style={{
             backgroundImage: `url(${photos[photoId].url})`,
             backgroundSize: `${zoomSize}`,
             backgroundPosition: `${expandedDimensions[0]}% ${expandedDimensions[1]}%`
             }} onMouseMove={zoomIn} onClick={() => setZoom(false)}>
-            <img src={photos[photoId].url} alt='zoomed main image'></img>
+            <img src={photos[photoId].url} alt="zoomed main image"></img>
           </figure>
         }
         {!zoom &&
-          <img className='expanded-main-image' src={photos[photoId].url} onClick={handleZoomClick}></img>
+          <img id="expanded-main-image" className="overview" src={photos[photoId].url} onClick={handleZoomClick}></img>
         }
         {!zoom &&
-          <div className='expanded-thumbnail-view'>
+          <div id="expanded-thumbnail-view" className="overview">
             {photos.map((photo, i) => {
               return (
                 <div key={i}>
                   {i === photoId &&
-                    <div className='expanded-thumbnail-shadow'>
-                      <i className="fa-solid fa-circle"></i>
+                    <div className="overview expanded-thumbnail-shadow">
+                      <i className="overview fa-solid fa-circle"></i>
                     </div>
                   }
                   {i !== photoId &&
-                    <div className='expanded-thumbnail-shadow'>
-                      <i className="fa-regular fa-circle" onClick={() => setPhotoId(i)}></i>
+                    <div className="overview expanded-thumbnail-shadow">
+                      <i className="overview fa-regular fa-circle" onClick={() => setPhotoId(i)}></i>
                     </div>
                   }
                 </div>
               )
             })}
-            <div className='expanded-arrows'>
+            <div id="expanded-arrows" className="overview">
               {photoId !== 0 &&
                 <BackArrow expanded={expanded} handleBackArrowClick={handleBackArrowClick}/>
               }

@@ -1,12 +1,12 @@
 import {useState, useEffect} from "react";
-import axios from 'axios';
+import axios from "axios";
 
-import DefaultImageGallery from './ImageGallery/DefaultImageGallery.jsx';
-import ProductHeading from './ProductHeading/ProductHeading.jsx';
-import StyleSelector from './StyleSelector/StyleSelector.jsx';
-import AddToCart from './AddToCart/AddToCart.jsx';
-import ProductDescription from './ProductDescription/ProductDescription.jsx';
-import ShareMedia from './ShareMedia/ShareMedia.jsx';
+import DefaultImageGallery from "./ImageGallery/DefaultImageGallery.jsx";
+import ProductHeading from "./ProductHeading/ProductHeading.jsx";
+import StyleSelector from "./StyleSelector/StyleSelector.jsx";
+import AddToCart from "./AddToCart/AddToCart.jsx";
+import ProductDescription from "./ProductDescription/ProductDescription.jsx";
+import ShareMedia from "./ShareMedia/ShareMedia.jsx";
 
 export default function Overview({ productId, reviews }) {
   const [loadingProductInfo, setLoadingProductInfo] = useState(true);
@@ -51,9 +51,9 @@ export default function Overview({ productId, reviews }) {
 
   return (
     <div>
-      <div className='top-product-overview'>
+      <div id="top-product-overview" className="overview">
         <DefaultImageGallery styles={styles} selectedStyleId={selectedStyleId}/>
-        <div className='right-product-overview'>
+        <div id="right-product-overview" className="overview">
           <ProductHeading productInfo={productInfo} styles={styles} selectedStyleId={selectedStyleId} reviews={reviews}/>
           <StyleSelector styles={styles} selectedStyleId={selectedStyleId} selectedStylePosition={selectedStylePosition} clickStyle={clickStyle}/>
           <AddToCart styles={styles} selectedStyleId={selectedStyleId}/>

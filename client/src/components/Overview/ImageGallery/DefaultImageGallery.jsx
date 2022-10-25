@@ -1,10 +1,10 @@
-import { useState, useEffect } from 'react';
-import ThumbnailPhoto from './ThumbnailPhoto.jsx';
-import ExpandedImageGallery from './ExpandedImageGallery.jsx';
-import UpArrow from './UpArrow.jsx';
-import DownArrow from './DownArrow.jsx';
-import BackArrow from './BackArrow.jsx';
-import ForwardArrow from './ForwardArrow.jsx';
+import { useState, useEffect } from "react";
+import ThumbnailPhoto from "./ThumbnailPhoto.jsx";
+import ExpandedImageGallery from "./ExpandedImageGallery.jsx";
+import UpArrow from "./UpArrow.jsx";
+import DownArrow from "./DownArrow.jsx";
+import BackArrow from "./BackArrow.jsx";
+import ForwardArrow from "./ForwardArrow.jsx";
 
 export default function DefaultImageGallery({ styles, selectedStyleId }) {
   const [expanded, setExpanded] = useState(false);
@@ -58,13 +58,13 @@ export default function DefaultImageGallery({ styles, selectedStyleId }) {
       {expanded &&
         <ExpandedImageGallery photos={photos} photoId={photoId} expanded={expanded} setExpanded={setExpanded} setPhotoId={setPhotoId} handleBackArrowClick={handleBackArrowClick} handleForwardArrowClick={handleForwardArrowClick}/>
       }
-      <img className='main-image' src={photos[photoId].url} alt={styles[selectedStyleId].name}></img>
-      <div className='thumbnail-image-view'>
+      <img id="main-image" className="overview" src={photos[photoId].url} alt={styles[selectedStyleId].name}></img>
+      <div id="thumbnail-image-view" className="overview">
         {columnId !== 0 &&
           <UpArrow handleUpArrowClick={handleUpArrowClick}/>
         }
         {columnId === 0 &&
-          <div className='arrow-placeholder'></div>
+          <div id="arrow-placeholder" className="overview"></div>
         }
         {columns[columnId].map((photo, k) => {
           return (<ThumbnailPhoto key={k} photoKey={k} columnId={columnId} photo={photo} photoId={photoId} setPhotoId={setPhotoId}/>)
@@ -79,8 +79,8 @@ export default function DefaultImageGallery({ styles, selectedStyleId }) {
       {photoId !== (photos.length - 1) &&
         <ForwardArrow expanded={expanded} handleForwardArrowClick={handleForwardArrowClick}/>
       }
-      <div className="expand-icon-container" onClick={() => setExpanded(true)}>
-        <i className="fa-solid fa-expand expand-icon"></i>
+      <div id="expand-icon-container" className="overview" onClick={() => setExpanded(true)}>
+        <i className="overview fa-solid fa-expand expand-icon"></i>
       </div>
     </div>
   );
