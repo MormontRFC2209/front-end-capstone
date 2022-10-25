@@ -34,14 +34,16 @@ export default function AddToCart({ styles, selectedStyleId, trackingFunction })
       postPromises.push(postToCart());
       count++;
     }
+    trackingFunction(e);
     return Promise.all(postPromises)
-      .then(() => console.log("posted all to cart"))
+      .then(() => console.log('posted to cart'))
       .catch((err) => console.log(err))
   };
 
   const clickWithoutSize = (e) => {
     setSelectSizeAfterClick(true);
     setVisibleOptions(Object.keys(skus[0]).length + 1);
+    trackingFunction(e);
   };
 
   useEffect(() => {
@@ -71,9 +73,9 @@ export default function AddToCart({ styles, selectedStyleId, trackingFunction })
         }
         {!styles[selectedStyleId].skus.null && skus.length > 0 &&
           <select id="size-selector" className="overview size" onClick={trackingFunction} size={visibleOptions} onChange={(e) => setSelectSize(e.target.value)}>
-            <option>Select Size</option>
+            <option className="overview size-option">Select Size</option>
             {Object.keys(skus[0]).map((sku, i) => {
-              return (<option key={i} value={sku}>{skus[0][sku].size}</option>)
+              return (<option className="overview size-option" key={i} value={sku}>{skus[0][sku].size}</option>)
             })}
           </select>
         }
@@ -91,10 +93,10 @@ export default function AddToCart({ styles, selectedStyleId, trackingFunction })
         }
       </div>
       {selectSize !== "Select Size" &&
-        <button className="overview add-to-cart-btn" onClick={clickWithSize} onClick={trackingFunction}> Add to Cart </button>
+        <button className="overview add-to-cart-btn" onClick={clickWithSize}> Add to Cart </button>
       }
       {!styles[selectedStyleId].skus.null && selectSize === "Select Size" &&
-        <button className="overview add-to-cart-btn" onClick={clickWithoutSize} onClick={trackingFunction}> Add to Cart </button>
+        <button className="overview add-to-cart-btn" onClick={clickWithoutSize}> Add to Cart </button>
       }
     </div>
   );

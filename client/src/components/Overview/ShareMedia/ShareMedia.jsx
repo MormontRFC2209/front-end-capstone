@@ -1,12 +1,13 @@
 import react from "react";
 
-export default function ShareMedia({ styles, selectedStyleId }) {
+export default function ShareMedia({ styles, selectedStyleId, trackingFunction }) {
   let siteLink = window.location.origin.split(":").join("%3A").split("/").join("%2F").split("localhost").join("127.0.0.1");
   let stylePhoto = styles[selectedStyleId].photos[0].url ? styles[selectedStyleId].photos[0].url.split(":").join("%3A") : "Default.jpg";
 
   return (
     <div>
-      <div id="share-product" className="overview"> Share this product:
+      <div id="share-product">
+        <div id='share-product-title' className="overview" onClick={trackingFunction}> Share this product: </div>
         <div id="share-icon-container" className="overview">
           <div data-href={window.location.origin}>
             <a target="_blank" href={`https://www.facebook.com/sharer/sharer.php?u=${siteLink}&amp;src=sdkpreparse`}>
