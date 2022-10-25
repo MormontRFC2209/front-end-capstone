@@ -42,7 +42,7 @@ export default function AddToCart({ styles, selectedStyleId }) {
 
   const clickWithoutSize = (e) => {
     setSelectSizeAfterClick(true);
-    setVisibleOptions(Object.keys(skus[0]).length);
+    setVisibleOptions(Object.keys(skus[0]).length + 1);
   };
 
   useEffect(() => {
