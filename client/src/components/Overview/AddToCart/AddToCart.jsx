@@ -49,7 +49,7 @@ export default function AddToCart({ styles, selectedStyleId, trackingFunction })
   useEffect(() => {
     makeSkuArray();
     setSelectSize("Select Size");
-    let $select = document.querySelector(".size");
+    let $select = document.querySelector("#size-selector");
     if ($select) {
       $select.value = "Select Size";
     }
@@ -68,7 +68,7 @@ export default function AddToCart({ styles, selectedStyleId, trackingFunction })
       <div id="dropdown-container">
         {styles[selectedStyleId].skus.null &&
           <select className="size" disabled>
-            <option>OUT OF STOCK</option>
+            <option> OUT OF STOCK </option>
           </select>
         }
         {!styles[selectedStyleId].skus.null && skus.length > 0 &&

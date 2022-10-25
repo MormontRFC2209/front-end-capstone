@@ -49,8 +49,13 @@ export default function Overview({ productId, reviews, trackingFunction }) {
     return (<div> Loading Your Product! </div>)
   }
 
+  if (styles.length === 0) {
+    return (<div> Product In Development </div>)
+  }
+
   return (
     <div>
+      {console.log(styles)}
       <div id="top-product-overview">
         <DefaultImageGallery styles={styles} selectedStyleId={selectedStyleId} trackingFunction={trackingFunction}/>
         <div id="right-product-overview">
