@@ -17,7 +17,6 @@ render() {
 
   return (
     <div style={{marginTop:'20px'}}>
-      {/* {console.log(this.props.metaData.characteristics)} */}
     {Object.keys(this.props.metaData.characteristics).map((character,id)=>{
       return <CharacterEntry key={id} character={character} mood={this.state[character]} moodId={this.props.metaData.characteristics[character].id} setCharacteristics={this.props.setCharacteristics}/>
     })}

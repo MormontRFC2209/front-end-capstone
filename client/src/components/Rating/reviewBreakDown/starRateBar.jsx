@@ -78,7 +78,6 @@ export default class StarRateBar extends Component {
         return
       }
       if(!this.state.click){
-        console.log('hello')
         this.props.setSortByStar(this.props.star,this.state.click)
         this.state.click = true;
         return

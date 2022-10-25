@@ -39,15 +39,8 @@ export default function WriteRview(props) {
       photos:photos,
       characteristics:characteristic
     }
-    console.log('newReview',newReview)
+    // console.log('newReview',newReview)
     props.addReview(newReview)
-         .then(result=>{
-          console.log('hello??')
-         })
-          .catch((error) => {
-        console.log('failed', error)
-      })
-
     handleClick()
     props.setWrite(false);
   }

@@ -36,7 +36,16 @@ export default function RANDR(props) {
   }
 
   const addReview = (newReview)=>{
-    return axios.post('/info',newReview, {params: {route: '/reviews'}})
+    axios.post('/info',newReview, {params: {route: '/reviews'}})
+         .then(result=>{
+      axios.get("/info", {params: {route: '/reviews/', apiParams: {product_id:props.productId}}})
+      .then((response) => {
+        setReviews(response.data.results)
+      })
+     })
+         .catch((error) => {
+    console.log('failed', error)
+  })
   }
 
   const report = (review_id)=>{
@@ -45,7 +54,7 @@ export default function RANDR(props) {
 
 
   const setSortByStar = (star,toggle)=>{
-    console.log('star',star,toggle)
+    // console.log('star',star,toggle)
     toggle?starList.push(star):starList.splice(starList.indexOf(star),1)
     let newList = []
     axios.get("/info", {params: {route: '/reviews/', apiParams: {product_id:props.productId}}})
