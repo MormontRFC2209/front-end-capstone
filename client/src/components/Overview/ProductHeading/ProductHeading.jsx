@@ -1,5 +1,5 @@
-import {useState, useEffect} from 'react';
-import AvgRating from './AvgRating.jsx';
+import {useState, useEffect} from "react";
+import AvgRating from "./AvgRating.jsx";
 
 export default function ProductHeading({ productInfo, styles, selectedStyleId, reviews }) {
   const [avgStarCount, setAvgStarCount] = useState(0);
@@ -19,19 +19,19 @@ export default function ProductHeading({ productInfo, styles, selectedStyleId, r
 
   return (
     <div>
-      <div className='rating-star-view'>
+      <div id="rating-star-view" className="overview">
         <AvgRating avgRating={avgStarCount}/>
-        <a className='reviews-link' href='#ratings-reviews-section'>Read All Reviews</a>
+        <a id="reviews-link" className="overview" href="#ratings-reviews-section">Read All Reviews</a>
       </div>
-      <h4>{productInfo[0].category}</h4>
-      <h2 className='product-name'>{productInfo[0].name}</h2>
+      <h4 id="category" className="overview">{productInfo[0].category}</h4>
+      <h2 id="product-name" className="overview">{productInfo[0].name}</h2>
       {styles[selectedStyleId].sale_price === null &&
-        <div className='price'>${styles[selectedStyleId].original_price}</div>
+        <div id="original-price" className="overview">${styles[selectedStyleId].original_price}</div>
       }
       {styles[selectedStyleId].sale_price !== null &&
-        <div className='price'>
-          <div style={{color: 'red'}}>${styles[selectedStyleId].sale_price}</div>
-          <div style={{textDecoration: 'line-through'}}>${styles[selectedStyleId].original_price}</div>
+        <div id="sales-price" className="overview" >
+          <div style={{color: "red"}}>${styles[selectedStyleId].sale_price}</div>
+          <div style={{textDecoration: "line-through"}}>${styles[selectedStyleId].original_price}</div>
         </div>
       }
     </div>

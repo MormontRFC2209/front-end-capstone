@@ -200,25 +200,26 @@
  * PRODUCT HEADING
  */
 
- .rating-star-view {
+ #rating-star-view {
   margin: 0 0 18px 0;
   display: flex;
  }
 
- .overview-stars {
+ #overview-stars {
   margin: 2px 3px 0 0;
  }
 
- .reviews-link {
+ #reviews-link {
   color: black;
   font-size: 12px;
  }
 
- .product-name {
+ #product-name {
   font-size: 35px;
  }
 
- .price {
+ #original-price,
+ #sales-price {
   height: 50px;
  }
 
@@ -345,33 +346,33 @@
  * PRODUCT DESCRIPTION
  */
 
- .product-description-container {
+ #product-description-container {
   display: flex;
   height: fit-content(20em);
   width: 1080px;
   margin: 40px 40px 200px 40px;
  }
 
- .slogan-description {
+ #slogan-description {
   width: 70%;
   padding: 8px;
  }
 
- .slogan-description h4 {
+ #slogan-description h4 {
   font-size: 20px;
  }
 
- .product-description {
+ #product-description {
   font-size: 16px;
  }
 
- .vertical-line {
+ #vertical-line {
   height: fit-content(20em);
   border: 1px solid black;
   margin: 8px;
  }
 
- .product-description-container ul {
+ #product-description-container ul {
   padding: 8px;
   margin: 8px 8px 8px 20px;
  }

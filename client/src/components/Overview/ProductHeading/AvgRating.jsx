@@ -10,13 +10,13 @@ export default function AvgRating({ avgRating }) {
   }
 
   return (
-    <div className='overview-stars' style={{display: 'flex'}}>
+    <div id="overview-stars" className="overview" style={{display: "flex"}}>
       {countArr.map((id, key)=>{
         const outlineStar = {
           width: `4px`,
-          height: '14px',
-          caretColor: 'transparent',
-          backgroundImage: `url(${require('./star.gif')})`,
+          height: "14px",
+          caretColor: "transparent",
+          backgroundImage: `url(${require("./star.gif")})`,
           backgroundRepeat:  `no-repeat`,
           backgroundPosition: `-${imgLocate}px 0px`,
           backgroundSize: `14px auto`
@@ -24,9 +24,9 @@ export default function AvgRating({ avgRating }) {
 
         const solidStar = {
           width: `4px`,
-          height: '14px',
-          caretColor: 'transparent',
-          backgroundImage: `url(${require('./star.gif')})`,
+          height: "14px",
+          caretColor: "transparent",
+          backgroundImage: `url(${require("./star.gif")})`,
           backgroundRepeat:  `no-repeat`,
           backgroundPosition: `-${imgLocate}px -15px`,
           backgroundSize: `14px auto`
@@ -34,7 +34,7 @@ export default function AvgRating({ avgRating }) {
 
         imgLocate = imgLocate === 12 ? 0 : imgLocate + 4;
         return (
-          <div style={id <= avgRating ? solidStar : outlineStar} key={key}></div>
+          <div className="overview overview-star" style={id <= avgRating ? solidStar : outlineStar} key={key}></div>
         )
       })}
     </div>
