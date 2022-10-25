@@ -3,7 +3,18 @@ import AveRating from '../ratingStars/aveRating.jsx';
 import ProductBreakDown from './productBreakDown.jsx'
 import StarRateBar from './starRateBar.jsx'
 
+let aveRating = 0;
+let scordSum = 0;
+let ratingSum = 0;
+
 export default function BreakDown(props) {
+  let ratings = props.metaData.ratings;
+  for(var k in ratings){
+    scordSum+=Number(k) * Number(ratings[k])
+    ratingSum+=Number(ratings[k])
+  }
+  aveRating = (scordSum/ratingSum).toFixed(2);
+
     let total = Number(props.metaData.recommended.false) + Number(props.metaData.recommended.true);
     let recommendNum = props.metaData.recommended.true/total;
     let recommendRate = Number(recommendNum*100).toFixed(0) + '%';
@@ -11,8 +22,8 @@ export default function BreakDown(props) {
   return (
     <>
     <div style={{width:'30%',float:'left'}}>
-    <h1 style={{display: 'inline-block'}}>{props.aveRate}</h1>
-    <AveRating aveRating={props.aveRate}/>
+    <h1 style={{display: 'inline-block'}}>{aveRating}</h1>
+    <AveRating aveRating={aveRating}/>
     <div style={{marginTop:'5px'}}>
     <h5 style={{display: 'block'}}>{recommendRate} of reviews recommend this product</h5>
     </div >
@@ -24,7 +35,7 @@ export default function BreakDown(props) {
         star={star}
         key={key}
         ratings={props.metaData.ratings[star]}
-        ratingSum={props.ratingTotal}
+        ratingSum={ratingSum}
         reviews={currentList}
         setSortByStar={props.setSortByStar}
         />
