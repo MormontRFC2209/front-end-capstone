@@ -59,7 +59,7 @@ app.put('/info', (req, res) => {
     apiObject.push({params: req.body.apiParams})
   }
 
-  console.log(apiObject)
+  // console.log(apiObject)
 
   controllers.makePUTAPICall(apiObject, (result, err) => {
     if (err) {

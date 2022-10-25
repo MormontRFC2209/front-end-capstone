@@ -20,14 +20,19 @@ export default function WriteRview(props) {
     props.setWrite(false)
   }
   const onSubmit = ()=>{
+    var check = checkSummary() && checkBody();
+	  if(check){
+      return check
+    }
+
     if(!(/^[a-zA-Z0-9.!#$%&'*+\/=?^_`{|}~-]+@[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,61}[a-zA-Z0-9])?(?:\.[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,61}[a-zA-Z0-9])?)*$/.test(email))) {
       alert('please enter correct Email');
       return
   }
-    if(recommend===''){
-      alert('please make one recommend choice')
-      return
-    }
+    // if(recommend===''){
+    //   alert('please make one recommend choice')
+    //   return
+    // }
     let newReview = {
       product_id:Number(props.product_id),
       rating:Number(rating),
@@ -57,6 +62,39 @@ export default function WriteRview(props) {
     characteristics[id]=value
     setCharacteristic(characteristics)
   }
+
+  const checkSummary = (e)=>{
+    let check = false;
+    if(e.target.value.length === 0){
+      e.target.setAttribute('aria-valid','inValid')
+    }
+    if(e.target.value.length >= 1){
+      e.target.setAttribute('aria-valid','valid')
+    }
+    if(e.target.value.length >= 60){
+      e.target.setAttribute('aria-valid','inValid')
+      setBody(e.target.value)
+      check=true;
+    }
+    return check
+  }
+
+  const checkBody = (e,checked)=>{
+      let check = false;
+      if(e.target.value.length === 0){
+        e.target.setAttribute('aria-valid','inValid')
+      }
+      if(e.target.value.length >= 1){
+        e.target.setAttribute('aria-valid','process')
+      }
+      if(e.target.value.length >= 50){
+        e.target.setAttribute('aria-valid','valid')
+        setBody(e.target.value)
+        check=true;
+      }
+      return check
+  }
+
   return (
     <div>
       <div className='writeBox'>
@@ -65,6 +103,7 @@ export default function WriteRview(props) {
         >
           <div className="Popup" onClick={(e) => e.stopPropagation()}>
             <section>
+      <form action="http://localhost:3000/#ratings-reviews-section" onSubmit={onSubmit}>
       <header>
         <h2>Write a Review</h2>
         <small>{props.productName}</small>
@@ -74,31 +113,29 @@ export default function WriteRview(props) {
       <NewRating getRating={setRating}/>
       <Characteristics metaData={props.metaData} setCharacteristics={setCharacteristics}/>
       </div>
-      <form>
         <br/>
         <label style={{display: 'block'}}>
         <span style={{display: 'block'}}>Review Headline</span>
           <input
-            required
-            onChange={(e)=>setSummary(e.target.value)}
-            style={{width: '80%'}}
+            className='writeInput'
+            onChange={checkSummary}
             type="text"
             placeholder="I would buy this product again..."
-            required=""
+            required='true'
           />
+          {/* <span id="checktext1"></span> */}
         </label>
         <br/>
         <label style={{display: 'block'}}>
         <span style={{display: 'block'}}>Comments</span>
         <textarea
-            required
-            onChange={(e)=>setBody(e.target.value)}
-            style={{display: 'block',width: '80%'}}
+            className='writeInput'
+            onChange={checkBody}
             cols="68"
             rows="4"
             name="Comments"
             placeholder="How you use the product.Things that are great about it"
-            required=""
+            required='true'
           ></textarea>
           <small>The most helpful reviews are 250 characters.</small>
         </label>
@@ -111,27 +148,23 @@ export default function WriteRview(props) {
         </label>
         <br/>
         <br/>
-        <span style={{display: 'block'}}>User First Name</span>
+        <span style={{display: 'block'}}>Nickname Name</span>
           <input
-            required
+            className='writeInput'
             onChange={(e)=>setUserName(e.target.value)}
-            style={{width: '80%'}}
             type="text"
             placeholder="Please leave your FirstName..."
-            required=""
+            required='true'
           />
         <br/>
-        <br/>
         <span style={{display: 'block'}}>Email address</span>
-          <input type='text' style={{width: '80%'}} onChange={handleEmail} placeholder="Please leave your Email address..."/>
-          <br/>
+          <input type='text' onChange={handleEmail}  required='true' className='writeInput' placeholder="Please leave your Email address..."/>
           <br/>
         <div>
         </div>
-      </form>
         <UpLoadImg setPhotos={setPhotos}/>
-        {/* {console.log(photos)} */}
-        <button onClick={onSubmit}>SUBMIT REVIEW</button>
+        <input type='submit' value='SUBMIT REVIEW'/>
+      </form>
         <button onClick={handleClick}>Close</button>
     </section>
           </div>

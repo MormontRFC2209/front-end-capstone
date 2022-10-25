@@ -13,8 +13,10 @@ export default function NewRating(props) {
   const [zero,setZero]=useState(true)
   const [comfirm,setComfirm]=useState(false)
   const [selectEmoji,setSelectEmoji]=useState('')
+  const [selectMood,setSelectMood]=useState('')
 
   const emoji = ['😫','😞','😐','😊','🤩']
+  const mood = ['poor','accept', 'as expected', 'great','perfect']
   const onClick = (e)=>{
     setRating(e.target.id);
     setSelectEmoji(emoji[e.target.id-1])
@@ -25,11 +27,13 @@ export default function NewRating(props) {
   const onMouseOver = (e)=>{
     setRating(e.target.id);
     setSelectEmoji(emoji[e.target.id-1])
+    setSelectMood(mood[e.target.id-1])
   }
 
   const onMouseOut = (e) => {
     setRating(0);
     setSelectEmoji('')
+    setSelectMood('')
   }
 
   const outlineStar = {
@@ -60,14 +64,16 @@ export default function NewRating(props) {
     cursor: 'pointer'
   }
 
+
   return (
-    <ul style={{display: 'inline-block'}}>
-      <h5>YOUR RATING {selectEmoji}</h5>
+    <ul style={{display: 'inline-block',width:'100%',overflow:'hidden'}}>
+      <h5>YOUR RATING</h5>
       {countArr.map((id,key)=>{
         return (
         <li onClick={onClick} onMouseOver={!comfirm?onMouseOver:null} onMouseOut={!comfirm?onMouseOut:null} style={id<=rating?solidStar:outlineStar} id={id} key={key}></li>
         )
       })}
+      <span>{selectEmoji} {selectMood}</span>
     </ul>
   )
 }

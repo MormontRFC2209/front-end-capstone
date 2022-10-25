@@ -10,6 +10,8 @@ export default class Characteristics extends React.Component{
       Width:['Too narrow','narrow','Perfect','wide','Too wide'],
       Comfort:['uncomfortable', 'no bad','as expected','great', 'perfect'],
       Quality: ['poor','accept', 'as expected', 'great','perfect'],
+      Length: ['Runs Short','Runs slightly short', 'perfect', 'Runs slightly long','Runs long'],
+      Fit: ['Runs tight','Runs slightly tight', 'Perfect', 'Runs slightly long','Runs long']
     };
   }
 
