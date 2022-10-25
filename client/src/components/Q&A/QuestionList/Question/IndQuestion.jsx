@@ -109,14 +109,18 @@ export default function IndQuestion({question, id, trackingFunction}) {
 
   return(
     <div className="QANDA" id="INDQUESTIONCONTAINER">
+      <div className="QANDA" id="INDQUESTIONHEADER">
+        <span onClick={trackingFunction}className="QANDA" id="Q-HEADER">Q:</span>
+        <span onClick={trackingFunction}className="QANDA" id="QBODY">{question.question_body}</span>
+        <span onClick={trackingFunction}className="QANDA" id="QHELPFUL">Helpful? ({count})</span>
+        <span onClick={(e)=>{increaseHelpfulCount(e); trackingFunction(e);} }className="QANDA" id="QYES">Yes</span>
+        <span onClick={(e)=>{increaseHelpfulCount(e); trackingFunction(e);} }className="QANDA" id="QREPORT">Report?</span>
+        <span data-testid="addanswer" onClick={(e)=>{toggle(); trackingFunction(e);}} className="QANDA" id="QADDANSWER">Add Answer</span>
+      </div>
 
-      <h3 onClick={trackingFunction}className="QANDA" id="Q-HEADER">Q: {question.question_body}</h3>
-      <h3 onClick={trackingFunction}className="QANDA" id="QHELPFUL">Helpful? ({count})</h3>
-      <h3 onClick={(e)=>{increaseHelpfulCount(e); trackingFunction(e);} }className="QANDA" id="QYES">Yes</h3>
-      <h3 onClick={(e)=>{increaseHelpfulCount(e); trackingFunction(e);} }className="QANDA" id="QREPORT">Report?</h3>
 
-      <h3 data-testid="addanswer" onClick={(e)=>{toggle(); trackingFunction(e);}} className="QANDA" id="QADDANSWER">Add Answer</h3>
-      {answerList.length > 0 ? <div onClick={trackingFunction} className="QANDA" id="A-HEADER">A:</div> : null}
+
+
       <AnswerModal
         isShowing={isShowing}
         hide={toggle}

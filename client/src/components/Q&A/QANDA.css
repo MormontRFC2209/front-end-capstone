@@ -18,13 +18,38 @@
 
 
 #QACONTAINER {
-  text-align: left;
   display: block;
   margin-left: auto;
   margin-right: auto;
   position:'relative';
 }
 #INDQUESTIONCONTAINER {
+  /* display:flex; */
   margin: auto;
   justify-content: left;
+  margin-left: 300px;
+  margin-right: 300px;
+  margin-bottom: 35px;
+}
+#Q-HEADER {
+  font-weight: bolder;
+}
+#INDQUESTIONHEADER {
+  display: flex;
+}
+#QREPORT {
+  justify-content: right;
+}
+#A-HEADER {
+  font-weight: bolder;
+}
+#ANSWERBODY {
+  margin-left: 15px;
+}
+#QBODY {
+  margin-left: 15px;
+  font-weight: bolder;
+}
+#QADDANSWER {
+  justify-content: right;
 }

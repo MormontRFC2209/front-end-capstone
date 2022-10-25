@@ -49,6 +49,7 @@ export default function IndAnswer({answer, seller, trackingFunction}) {
 
   return(
     <div className="QANDA" id="ANSWERCONTAINER" >
+      <span onClick={trackingFunction} className="QANDA" id="A-HEADER">A:</span>
       <span className="QANDA" id="ANSWERBODY"onClick={trackingFunction}>{answer.body}</span>
       <div>
 
