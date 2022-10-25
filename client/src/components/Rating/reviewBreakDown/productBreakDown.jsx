@@ -9,7 +9,9 @@ export default class ProductBreakDown extends React.Component{
       Size:['Too small','Perfect','Too large'],
       Width:['Too narrow','Perfect','Too wide'],
       Comfort:['uncomfortable', 'as expected', 'perfect'],
-      Quality: ['poor', 'as expected', 'perfect']
+      Quality: ['poor', 'as expected', 'perfect'],
+      Fit:['Runs Short','Perfect','Runs long'],
+      Length:['Runs tight','Perfect','Runs long']
     };
   }
 

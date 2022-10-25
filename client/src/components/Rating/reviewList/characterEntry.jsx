@@ -1,4 +1,7 @@
 import React, {useState, useEffect} from "react";
+// import styles from './writeReview.css'
+import styles from './character.css'
+
 
 export default class CharacterEntry extends React.Component{
 
@@ -24,7 +27,7 @@ render() {
   return (
             <div>{this.props.character}
               <input
-              className='range'
+              // className='writeInput'
               style={rangeStyle}
               type='range'
               min={0}

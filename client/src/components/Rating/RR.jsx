@@ -18,8 +18,9 @@ export default function RANDR(props) {
       .then((response) => {
         setReviews(response.data.results)
       })
-      axios.get("/info", {params: {route: '/reviews/meta', apiParams: {product_id:props.productId}}})
+      axios.get("/info", {params: {route: '/reviews/meta', apiParams: {product_id:66642}}})
       .then((response) => {
+        console.log('response.data',response.data)
         setMetaData(response.data)
         props.setReviews(response.data)
         setLoading(false);

@@ -13,10 +13,10 @@ export default function App() {
   const [reviews, setReviews] = useState([]);
 
   const getProductId = () => {
-    return axios.get("/info", {params: {route: '/products', apiParams: {page: '2', count: '5'}}})
+    return axios.get("/info", {params: {route: '/products', apiParams: {page: '1', count: '5'}}})
       .then((response) => {
-        setProductId(response.data[1].id);
-        setProductName(response.data[4].name);
+        setProductId(response.data[0].id);
+        setProductName(response.data[0].name);
         setLoading(false);
       })
       .catch((err) => console.log('err'))
