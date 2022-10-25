@@ -1,0 +1,20 @@
+input[type=range]{
+  margin: 8px;/*上部分的填充值*/
+  margin-bottom: 10px;
+  outline: none;
+  -webkit-appearance: none;/*清除系统默认样式*/
+  width:30% !important;
+  /* background: -webkit-linear-gradient(#ffc107, #ffc107) no-repeat, #ddd;  */
+  height: 1px;/*横条的高度，细的真的比较好看嗯*/
+  cursor: pointer;
+}
+/*拖动块的样式*/
+input[type=range]::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  height:16px;
+  width: 16px;
+  background: #f8f9fa;
+  border-radius: 50%;
+  border: solid 1px #ddd;
+  cursor: pointer;
+}
