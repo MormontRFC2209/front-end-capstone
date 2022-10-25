@@ -27,14 +27,14 @@ export default function UpLoadImg(props) {
     e.preventDefault();
 
     var name = e.target.files[0].name
-    console.log(e.target.files[0])
+    // console.log(e.target.files[0])
 
     getBase64(e.target.files[0], (result) => {
 
       var apiObject = {base64Img: result,nameGiven: name}
       axios.post('/image', apiObject )
         .then((result) => {
-          console.log('result',result)
+          // console.log('result',result)
           photos.push(
             result.data.url
             // thumbnailUrl:result.data.thumbnailUrl
