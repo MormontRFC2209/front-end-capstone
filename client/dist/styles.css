@@ -228,8 +228,8 @@
 
  .icon-tag {
   position: absolute;
-  top: 0;
-  right: 0;
+  top: 5px;
+  right: 5px;
   width: 18px !important;
   height: 18px !important;
  }
@@ -239,12 +239,17 @@
   flex-direction: column;
  }
 
+ .dropdown-container {
+  display: flex;
+ }
+
  .addToCart-selectSize,
  .addToCart-selectQuant,
  .addToCart-btn {
-  height: 40px;
+  height: fit-content(40px);
   margin: 8px 8px 0 0;
   padding: 5px;
+  border-radius: 0;
  }
 
  .size,
@@ -253,11 +258,12 @@
  }
 
  .addToCart-selectSize {
-  width: 180px;
+  width: 66%;
  }
 
  .addToCart-selectQuant {
-  width: 95px;
+  width: 33%;
+  max-height: 35px;
  }
 
  .addToCart-btn {
@@ -266,7 +272,14 @@
  }
 
  .share-product {
-  margin: 15px 0 4px 0;
+  margin: 25px 0 0 0;
+  display: flex;
+  flex-direction: column;
+ }
+
+ .share-icon-container {
+  display: flex;
+  margin: 4px 0;
  }
 
  .share-icon {
