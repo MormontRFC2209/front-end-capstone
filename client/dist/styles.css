@@ -229,16 +229,16 @@
  * STYLE SELECTOR
  */
 
- .style-name {
+ #style-name {
   margin: 8px 0;
  }
 
- .styleSelectorRowsContainer {
+ #style-selector-rows-container {
   display: flex;
   flex-direction: column;
  }
 
- .styleSelectorRow {
+ .style-selector-row {
   display: flex;
  }
 
@@ -313,13 +313,13 @@
  * SHARE MEDIA
  */
 
- .share-product {
+ #share-product {
   margin: 25px 0 0 0;
   display: flex;
   flex-direction: column;
  }
 
- .share-icon-container {
+ #share-icon-container {
   display: flex;
   margin: 4px 0;
  }
