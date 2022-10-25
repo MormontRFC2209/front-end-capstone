@@ -421,7 +421,7 @@
   cursor: zoom-in;
  }
 
- #zoomed-main-image {
+ #zoomed-main {
   overflow: hidden;
   vertical-align: middle;
   margin: 40px auto;
@@ -431,11 +431,11 @@
   background-repeat: no-repeat;
  }
 
- #zoomed-main-image img:hover {
+ #zoomed-main-image:hover {
   opacity: 0;
  }
 
- #zoomed-main-image img {
+ #zoomed-main-image {
   transition: opacity 0.5s;
   display: block;
   width: 100%;

@@ -1,7 +1,7 @@
 import { useState, useEffect } from "react";
 import axios from "axios";
 
-export default function AddToCart({ styles, selectedStyleId }) {
+export default function AddToCart({ styles, selectedStyleId, trackingFunction }) {
   const [skus, setSkus] = useState([]);
   const [selectSize, setSelectSize] = useState("Select Size");
   const [selectSizeAfterClick, setSelectSizeAfterClick] = useState(false);
@@ -59,18 +59,18 @@ export default function AddToCart({ styles, selectedStyleId }) {
   }, [selectSize]);
 
   return (
-    <div id="add-to-cart-container" className="overview">
+    <div id="add-to-cart-container">
       {!styles[selectedStyleId].skus.null && skus.length > 0 && selectSizeAfterClick &&
-        <div id="select-size-warning" className="overview">Please Select Size</div>
+        <div id="select-size-warning" className="overview" onClick={trackingFunction}>Please Select Size</div>
       }
-      <div id="dropdown-container" className="overview">
+      <div id="dropdown-container">
         {styles[selectedStyleId].skus.null &&
-          <select className="overview size" disabled>
+          <select className="size" disabled>
             <option>OUT OF STOCK</option>
           </select>
         }
         {!styles[selectedStyleId].skus.null && skus.length > 0 &&
-          <select id="size-selector" className="overview size" size={visibleOptions} onChange={(e) => setSelectSize(e.target.value)}>
+          <select id="size-selector" className="overview size" onClick={trackingFunction} size={visibleOptions} onChange={(e) => setSelectSize(e.target.value)}>
             <option>Select Size</option>
             {Object.keys(skus[0]).map((sku, i) => {
               return (<option key={i} value={sku}>{skus[0][sku].size}</option>)
@@ -78,12 +78,12 @@ export default function AddToCart({ styles, selectedStyleId }) {
           </select>
         }
         {selectSize === "Select Size" &&
-          <select className="overview quantity" disabled>
+          <select className="quantity" disabled>
             <option> - </option>
           </select>
         }
         {selectSize !== "Select Size" &&
-          <select id="quantity-selector" className="overview quantity" onChange={(e) => setSelectQuantity(e.target.value)}>
+          <select id="quantity-selector" className="overview quantity" onClick={trackingFunction} onChange={(e) => setSelectQuantity(e.target.value)}>
             {createQuantityArray(skus[0][selectSize].quantity).map((num, j) => {
               return <option key={j}>{num}</option>
             })}
@@ -91,10 +91,10 @@ export default function AddToCart({ styles, selectedStyleId }) {
         }
       </div>
       {selectSize !== "Select Size" &&
-        <button className="overview add-to-cart-btn" onClick={clickWithSize}> Add to Cart </button>
+        <button className="overview add-to-cart-btn" onClick={clickWithSize} onClick={trackingFunction}> Add to Cart </button>
       }
       {!styles[selectedStyleId].skus.null && selectSize === "Select Size" &&
-        <button className="overview add-to-cart-btn" onClick={clickWithoutSize}> Add to Cart </button>
+        <button className="overview add-to-cart-btn" onClick={clickWithoutSize} onClick={trackingFunction}> Add to Cart </button>
       }
     </div>
   );

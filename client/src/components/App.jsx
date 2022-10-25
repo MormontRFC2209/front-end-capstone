@@ -41,8 +41,10 @@ export default function App() {
     var time = today.getHours() + ":" + today.getMinutes() + ":" + today.getSeconds();
     var dateTime = date+' '+time;
 
+    var moduleName = event.target.className.split(' ')[0];
+    var locationName = event.target.className.split(' ').slice(1).join(' ') + (event.target.id);
 
-    var trackingObject = {Module: event.target.className, Location: event.target.id, Time: dateTime}
+    var trackingObject = {Module: moduleName, Location: locationName, Time: dateTime}
     console.log(trackingObject)
   }
 
@@ -52,7 +54,7 @@ export default function App() {
       <div className='website-banner'>
         <h1 className='website-title'> <em>HOUSE MORMONT</em> </h1>
       </div>
-      <Overview productId={productId} reviews={reviews}/>
+      <Overview productId={productId} reviews={reviews} trackingFunction={trackingFunction}/>
       <QANDA productId={productId} trackingFunction={trackingFunction}/>
       <a id='ratings-reviews-section'></a>
       <RANDR productId={productId} productName={productName} setReviews={setReviews} reviews={reviews}/>
