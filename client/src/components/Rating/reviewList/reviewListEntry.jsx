@@ -46,7 +46,7 @@ export default function ReviewListEntry(props) {
     {props.review.photos.length>0?props.review.photos.map((image,index)=>{
       return (
         <div key={image.id} style={{marginBottom:"10px",marginTop:"10px"}}>
-          <img src={image.url} style={{width:'150px',height:'120px',marginRight:'15px'}}></img>
+          <img src={image.url} style={{width:'150px',height:'90px',marginRight:'5px',objectFit: 'cover'}}></img>
         </div>
         )
     }):null}

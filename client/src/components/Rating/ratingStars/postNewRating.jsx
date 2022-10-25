@@ -12,8 +12,8 @@ export default function NewRating(props) {
   const [rating,setRating]=useState(0)
   const [zero,setZero]=useState(true)
   const [comfirm,setComfirm]=useState(false)
-  const [selectEmoji,setSelectEmoji]=useState('')
-  const [selectMood,setSelectMood]=useState('')
+  const [selectEmoji,setSelectEmoji]=useState('🤗')
+  const [selectMood,setSelectMood]=useState('Please rate it')
 
   const emoji = ['😫','😞','😐','😊','🤩']
   const mood = ['poor','accept', 'as expected', 'great','perfect']
@@ -32,8 +32,8 @@ export default function NewRating(props) {
 
   const onMouseOut = (e) => {
     setRating(0);
-    setSelectEmoji('')
-    setSelectMood('')
+    setSelectEmoji('🤗')
+    setSelectMood('Please rate it')
   }
 
   const outlineStar = {
