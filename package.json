@@ -40,7 +40,14 @@
     "dotenv": "^16.0.3",
     "express": "^4.15.0",
     "imagekit": "^4.1.1",
+    "jest-transform-css": "^6.0.0",
     "react": "^16.4",
     "react-dom": "^16.4"
+  },
+  "jest": {
+    "moduleNameMapper": {
+      "\\.(jpg|jpeg|png|gif|eot|otf|webp|svg|ttf|woff|woff2|mp4|webm|wav|mp3|m4a|aac|oga)$": "<rootDir>/__mocks__/fileMock.js",
+      "\\.(css|less)$": "identity-obj-proxy"
+    }
   }
 }

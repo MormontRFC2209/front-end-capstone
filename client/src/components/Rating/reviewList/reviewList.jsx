@@ -70,7 +70,7 @@ export default function ReviewList(props) {
 
   return (
     <div style={{width:'50%',float:'left'}}>
-      <h5>{props.reviews.length} reviews,sorted by
+      <h5>{props.ratingTotal} reviews,sorted by
       <select id='state' onChange={change}>
       <option value="Relevant">Relevant</option>
       <option value="Helpful">Helpful</option>

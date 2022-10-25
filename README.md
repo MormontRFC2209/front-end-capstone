@@ -27,3 +27,6 @@ npm install imagekit --save
 npm install --save-dev css-loader
 
 npm install --save-dev style-loader
+
+npm install --save-dev identity-obj-proxy
+

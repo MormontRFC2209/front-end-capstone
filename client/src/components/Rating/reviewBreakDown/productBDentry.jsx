@@ -14,7 +14,6 @@ export default class ProductBDentry extends React.Component{
     let rate = this.props.value/5*100;
     let subRate = 0;
     if (rate >= 80) {
-      console.log(this.props.name)
       subRate=(rate-80)/20
       this.setState({ moodSlect: this.props.moods[2], value: subRate*100+'%' });
     } else if (rate >=20 ) {
@@ -69,7 +68,6 @@ render() {
 
   return (
     <div style={{overflow:'hidden'}}>
-      {console.log(this.state.moodSlect,this.props.name,this.state.value)}
     {this.props.moods.map((mood,id)=>{
       return (
       <div key={id} style={id===1?Object.assign(largeWidth,progressArticleStyle):Object.assign(smallWidth,progressArticleStyle)}>

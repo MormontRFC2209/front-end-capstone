@@ -84,8 +84,9 @@
 #QAACCORDIAN {
   background-color: white;
   border: 1px solid black;
-  margin-left: 355px;
+  margin-left: 350px;
   width: 250px;
+  height: 45px;
 }
 #ADDAQUESTION {
   background-color: white;
@@ -110,4 +111,11 @@
   font-weight: 100;
   margin-bottom: 5px;
   font-size: 25px;
+}
+#ADDAQUESTIONUNDER4 {
+  background-color: white;
+  border: 1px solid black;
+  height: 45px;
+  width: 200px;
+  margin-left: 350px;
 }

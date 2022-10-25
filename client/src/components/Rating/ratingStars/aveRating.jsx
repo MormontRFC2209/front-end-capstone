@@ -2,7 +2,7 @@ import {useState, useEffect} from "react";
 
 
 let imgLocate = 0;
-export default function AveRating({reviews,aveRating}) {
+export default function AveRating({aveRating}) {
 
   let countArr = []
 

@@ -74,17 +74,21 @@ const Modal = ({isShowing, hide, id}) => {
             </button>
           </div>
           <form>
-            <label>Required
-              <textarea
-              type="text"
-              name="answerform"
-              required=""
-              autoComplete="off"
-              value={currentInput.name}
-              onChange={handleInputChange}
+            <div>
+                <div>
+                  <span>Required</span>
+                </div>
+                <input
+                type="text"
+                name="answerform"
+                required=""
+                autoComplete="off"
+                value={currentInput.name}
+                onChange={handleInputChange}
 
-              ></textarea>
-            </label>
+                ></input>
+            </div>
+
             <label>What is your username?
               <textarea
               type="text"

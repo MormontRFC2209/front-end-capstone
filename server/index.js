@@ -37,7 +37,7 @@ app.post('/info', (req, res) => {
   if (req.query.apiParams) {
     apiObject.push({params: req.query.apiParams})
   }
-  console.log('apiObject',apiObject)
+  // console.log('apiObject',apiObject)
 
   controllers.makePOSTAPICall(apiObject, (result, err) => {
     if (err) {
@@ -52,14 +52,14 @@ app.post('/info', (req, res) => {
 
 app.put('/info', (req, res) => {
 
-  console.log(req.body)
+  // console.log(req.body)
   var apiObject = [];
   apiObject.push({route: req.body.route});
   if (req.body.apiParams) {
     apiObject.push({params: req.body.apiParams})
   }
 
-  console.log(apiObject)
+  // console.log(apiObject)
 
   controllers.makePUTAPICall(apiObject, (result, err) => {
     if (err) {
