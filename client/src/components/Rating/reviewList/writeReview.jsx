@@ -17,6 +17,7 @@ export default function WriteRview(props) {
   const [characteristic,setCharacteristic]=useState({})
   const handleClick = () => {
     setState(false)
+    props.setWrite(false)
   }
   const onSubmit = ()=>{
     if(!(/^[a-zA-Z0-9.!#$%&'*+\/=?^_`{|}~-]+@[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,61}[a-zA-Z0-9])?(?:\.[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,61}[a-zA-Z0-9])?)*$/.test(email))) {
@@ -68,7 +69,6 @@ export default function WriteRview(props) {
       <div className='writeBox'>
         <div
           className={`container ${state ? 'active' : ''}`}
-          // onClick={handleClick}
         >
           <div className="Popup" onClick={(e) => e.stopPropagation()}>
             <section>
@@ -139,6 +139,7 @@ export default function WriteRview(props) {
         <UpLoadImg setPhotos={setPhotos}/>
         {/* {console.log(photos)} */}
         <button onClick={onSubmit}>SUBMIT REVIEW</button>
+        <button onClick={handleClick}>Close</button>
     </section>
           </div>
         </div>
