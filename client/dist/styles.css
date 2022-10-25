@@ -239,12 +239,17 @@
   flex-direction: column;
  }
 
+ .dropdown-container {
+  display: flex;
+ }
+
  .addToCart-selectSize,
  .addToCart-selectQuant,
  .addToCart-btn {
-  height: 40px;
+  height: fit-content(40px);
   margin: 8px 8px 0 0;
   padding: 5px;
+  border-radius: 0;
  }
 
  .size,
@@ -253,11 +258,12 @@
  }
 
  .addToCart-selectSize {
-  width: 180px;
+  width: 66%;
  }
 
  .addToCart-selectQuant {
-  width: 95px;
+  width: 33%;
+  max-height: 35px;
  }
 
  .addToCart-btn {
