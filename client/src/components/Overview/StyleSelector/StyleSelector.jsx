@@ -1,7 +1,7 @@
 import react from "react";
 import ThumbnailRow from "./ThumbnailRow.jsx";
 
-export default function StyleSelector({ styles, selectedStyleId, selectedStylePosition, clickStyle }) {
+export default function StyleSelector({ styles, selectedStyleId, selectedStylePosition, clickStyle, trackingFunction }) {
   let rowsOfThumbnails = Math.ceil(styles.length/4);
   let rows = [];
   for (let j = 0; j < rowsOfThumbnails; j++) {
@@ -10,8 +10,8 @@ export default function StyleSelector({ styles, selectedStyleId, selectedStylePo
   }
 
   return (
-    <div id="style-selector-rows-container" className="overview">
-      <div id="style-name" className="overview"> <b> Style > </b> {styles[selectedStyleId].name} </div>
+    <div id="style-selector-rows-container" className="overview" onClick={trackingFunction}>
+      <div id="style-name" className="overview"> <b className="overview style-title"> Style > </b> {styles[selectedStyleId].name} </div>
       {rows.map((row, i) => {
         return (<ThumbnailRow key={i} rowKey={i} row={row} selectedStylePosition={selectedStylePosition} clickStyle={clickStyle}/>)
       })}

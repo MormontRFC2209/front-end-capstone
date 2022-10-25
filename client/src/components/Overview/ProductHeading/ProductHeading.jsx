@@ -1,7 +1,7 @@
 import {useState, useEffect} from "react";
 import AvgRating from "./AvgRating.jsx";
 
-export default function ProductHeading({ productInfo, styles, selectedStyleId, reviews }) {
+export default function ProductHeading({ productInfo, styles, selectedStyleId, reviews, trackingFunction }) {
   const [avgStarCount, setAvgStarCount] = useState(0);
 
   const calcAverageStars = () => {
@@ -19,19 +19,19 @@ export default function ProductHeading({ productInfo, styles, selectedStyleId, r
 
   return (
     <div>
-      <div id="rating-star-view" className="overview">
-        <AvgRating avgRating={avgStarCount}/>
+      <div id="rating-star-view">
+        <AvgRating avgRating={avgStarCount} trackingFunction={trackingFunction}/>
         <a id="reviews-link" className="overview" href="#ratings-reviews-section">Read All Reviews</a>
       </div>
-      <h4 id="category" className="overview">{productInfo[0].category}</h4>
-      <h2 id="product-name" className="overview">{productInfo[0].name}</h2>
+      <h4 id="category" className="overview" onClick={trackingFunction}>{productInfo[0].category}</h4>
+      <h2 id="product-name" className="overview" onClick={trackingFunction}>{productInfo[0].name}</h2>
       {styles[selectedStyleId].sale_price === null &&
-        <div id="original-price" className="overview">${styles[selectedStyleId].original_price}</div>
+        <div id="original-price" className="overview" onClick={trackingFunction}>${styles[selectedStyleId].original_price}</div>
       }
       {styles[selectedStyleId].sale_price !== null &&
-        <div id="sales-price" className="overview" >
-          <div style={{color: "red"}}>${styles[selectedStyleId].sale_price}</div>
-          <div style={{textDecoration: "line-through"}}>${styles[selectedStyleId].original_price}</div>
+        <div id="sales-price" className="overview" onClick={trackingFunction}>
+          <div id="red-sales-price" className="overview" style={{color: "red"}}>${styles[selectedStyleId].sale_price}</div>
+          <div id="og-price-struckthru" className="overview" style={{textDecoration: "line-through"}}>${styles[selectedStyleId].original_price}</div>
         </div>
       }
     </div>

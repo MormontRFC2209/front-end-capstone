@@ -2,7 +2,7 @@ import {useState, useEffect} from "react";
 
 let imgLocate = 0;
 
-export default function AvgRating({ avgRating }) {
+export default function AvgRating({ avgRating, trackingFunction }) {
   let countArr = []
 
   for(var i = 0.25; i <=5; i+=0.25){
@@ -10,7 +10,7 @@ export default function AvgRating({ avgRating }) {
   }
 
   return (
-    <div id="overview-stars" className="overview" style={{display: "flex"}}>
+    <div id="overview-stars" className="overview" onClick={trackingFunction} style={{display: "flex"}}>
       {countArr.map((id, key)=>{
         const outlineStar = {
           width: `4px`,
