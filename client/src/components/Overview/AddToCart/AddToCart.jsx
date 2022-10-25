@@ -6,6 +6,7 @@ export default function AddToCart({ styles, selectedStyleId }) {
   const [selectSize, setSelectSize] = useState('Select Size');
   const [selectSizeAfterClick, setSelectSizeAfterClick] = useState(false);
   const [selectQuantity, setSelectQuantity] = useState('1');
+  const [visibleOptions, setVisibleOptions] = useState(1);
 
   const makeSkuArray = () => {
     setSkus([styles[selectedStyleId].skus]);
@@ -41,6 +42,7 @@ export default function AddToCart({ styles, selectedStyleId }) {
 
   const clickWithoutSize = (e) => {
     setSelectSizeAfterClick(true);
+    setVisibleOptions(Object.keys(skus[0]).length + 1);
   };
 
   useEffect(() => {
@@ -54,21 +56,22 @@ export default function AddToCart({ styles, selectedStyleId }) {
 
   useEffect(() => {
     setSelectSizeAfterClick(false);
+    setVisibleOptions(1);
   }, [selectSize]);
 
   return (
     <div className='addToCart-container'>
+      {!styles[selectedStyleId].skus.null && skus.length > 0 && selectSizeAfterClick &&
+        <div>Please Select Size</div>
+      }
       <div className='dropdown-container'>
         {styles[selectedStyleId].skus.null &&
           <select className='addToCart-selectSize' disabled>
             <option>OUT OF STOCK</option>
           </select>
         }
-        {!styles[selectedStyleId].skus.null && skus.length > 0 && selectSizeAfterClick &&
-          <div>Please Select Size</div>
-        }
         {!styles[selectedStyleId].skus.null && skus.length > 0 &&
-          <select className='size addToCart-selectSize' onChange={(e) => setSelectSize(e.target.value)}>
+          <select className='size addToCart-selectSize' size={visibleOptions} onChange={(e) => setSelectSize(e.target.value)}>
             <option>Select Size</option>
             {Object.keys(skus[0]).map((sku, i) => {
               return (<option key={i} value={sku}>{skus[0][sku].size}</option>)
