@@ -163,7 +163,8 @@ export default function QANDA(props) {
 
         {currentQuestions.length > 0 ? <QuestionList questionList={currentQuestions} id={props.productId} trackingFunction={props.trackingFunction}/> : null }
 
-        {currentQuestions.length < 4 ? null : <button className="QANDA" id="QAACCORDIAN" onClick={(event) => {event.preventDefault(); manipulateAccordian(); props.trackingFunction(event);}}>{currentList}</button>}<button onClick={toggle}>Add a Question</button>
+        {currentQuestions.length < 4 ? null : <button className="QANDA" id="QAACCORDIAN" onClick={(event) => {event.preventDefault(); manipulateAccordian(); props.trackingFunction(event);}}>{currentList}</button>}
+        <button onClick={toggle} className="QANDA" id="ADDAQUESTION">Add a Question</button>
         <div id="QuestionFlex">
           <QuestionModal
           isShowing={isShowing}

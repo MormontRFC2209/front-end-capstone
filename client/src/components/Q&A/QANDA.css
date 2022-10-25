@@ -2,18 +2,24 @@
   overflow-x: hidden;
   overflow-y: scroll;
   display: flex;
-  justify-content: center;
+  justify-content: start;
   flex-direction: column;
+  height: 700px;
 }
 #ANSWERPHOTOBOX {
   display: flex;
-  justify-content: center;
+  margin-left: 36px;
+  justify-content: space-between;
+  margin-right: 600px;
+  overflow: auto;
 }
 #ANSWERPHOTO {
   height: 70px;
   padding: 3px;
-  width: 70px;
+  width: 100px;
   object-fit: contain;
+  border-style: solid;
+  border-width: thin;
 }
 
 
@@ -27,21 +33,25 @@
   /* display:flex; */
   margin: auto;
   justify-content: left;
-  margin-left: 300px;
-  margin-right: 300px;
+  margin-left: 350px;
+  margin-right: 350px;
   margin-bottom: 35px;
 }
 #Q-HEADER {
   font-weight: bolder;
+
 }
 #INDQUESTIONHEADER {
   display: flex;
+  margin-bottom: 10px
 }
 #QREPORT {
   justify-content: right;
+  margin-left:5px
 }
 #A-HEADER {
   font-weight: bolder;
+  font-size: 20px
 }
 #ANSWERBODY {
   margin-left: 15px;
@@ -52,4 +62,52 @@
 }
 #QADDANSWER {
   justify-content: right;
+  margin-left:3px
+}
+#USERACTIVITYCONTAINER {
+  font-size: 12px;
+  margin-right: 0;
+  margin-left: auto;
+}
+#QCONTAINER {
+  font-size: 20px;
+}
+#INDANSWERCONTAINER {
+  font-size: 12px;
+  margin-left: 36px;
+}
+#ANSWERACCORDIAN {
+  margin-left: 36px;
+  font-size: 15px;
+  font-weight: bold;
+}
+#QAACCORDIAN {
+  background-color: white;
+  border: 1px solid black;
+  margin-left: 355px;
+  width: 250px;
+}
+#ADDAQUESTION {
+  background-color: white;
+  border: 1px solid black;
+  margin-left: 30px;
+  height: 45px;
+  width: 200px;
+}
+#QASEARCH {
+  margin-left: 350px;
+  margin-right: 350px;
+  width: 62.5%;
+  height: 80px;
+}
+#QASEARCH[type=text] {
+  padding-left: 20px;
+  font-size: xx-large;
+  font-weight: 100;
+}
+#QATITLE {
+  margin-left: 350px;
+  font-weight: 100;
+  margin-bottom: 5px;
+  font-size: 25px;
 }

@@ -170,7 +170,7 @@ const Modal = ({isShowing, hide, id}) => {
               return <img className="answerThumbnail" src={singleImage} key={Math.random()}></img>
             }): null}
 
-            <button onClick={submitAnswer}>Submit Answer.</button>
+            <button id="submitButton" onClick={submitAnswer}>Submit Answer.</button>
           </form>
         </div>
       </div>

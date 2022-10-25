@@ -108,7 +108,7 @@ const Modal = ({isShowing, hide, id}) => {
               ></textarea>
             For authentication reasons, you will not be emailed.</label>
 
-            <button onClick={submitAnswer}>Submit Answer.</button>
+            <button id="submitButton"onClick={submitAnswer}>Submit Answer.</button>
           </form>
         </div>
       </div>

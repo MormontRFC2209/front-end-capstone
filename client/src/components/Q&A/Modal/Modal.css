@@ -46,7 +46,7 @@
   border: none;
 }
 
-button {
+#submitButton {
   font-size: .9rem;
   font-weight: 700;
   border: none;

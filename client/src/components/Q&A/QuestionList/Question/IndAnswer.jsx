@@ -8,7 +8,8 @@ import '../../QANDA.css';
 
 export default function IndAnswer({answer, seller, trackingFunction}) {
 
-  console.log(answer)
+  const options = { weekday: undefined, year: 'numeric', month: 'long', day: 'numeric' };
+  let date = new Date(answer.date).toLocaleDateString(undefined,options);
   var helpfulCount = answer.helpfulness
   const [count, setCount] = useState(helpfulCount)
   const [reportedClicked, setReportedClicked] = useState('Report?')
@@ -51,17 +52,18 @@ export default function IndAnswer({answer, seller, trackingFunction}) {
     <div className="QANDA" id="ANSWERCONTAINER" >
       <span onClick={trackingFunction} className="QANDA" id="A-HEADER">A:</span>
       <span className="QANDA" id="ANSWERBODY"onClick={trackingFunction}>{answer.body}</span>
-      <div>
-
-      {seller ? <span className="QANDA" id="ANSWERNAME" onClick={trackingFunction}>BY {answer.answerer_name}, CURRENTDATE   |</span> : <span  className="QANDA" id="ANSWERNAME" onClick={trackingFunction}>by {answer.answerer_name}, currentDate    |</span>}
-
-      <span  className="QANDA" id="ANSWERHELPFUL" onClick={(e)=>{trackingFunction(e); increaseHelpfulCount(e);}}>   Helpful? Yes ({count})    |</span>
-      <span  className="QANDA" id="ANSWERREPORT" onClick={(e)=>{trackingFunction(e); reportComment(e);}}>   {reportedClicked}</span>
       <div className="QANDA" id="ANSWERPHOTOBOX">
         { answer.photos.length > 0 ? answer.photos.map((singleImage) => {
               return <img className="QANDA" id="ANSWERPHOTO" src={singleImage} key={Math.random()}></img>
             }): null}
       </div>
+      <div>
+        <div id="INDANSWERCONTAINER">
+          {seller ? <span className="QANDA" id="ANSWERNAME" onClick={trackingFunction}>BY {answer.answerer_name}, {date}  |</span> : <span  className="QANDA" id="ANSWERNAME" onClick={trackingFunction}>by {answer.answerer_name}, {date}    |</span>}
+          <span  className="QANDA" id="ANSWERHELPFUL" onClick={(e)=>{trackingFunction(e); increaseHelpfulCount(e);}}>   Helpful? Yes ({count})    |</span>
+          <span  className="QANDA" id="ANSWERREPORT" onClick={(e)=>{trackingFunction(e); reportComment(e);}}>   {reportedClicked}</span>
+        </div>
+
 
       </div>
 

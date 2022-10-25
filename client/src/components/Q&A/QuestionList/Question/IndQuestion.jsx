@@ -58,7 +58,7 @@ export default function IndQuestion({question, id, trackingFunction}) {
 
 
       setAnswerList(renderedAnswers);
-      setAccordian('More Answered Questions');
+      setAccordian('See more answers');
       return;
     }
     var storageArray = [];
@@ -110,12 +110,18 @@ export default function IndQuestion({question, id, trackingFunction}) {
   return(
     <div className="QANDA" id="INDQUESTIONCONTAINER">
       <div className="QANDA" id="INDQUESTIONHEADER">
-        <span onClick={trackingFunction}className="QANDA" id="Q-HEADER">Q:</span>
-        <span onClick={trackingFunction}className="QANDA" id="QBODY">{question.question_body}</span>
-        <span onClick={trackingFunction}className="QANDA" id="QHELPFUL">Helpful? ({count})</span>
-        <span onClick={(e)=>{increaseHelpfulCount(e); trackingFunction(e);} }className="QANDA" id="QYES">Yes</span>
-        <span onClick={(e)=>{increaseHelpfulCount(e); trackingFunction(e);} }className="QANDA" id="QREPORT">Report?</span>
-        <span data-testid="addanswer" onClick={(e)=>{toggle(); trackingFunction(e);}} className="QANDA" id="QADDANSWER">Add Answer</span>
+        <div id="QCONTAINER">
+          <span onClick={trackingFunction}className="QANDA" id="Q-HEADER">Q:</span>
+          <span onClick={trackingFunction}className="QANDA" id="QBODY">{question.question_body}</span>
+        </div>
+        <div id="USERACTIVITYCONTAINER">
+          <span onClick={trackingFunction}className="QANDA" id="QHELPFUL">Helpful? </span>
+          <span onClick={(e)=>{increaseHelpfulCount(e); trackingFunction(e);} }className="QANDA" id="QYES">Yes ({count})    |</span>
+          <span onClick={(e)=>{increaseHelpfulCount(e); trackingFunction(e);} }className="QANDA" id="QREPORT">Report?    |</span>
+          <span data-testid="addanswer" onClick={(e)=>{toggle(); trackingFunction(e);}} className="QANDA" id="QADDANSWER"> Add Answer</span>
+        </div>
+
+
       </div>
 
 
