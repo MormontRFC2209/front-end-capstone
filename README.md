@@ -1,6 +1,6 @@
 # front-end-capstone
 
-> This is a web application that uses the Atelier API to provide customers with a user friendly interface. The user interface provides relevant information about a product in the Atelier retail catalog. It features the product's details, ratings and reviews, and a question and answer section.
+> This is a web application that uses the Atelier API to provide customers with a user friendly interface. The user interface provides relevant information about a product in the Atelier retail catalog. It features the product's details, ratings and reviews, and a related questions and answers section.
 
 ## Table of Contents
 
@@ -17,16 +17,18 @@ Node 6.13.0
 
 From within the root directory:
 
-npm config set legacy-peer-deps true
-
 ```sh
+npm config set legacy-peer-deps true
 npm install
 ```
-npm install imagekit --save
 
-npm install --save-dev css-loader
+### Running App In Development
 
-npm install --save-dev style-loader
+From within the root directory:
 
-npm install --save-dev identity-obj-proxy
+```sh
+npm run react-dev
+npm run server-dev
+npm run sassComplie
+```
 
