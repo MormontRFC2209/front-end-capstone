@@ -1,14 +1,14 @@
-import {useState, useEffect} from "react";
-import axios from 'axios';
+import { useState, useEffect } from "react";
+import axios from "axios";
 
-import DefaultImageGallery from './ImageGallery/DefaultImageGallery.jsx';
-import ProductHeading from './ProductHeading/ProductHeading.jsx';
-import StyleSelector from './StyleSelector/StyleSelector.jsx';
-import AddToCart from './AddToCart/AddToCart.jsx';
-import ProductDescription from './ProductDescription/ProductDescription.jsx';
-import ShareMedia from './ShareMedia/ShareMedia.jsx';
+import DefaultImageGallery from "./ImageGallery/DefaultImageGallery.jsx";
+import ProductHeading from "./ProductHeading/ProductHeading.jsx";
+import StyleSelector from "./StyleSelector/StyleSelector.jsx";
+import AddToCart from "./AddToCart/AddToCart.jsx";
+import ProductDescription from "./ProductDescription/ProductDescription.jsx";
+import ShareMedia from "./ShareMedia/ShareMedia.jsx";
 
-export default function Overview({ productId, reviews }) {
+export default function Overview({ productId, reviews, trackingFunction }) {
   const [loadingProductInfo, setLoadingProductInfo] = useState(true);
   const [loadingStyles, setLoadingStyles] = useState(true);
   const [productInfo, setProductInfo] = useState([]);
@@ -46,21 +46,29 @@ export default function Overview({ productId, reviews }) {
   }, [productId]);
 
   if (loadingProductInfo || loadingStyles) {
-    return (<div> Loading Your Product! </div>)
+    return (<div className='overview-load loading'></div>)
+  }
+
+  if (styles.length === 0) {
+    return (<div> Product In Development </div>)
   }
 
   return (
-    <div>
-      <div className='top-product-overview'>
-        <DefaultImageGallery styles={styles} selectedStyleId={selectedStyleId}/>
-        <div className='right-product-overview'>
-          <ProductHeading productInfo={productInfo} styles={styles} selectedStyleId={selectedStyleId} reviews={reviews}/>
-          <StyleSelector styles={styles} selectedStyleId={selectedStyleId} selectedStylePosition={selectedStylePosition} clickStyle={clickStyle}/>
-          <AddToCart styles={styles} selectedStyleId={selectedStyleId}/>
-          <ShareMedia styles={styles} selectedStyleId={selectedStyleId}/>
+    <div id="overview-view">
+      <div id="top-product-overview">
+        <div id='left-product-overview'>
+          <DefaultImageGallery styles={styles} selectedStyleId={selectedStyleId} trackingFunction={trackingFunction}/>
+        </div>
+        <div id="right-product-overview">
+          <ProductHeading productInfo={productInfo} styles={styles} selectedStyleId={selectedStyleId} reviews={reviews} trackingFunction={trackingFunction}/>
+          <div>
+            <StyleSelector styles={styles} selectedStyleId={selectedStyleId} selectedStylePosition={selectedStylePosition} clickStyle={clickStyle} trackingFunction={trackingFunction}/>
+          </div>
+          <AddToCart styles={styles} selectedStyleId={selectedStyleId} trackingFunction={trackingFunction}/>
+          <ShareMedia styles={styles} selectedStyleId={selectedStyleId} trackingFunction={trackingFunction}/>
         </div>
       </div>
-      <ProductDescription productInfo={productInfo}/>
+      <ProductDescription productInfo={productInfo} trackingFunction={trackingFunction}/>
     </div>
   );
 }
