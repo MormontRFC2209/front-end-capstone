@@ -1,5 +1,5 @@
-import react from 'react';
-import ThumbnailStyle from './ThumbnailStyle.jsx';
+import react from "react";
+import ThumbnailStyle from "./ThumbnailStyle.jsx";
 
 export default function ThumbnailRow({ rowKey, row, selectedStylePosition, clickStyle }) {
   const isSelected = (k) => {
@@ -11,7 +11,7 @@ export default function ThumbnailRow({ rowKey, row, selectedStylePosition, click
   };
 
   return (
-    <div className='styleSelectorRow'>
+    <div className="overview style-selector-row">
       {row.map((style, k) => {
         return (<ThumbnailStyle key={k} rowKey={rowKey} styleKey={k} style={style} currentSelected={isSelected(k)} clickStyle={clickStyle}/>)
       })}

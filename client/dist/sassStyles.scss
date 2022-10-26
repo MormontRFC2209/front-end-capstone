@@ -1,30 +1,23 @@
-/**
- *
- * Based on Josh Comeau's CSS Reset: https://www.joshwcomeau.com/css/custom-css-reset/.
- *
- * Feel free to edit this file as needed.
- *
- */
 
  *,
  *::before,
  *::after {
-   box-sizing: border-box;
+  box-sizing: border-box;
  }
 
  * {
-   margin: 0;
+  margin: 0;
  }
 
  html,
  body {
-   height: 100%;
+  height: 100%;
  }
 
  body {
-   font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
-   line-height: 1.5;
-   -webkit-font-smoothing: antialiased;
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+  line-height: 1.5;
+  -webkit-font-smoothing: antialiased;
  }
 
  img,
@@ -32,15 +25,15 @@
  video,
  canvas,
  svg {
-   display: block;
-   max-width: 100%;
+  display: block;
+  max-width: 100%;
  }
 
  input,
  button,
  textarea,
  select {
-   font: inherit;
+  font: inherit;
  }
 
  p,
@@ -50,17 +43,21 @@
  h4,
  h5,
  h6 {
-   overflow-wrap: break-word;
+  overflow-wrap: break-word;
  }
 
  main {
-   padding: 0;
-   margin: 0;
+  padding: 0;
+  margin: 0;
+  overflow-x: scroll;
+  overflow-y: scroll;
  }
 
  .website-banner {
   display: flex;
-  justify-content: center;
+  min-width: 1200px;
+  align-items: center;
+  background-color: #307672;
  }
 
  .website-title {
@@ -68,34 +65,77 @@
   color: white;
   font-size: 45px;
   height: 100px;
-  width: 100%;
-  padding: 20px;
+  min-width: 1200px;
+  padding: 10px 40px;
  }
 
- .top-product-overview {
+ .loading {
+  height: 300px;
+  width: 200px;
+  font-size: 25px;
+  margin: 300px auto;
+ }
+
+ .app-load {
+  background-image: url('./loading-spinner.gif');
+  background-repeat: no-repeat;
+ }
+
+
+/**
+ *
+ * OVERVIEW
+ *
+ */
+
+ #overview-view {
+  width: 1100px;
+  height: auto;
   display: flex;
-  margin: 40px;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  margin: 40px auto;
  }
 
- .right-product-overview {
-  margin: 0 40px;
+ #top-product-overview {
+  display: flex;
  }
 
- .main-image {
+ #left-product-overview {
+  width: 70%;
+ }
+
+ #right-product-overview {
+  padding: 0 15px 0 40px;
+  width: 30%;
+  min-width: 350px;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+ }
+
+/**
+ * IMAGE GALLERY
+ */
+
+ #main-image {
   vertical-align: middle;
-  width: 750px;
-  height: 600px;
+  min-width: 750px;
+  height: auto;
+  min-height: 600px;
+  max-height: 600px;
   object-fit: cover;
+  float: right;
  }
 
- .thumbnail-image-view {
+ #thumbnail-image-view {
+  display: flex;
+  flex-direction: column;
   position: absolute;
-  width: 80px;
-  height: 600px;
-  top: 160px;
-  bottom: 0;
-  right: 0;
-  left: 50px;
+  height: fit-content;
+  width: fit-content;
+  translate: 20px 15px;
  }
 
  .thumbnail-image {
@@ -120,41 +160,46 @@
   margin: 0 8px;
  }
 
- .arrow-placeholder {
-  height: 31px;
+ #arrow-placeholder {
+  height: 35px;
  }
 
  .backward-arrow-container,
  .forward-arrow-container,
- .up-arrow-container,
- .down-arrow-container,
- .expand-icon-container {
-  background-color: rgba(255, 255, 255, 0.2);
+ #up-arrow-container,
+ #down-arrow-container,
+ #expand-icon-container {
+  background-color: rgba(255, 255, 255, 0.4);
   border-radius: 50%;
   height: 25px;
   width: 25px;
   justify-content: center;
  }
 
- .up-arrow-container {
+ #up-arrow-container {
   margin: 0 0 10px 26px;
  }
 
- .down-arrow-container {
+ #down-arrow-container {
   margin: 5px 0 0 26px;
  }
 
  .backward-arrow-container,
  .forward-arrow-container,
- .expand-icon-container {
+ #expand-icon-container {
   position: absolute;
-  bottom: 0;
-  right: 0;
  }
 
- .backward-arrow-container,
+ .backward-arrow-container {
+  translate: 105px 290px;
+ }
+
  .forward-arrow-container {
-  top: 430px;
+  translate: 710px 290px;
+ }
+
+ #expand-icon-container {
+  translate: 710px 15px;
  }
 
  .backward-arrow-container i,
@@ -164,51 +209,57 @@
   margin: 4.5px 5.5px;
  }
 
- .backward-arrow-container {
-  left: 135px;
- }
 
- .forward-arrow-container {
-  left: 750px;
- }
 
- .expand-icon-container {
-  top: 160px;
-  left: 750px;
- }
+/**
+ * PRODUCT HEADING
+ */
 
- .rating-star-view {
-  margin: 0 0 18px 0;
+ #rating-star-view {
+  margin: 0 0 20px 0;
   display: flex;
  }
 
- .overview-stars {
+ #overview-stars {
   margin: 2px 3px 0 0;
  }
 
- .reviews-link {
+ #reviews-link {
   color: black;
   font-size: 12px;
  }
 
- .product-name {
-  font-size: 35px;
+ #product-heading {
+  margin: 40px 0 25px 0;
  }
 
- .price {
-  height: 50px;
+ #product-name {
+  font-size: 40px;
+  line-height: 100%;
+  margin: 10px 0;
  }
 
- .style-name {
-  margin: 8px 0;
+ #original-price,
+ #sales-price {
+  height: 40px;
  }
 
- .styleSelectorRowsContainer {
+
+
+/**
+ * STYLE SELECTOR
+ */
+
+ #style-name {
+  margin: 0 0 10px 0;
+ }
+
+ #style-selector-rows-container {
   display: flex;
   flex-direction: column;
  }
 
- .styleSelectorRow {
+ .style-selector-row {
   display: flex;
  }
 
@@ -234,50 +285,62 @@
   height: 18px !important;
  }
 
- .addToCart-container {
+
+
+/**
+ * ADD TO CART
+ */
+
+ #add-to-cart-container {
   display: flex;
   flex-direction: column;
  }
 
- .dropdown-container {
+ #dropdown-container {
   display: flex;
  }
 
- .addToCart-selectSize,
- .addToCart-selectQuant,
- .addToCart-btn {
+ .size,
+ .quantity,
+ .add-to-cart-btn {
   height: fit-content(40px);
   margin: 8px 8px 0 0;
   padding: 5px;
   border-radius: 0;
  }
 
- .size,
- .quantity {
+ #size-selector,
+ #quantity-selector,
+ .add-to-cart-btn {
   border: 1px solid black;
  }
 
- .addToCart-selectSize {
+ .size {
   width: 66%;
  }
 
- .addToCart-selectQuant {
+ .quantity {
   width: 33%;
   max-height: 35px;
  }
 
- .addToCart-btn {
+ .add-to-cart-btn {
   background-color: white;
-  border: 1px solid black;
  }
 
- .share-product {
+
+
+/**
+ * SHARE MEDIA
+ */
+
+ #share-product {
   margin: 25px 0 0 0;
   display: flex;
   flex-direction: column;
  }
 
- .share-icon-container {
+ #share-icon-container {
   display: flex;
   margin: 4px 0;
  }
@@ -298,38 +361,50 @@
   color: #E60023;
  }
 
- .product-description-container {
+
+
+/**
+ * PRODUCT DESCRIPTION
+ */
+
+ #product-description-container {
   display: flex;
   height: fit-content(20em);
-  width: 1080px;
+  min-width: 1080px;
   margin: 40px 40px 200px 40px;
  }
 
- .slogan-description {
+ #slogan-description {
   width: 70%;
   padding: 8px;
  }
 
- .slogan-description h4 {
+ #slogan-description h4 {
   font-size: 20px;
  }
 
- .product-description {
+ #product-description {
   font-size: 16px;
  }
 
- .vertical-line {
+ #vertical-line {
   height: fit-content(20em);
   border: 1px solid black;
   margin: 8px;
  }
 
- .product-description-container ul {
+ #product-description-container ul {
   padding: 8px;
   margin: 8px 8px 8px 20px;
  }
 
- .expanded-image-gallery {
+
+
+/**
+ * EXPANDED IMAGE GALLERY
+ */
+
+ #expanded-image-gallery {
   position: fixed;
   z-index: 1;
   top: 0;
@@ -339,7 +414,7 @@
   background: rgba(0, 0, 0, 0.9);
  }
 
- .expanded-image-container {
+ #expanded-image-container {
   position: fixed;
   margin: 40px auto;
   width: 90%;
@@ -350,7 +425,7 @@
   right: 0;
  }
 
- .close-expanded {
+ #close-expanded {
   color: white;
   position: relative;
   display: flex;
@@ -358,7 +433,7 @@
   margin: 0 0 15px 0;
  }
 
- .expanded-main-image {
+ #expanded-main-image {
   margin: 40px auto;
   vertical-align: middle;
   width: 90%;
@@ -367,7 +442,7 @@
   cursor: zoom-in;
  }
 
- .zoomed-main-image {
+ #zoomed-main {
   overflow: hidden;
   vertical-align: middle;
   margin: 40px auto;
@@ -377,17 +452,17 @@
   background-repeat: no-repeat;
  }
 
- .zoomed-main-image img:hover {
+ #zoomed-main-image:hover {
   opacity: 0;
  }
 
- .zoomed-main-image img {
+ #zoomed-main-image {
   transition: opacity 0.5s;
   display: block;
   width: 100%;
  }
 
- .expanded-thumbnail-view {
+ #expanded-thumbnail-view {
   text-align: center;
   display: flex;
   flex-direction: column;
@@ -401,7 +476,7 @@
   height: fit-content(20em);
  }
 
- .expanded-thumbnail-view i {
+ #expanded-thumbnail-view i {
   color: white;
   margin: 8px;
  }
