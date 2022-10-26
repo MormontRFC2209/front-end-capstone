@@ -22,6 +22,9 @@ npm config set legacy-peer-deps true
 npm install
 ```
 
+### Accessing Atelier API
+Refactor config.example.js using instructions provided.
+
 ### Running App In Development
 
 From within the root directory:
