@@ -11,7 +11,6 @@ export default function ProductHeading({ productInfo, styles, selectedStyleId, r
       let totalReviews = 0;
       for (i = 1; i <= 5; i++) {
         if (Number(reviews.ratings[i])) {
-          console.log(i + " reviews " + Number(reviews.ratings[i]));
           totalStars += i * Number(reviews.ratings[i]);
           totalReviews += Number(reviews.ratings[i]);
         }

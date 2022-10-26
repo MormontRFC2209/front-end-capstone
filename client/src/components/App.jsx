@@ -50,8 +50,8 @@ export default function App() {
 
 
   return (
-    <div>
-      <div className='website-banner'>
+    <div className='app'>
+      <div className="website-banner">
         <h1 className='website-title'> <em>HOUSE MORMONT</em> </h1>
       </div>
       <Overview productId={productId} reviews={reviews} trackingFunction={trackingFunction}/>
