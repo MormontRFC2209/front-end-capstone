@@ -78,15 +78,17 @@ const Modal = ({isShowing, hide, id}) => {
                 <div>
                   <span>Required</span>
                 </div>
-                <input
+                <textarea
                 type="text"
                 name="answerform"
-                required=""
+                className="QANDA"
+                id="BODYOFQUESTION"
+                required="true"
                 autoComplete="off"
                 value={currentInput.name}
                 onChange={handleInputChange}
 
-                ></input>
+                ></textarea>
             </div>
 
             <label>What is your username?
@@ -94,7 +96,7 @@ const Modal = ({isShowing, hide, id}) => {
               type="text"
               name="username"
               placeholder="Example: jackson11!"
-              required=""
+              required="true"
               autoComplete="off"
               value={currentInput.name}
               onChange={handleInputChange}
@@ -105,7 +107,7 @@ const Modal = ({isShowing, hide, id}) => {
               type="text"
               name="email"
               placeholder="Why did you like the product or not?"
-              required=""
+              required="true"
               autoComplete="off"
               value={currentInput.name}
               onChange={handleInputChange}
