@@ -10,7 +10,7 @@ export default function RatingStars({rating}) {
   }
 
   return (
-    <ul style={{display: 'inline-block'}}>
+    <ol style={{display: 'inline-block'}}>
       {countArr.map((id,key)=>{
           const outlineStar = {
             display: 'inline-block',
@@ -42,6 +42,6 @@ export default function RatingStars({rating}) {
         <li style={id<=rating?solidStar:outlineStar} id={id} key={key}></li>
         )
       })}
-    </ul>
+    </ol>
   )
 }

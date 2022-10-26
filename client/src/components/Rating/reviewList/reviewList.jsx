@@ -3,13 +3,16 @@ import ReviewListEntry from "./reviewListEntry.jsx";
 import WriteRview from "./writeReview.jsx";
 
 
-
+let ratingSum = 0;
 let num = 2;
 export default function ReviewList(props) {
   const [list,setList] = useState(props.reviews.slice(0,num));
   const [loading, setLoading] = useState(props.reviews.length >2);
   const [loadReviews,setLoadReviews] = useState('MORE REVIEWS')
-  const [write,setWrite] = useState(false)
+  let ratings = props.metaData.ratings;
+  for(var k in ratings){
+    ratingSum+=Number(ratings[k])
+  }
 
   const sortRelevant = ()=>{
     const sortFunc = (a,b)=> {
@@ -63,20 +66,17 @@ export default function ReviewList(props) {
     }
   }
 
-  const writeReview = ()=>{
-    setWrite(true)
-  }
   sortRelevant()
 
   return (
-    <div style={{width:'50%',float:'left'}}>
-      <h5>{props.ratingTotal} reviews,sorted by
+    <div className='breakContainer reviewListContainer'>
+      <h2>{props.ratingSum} reviews,sorted by
       <select id='state' onChange={change}>
       <option value="Relevant">Relevant</option>
       <option value="Helpful">Helpful</option>
       <option value="Newest">Newest</option>
       </select>
-      </h5>
+      </h2>
       <label >review search:
       <input onChange={onSearch} type='search'/></label>
       <div>
@@ -89,8 +89,6 @@ export default function ReviewList(props) {
       })}
       </div>
       {loading&&props.sortReviewsByStar.length===0?<button onClick={onClick}>{loadReviews}</button>:null}
-      <button onClick={writeReview}>ADD A REVIEWS +</button>
-      {write?<WriteRview metaData={props.metaData} addReview={props.addReview} setWrite={setWrite} product_id={props.product_id} productName={props.productName}/>:null}
        </div>
   )
 }

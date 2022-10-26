@@ -1,3 +1,80 @@
+/* .ratingRoot{
+  box-sizing: border-box;
+  display: flex;
+  justify-content: center;
+  margin: 0;
+  min-height: 100vh;
+  min-width: 10vh;
+} */
+
+
+.ratingTitle {
+  width:100%;
+  min-height: 10vh;
+  display: flex;
+  /* justify-content: space-between; */
+  align-items: center;
+  justify-content:space-around;
+}
+
+hr{
+  border:0;
+  background-color:#D3D3D3;
+  height:1px
+}
+
+.ratingContainer {
+  width:100%;
+  min-height: 60vh;
+  min-width: 1vh;
+  display: flex;
+  /* align-items: flex-start; */
+  justify-content:space-around;
+}
+
+ul,ol{
+  padding: 0;
+}
+
+textarea {
+  border:none; outline: none; resize: none;
+}
+
+.button-writeReview {
+  --b: 3px;   /* border thickness */
+  --s: .45em; /* size of the corner */
+  --color: #373B44;
+
+  padding: calc(.5em + var(--s)) calc(.9em + var(--s));
+  color: var(--color);
+  --_p: var(--s);
+  background:
+    conic-gradient(from 90deg at var(--b) var(--b),#0000 90deg,var(--color) 0)
+    var(--_p) var(--_p)/calc(100% - var(--b) - 2*var(--_p)) calc(100% - var(--b) - 2*var(--_p));
+  transition: .3s linear, color 0s, background-color 0s;
+  outline: var(--b) solid #0000;
+  outline-offset: .6em;
+
+  border: 0;
+  cursor: pointer;
+
+  user-select: none;
+  -webkit-user-select: none;
+  touch-action: manipulation;
+}
+
+.button-writeReview:hover,
+.button-writeReview:focus-visible{
+  --_p: 0px;
+  outline-color: transparent;
+  outline-offset: .05em;
+}
+
+.button-writeReview:active {
+  background: var(--color);
+  color: #fff;
+}
+
 /* writeBox popUp */
 
 .writeBox {
@@ -19,6 +96,7 @@
   justify-content: center;
   align-items: center;
   display: none;
+  z-index: 999;
 }
 
 .container.active {
@@ -86,6 +164,29 @@
 
 .form-control {
   margin-top: 5px;
+}
+
+.breakContainer{
+  display: flex;
+  /* width: 50%; */
+  flex: 1;
+  margin-right: 5vh;
+  min-width: 20vh;
+  flex-direction: column;
+}
+
+.reviewListContainer {
+  flex: 2;
+  margin-right: 0;
+}
+
+.breakTitle {
+  width:100%;
+  min-height: 5vh;
+  min-width: 20vh;
+  display: flex;
+  align-items: center;
+  justify-content:start;
 }
 
 /* helpful button style */

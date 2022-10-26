@@ -11,7 +11,7 @@ export default function AveRating({aveRating}) {
   }
 
   return (
-    <ul style={{display: 'inline-block'}}>
+    <ol>
        {countArr.map((id,key)=>{
           const outlineStar = {
             display: 'inline-block',
@@ -43,6 +43,6 @@ export default function AveRating({aveRating}) {
         <li style={id<=aveRating?solidStar:outlineStar} id={id} key={key}></li>
         )
       })}
-    </ul>
+    </ol>
   )
 }

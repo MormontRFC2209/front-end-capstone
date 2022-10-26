@@ -21,14 +21,16 @@ export default function BreakDown(props) {
 
   return (
     <>
-    <div style={{width:'30%',float:'left'}}>
-    <h1 style={{display: 'inline-block'}}>{aveRating}</h1>
+    <div className='breakContainer'>
+    <div className='breakTitle'>
+    <h2>{aveRating}</h2>
     <AveRating aveRating={aveRating}/>
+    </div>
     <div style={{marginTop:'5px'}}>
     <h5 style={{display: 'block'}}>{recommendRate} of reviews recommend this product</h5>
     </div >
+    <div>
     {[5,4,3,2,1].map((star,key)=>{
-      // console.log(props.reviews)
        let currentList = props.reviews.filter(review=>review.rating===star)
       return (
         <StarRateBar
@@ -42,6 +44,7 @@ export default function BreakDown(props) {
       )
     })}
     <ProductBreakDown metaData={props.metaData}/>
+    </div>
     </div>
     </>
   )
