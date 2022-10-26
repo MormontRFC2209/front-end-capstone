@@ -8,17 +8,6 @@ module.exports = {
         path: path.join(__dirname, '/client/dist'),
         filename: 'bundle.js'
     },
-    // module: {
-    //     rules: [
-    //         {
-    //           test: /\.(js|jsx)$/,
-    //           exclude: /nodeModules/,
-    //           use: {
-    //             loader: "babel-loader",
-    //           },
-    //         }
-    //     ]
-    // },
     module: {
       rules: [
         {

@@ -5,5 +5,5 @@ node_modules/
 .env
 package-lock.json
 .DS_Store
-jest.config.js
 coverage/
+*sassStyles.css

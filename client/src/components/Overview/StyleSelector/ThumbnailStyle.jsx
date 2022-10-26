@@ -1,4 +1,4 @@
-import { useState, useEffect } from 'react';
+import { useState, useEffect } from "react";
 
 export default function ThumbnailStyle({ rowKey, styleKey, style, currentSelected, clickStyle }) {
   const [selected, setSelected] = useState(currentSelected);
@@ -8,10 +8,10 @@ export default function ThumbnailStyle({ rowKey, styleKey, style, currentSelecte
   }, [currentSelected]);
 
   return (
-    <div className='thumbnail-block' onClick={() => clickStyle(rowKey, styleKey)}>
-      <img className='thumbnail' src={style.photos[0].thumbnail_url} alt={style.name}></img>
+    <div className="overview thumbnail-block" onClick={() => clickStyle(rowKey, styleKey)}>
+      <img className="overview thumbnail" src={style.photos[0].thumbnail_url} alt={style.name}></img>
       {selected &&
-        <i className="fa-solid fa-circle-check fa-lg icon-tag"></i>
+        <i className="overview fa-solid fa-circle-check fa-lg icon-tag"></i>
       }
     </div>
   )
