@@ -28,7 +28,7 @@ export default function App() {
   }, []);
 
   if (loading) {
-    return <div>Currently Loading...</div>
+    return <div className='app-load loading'>Currently Loading</div>
   }
 
   var trackingFunction = (event) => {
@@ -50,7 +50,7 @@ export default function App() {
 
 
   return (
-    <div className="">
+    <div>
       <div className='website-banner'>
         <h1 className='website-title'> <em>HOUSE MORMONT</em> </h1>
       </div>

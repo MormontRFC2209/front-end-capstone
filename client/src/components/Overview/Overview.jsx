@@ -46,7 +46,7 @@ export default function Overview({ productId, reviews, trackingFunction }) {
   }, [productId]);
 
   if (loadingProductInfo || loadingStyles) {
-    return (<div> Loading Your Product! </div>)
+    return (<div className='overview-load loading'></div>)
   }
 
   if (styles.length === 0) {
@@ -54,13 +54,16 @@ export default function Overview({ productId, reviews, trackingFunction }) {
   }
 
   return (
-    <div>
-      {console.log(styles)}
+    <div id="overview-view">
       <div id="top-product-overview">
-        <DefaultImageGallery styles={styles} selectedStyleId={selectedStyleId} trackingFunction={trackingFunction}/>
+        <div id='left-product-overview'>
+          <DefaultImageGallery styles={styles} selectedStyleId={selectedStyleId} trackingFunction={trackingFunction}/>
+        </div>
         <div id="right-product-overview">
           <ProductHeading productInfo={productInfo} styles={styles} selectedStyleId={selectedStyleId} reviews={reviews} trackingFunction={trackingFunction}/>
-          <StyleSelector styles={styles} selectedStyleId={selectedStyleId} selectedStylePosition={selectedStylePosition} clickStyle={clickStyle} trackingFunction={trackingFunction}/>
+          <div>
+            <StyleSelector styles={styles} selectedStyleId={selectedStyleId} selectedStylePosition={selectedStylePosition} clickStyle={clickStyle} trackingFunction={trackingFunction}/>
+          </div>
           <AddToCart styles={styles} selectedStyleId={selectedStyleId} trackingFunction={trackingFunction}/>
           <ShareMedia styles={styles} selectedStyleId={selectedStyleId} trackingFunction={trackingFunction}/>
         </div>

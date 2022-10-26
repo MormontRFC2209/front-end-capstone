@@ -67,29 +67,31 @@ export default function DefaultImageGallery({ styles, selectedStyleId, trackingF
       {expanded &&
         <ExpandedImageGallery photos={photos} photoId={photoId} expanded={expanded} setExpanded={setExpanded} setPhotoId={setPhotoId} handleBackArrowClick={handleBackArrowClick} handleForwardArrowClick={handleForwardArrowClick} trackingFunction={trackingFunction}/>
       }
-      <img id="main-image" className="overview" src={photos[photoId].url} alt={styles[selectedStyleId].name} onClick={trackingFunction}></img>
-      <div id="thumbnail-image-view">
-        {columnId !== 0 &&
-          <UpArrow handleUpArrowClick={handleUpArrowClick}/>
+      <div>
+        <img id="main-image" className="overview" src={photos[photoId].url} alt={styles[selectedStyleId].name} onClick={trackingFunction}></img>
+        <div id="thumbnail-image-view">
+          {columnId !== 0 &&
+            <UpArrow handleUpArrowClick={handleUpArrowClick}/>
+          }
+          {columnId === 0 &&
+            <div id="arrow-placeholder"></div>
+          }
+          {columns[columnId].map((photo, k) => {
+            return (<ThumbnailPhoto key={k} photoKey={k} columnId={columnId} photo={photo} photoId={photoId} setPhotoId={setPhotoId} trackingFunction={trackingFunction}/>)
+          })}
+          {columnId !== (columnsOfThumbnails - 1) &&
+            <DownArrow handleDownArrowClick={handleDownArrowClick}/>
+          }
+        </div>
+        {photoId !== 0 &&
+          <BackArrow expanded={expanded} handleBackArrowClick={handleBackArrowClick}/>
         }
-        {columnId === 0 &&
-          <div id="arrow-placeholder"></div>
+        {photoId !== (photos.length - 1) &&
+          <ForwardArrow expanded={expanded} handleForwardArrowClick={handleForwardArrowClick}/>
         }
-        {columns[columnId].map((photo, k) => {
-          return (<ThumbnailPhoto key={k} photoKey={k} columnId={columnId} photo={photo} photoId={photoId} setPhotoId={setPhotoId} trackingFunction={trackingFunction}/>)
-        })}
-        {columnId !== (columnsOfThumbnails - 1) &&
-          <DownArrow handleDownArrowClick={handleDownArrowClick}/>
-        }
-      </div>
-      {photoId !== 0 &&
-        <BackArrow expanded={expanded} handleBackArrowClick={handleBackArrowClick}/>
-      }
-      {photoId !== (photos.length - 1) &&
-        <ForwardArrow expanded={expanded} handleForwardArrowClick={handleForwardArrowClick}/>
-      }
-      <div id="expand-icon-container" className="overview" onClick={handleExpandClick}>
-        <i className="overview fa-solid fa-expand expand-icon"></i>
+        <div id="expand-icon-container" className="overview" onClick={handleExpandClick}>
+          <i className="overview fa-solid fa-expand expand-icon"></i>
+        </div>
       </div>
     </div>
   );

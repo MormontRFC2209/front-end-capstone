@@ -1,27 +1,24 @@
-$font-color: black;
-
 
 
  *,
  *::before,
  *::after {
-   box-sizing: border-box;
+  box-sizing: border-box;
  }
 
  * {
-   margin: 0;
+  margin: 0;
  }
 
  html,
  body {
-   height: 100%;
+  height: 100%;
  }
 
  body {
-   font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
-   line-height: 1.5;
-   -webkit-font-smoothing: antialiased;
-   color: $font-color;
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+  line-height: 1.5;
+  -webkit-font-smoothing: antialiased;
  }
 
  img,
@@ -29,15 +26,15 @@ $font-color: black;
  video,
  canvas,
  svg {
-   display: block;
-   max-width: 100%;
+  display: block;
+  max-width: 100%;
  }
 
  input,
  button,
  textarea,
  select {
-   font: inherit;
+  font: inherit;
  }
 
  p,
@@ -47,17 +44,20 @@ $font-color: black;
  h4,
  h5,
  h6 {
-   overflow-wrap: break-word;
+  overflow-wrap: break-word;
  }
 
  main {
-   padding: 0;
-   margin: 0;
+  padding: 0;
+  margin: 0;
+  overflow-x: scroll;
+  overflow-y: scroll;
  }
 
  .website-banner {
   display: flex;
   justify-content: center;
+  min-width: 1200px;
  }
 
  .website-title {
@@ -65,12 +65,21 @@ $font-color: black;
   color: white;
   font-size: 45px;
   height: 100px;
-  width: 100%;
+  min-width: 1200px;
   padding: 20px;
  }
 
+ .loading {
+  height: 300px;
+  width: 200px;
+  font-size: 25px;
+  margin: 300px auto;
+ }
 
-
+ .app-load {
+  background-image: url('./loading-spinner.gif');
+  background-repeat: no-repeat;
+ }
 
 
 /**
@@ -79,16 +88,32 @@ $font-color: black;
  *
  */
 
+ #overview-view {
+  width: 1100px;
+  height: auto;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  margin: 40px auto;
+ }
+
  #top-product-overview {
   display: flex;
-  margin: 40px;
+ }
+
+ #left-product-overview {
+  width: 70%;
  }
 
  #right-product-overview {
-  margin: 0 40px;
+  padding: 0 15px 0 40px;
+  width: 30%;
+  min-width: 350px;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
  }
-
-
 
 /**
  * IMAGE GALLERY
@@ -96,19 +121,21 @@ $font-color: black;
 
  #main-image {
   vertical-align: middle;
-  width: 750px;
-  height: 600px;
+  min-width: 750px;
+  height: auto;
+  min-height: 600px;
+  max-height: 600px;
   object-fit: cover;
+  float: right;
  }
 
  #thumbnail-image-view {
+  display: flex;
+  flex-direction: column;
   position: absolute;
-  width: 80px;
-  height: 600px;
-  top: 160px;
-  bottom: 0;
-  right: 0;
-  left: 50px;
+  height: fit-content;
+  width: fit-content;
+  translate: 20px 15px;
  }
 
  .thumbnail-image {
@@ -134,7 +161,7 @@ $font-color: black;
  }
 
  #arrow-placeholder {
-  height: 31px;
+  height: 35px;
  }
 
  .backward-arrow-container,
@@ -142,7 +169,7 @@ $font-color: black;
  #up-arrow-container,
  #down-arrow-container,
  #expand-icon-container {
-  background-color: rgba(255, 255, 255, 0.2);
+  background-color: rgba(255, 255, 255, 0.4);
   border-radius: 50%;
   height: 25px;
   width: 25px;
@@ -161,13 +188,18 @@ $font-color: black;
  .forward-arrow-container,
  #expand-icon-container {
   position: absolute;
-  bottom: 0;
-  right: 0;
  }
 
- .backward-arrow-container,
+ .backward-arrow-container {
+  translate: 105px 290px;
+ }
+
  .forward-arrow-container {
-  top: 430px;
+  translate: 710px 290px;
+ }
+
+ #expand-icon-container {
+  translate: 710px 15px;
  }
 
  .backward-arrow-container i,
@@ -177,19 +209,6 @@ $font-color: black;
   margin: 4.5px 5.5px;
  }
 
- .backward-arrow-container {
-  left: 135px;
- }
-
- .forward-arrow-container {
-  left: 750px;
- }
-
- #expand-icon-container {
-  top: 160px;
-  left: 750px;
- }
-
 
 
 /**
@@ -197,7 +216,7 @@ $font-color: black;
  */
 
  #rating-star-view {
-  margin: 0 0 18px 0;
+  margin: 0 0 20px 0;
   display: flex;
  }
 
@@ -210,13 +229,19 @@ $font-color: black;
   font-size: 12px;
  }
 
+ #product-heading {
+  margin: 40px 0 25px 0;
+ }
+
  #product-name {
-  font-size: 35px;
+  font-size: 40px;
+  line-height: 100%;
+  margin: 10px 0;
  }
 
  #original-price,
  #sales-price {
-  height: 50px;
+  height: 40px;
  }
 
 
@@ -226,7 +251,7 @@ $font-color: black;
  */
 
  #style-name {
-  margin: 8px 0;
+  margin: 0 0 10px 0;
  }
 
  #style-selector-rows-container {
@@ -345,7 +370,7 @@ $font-color: black;
  #product-description-container {
   display: flex;
   height: fit-content(20em);
-  width: 1080px;
+  min-width: 1080px;
   margin: 40px 40px 200px 40px;
  }
 

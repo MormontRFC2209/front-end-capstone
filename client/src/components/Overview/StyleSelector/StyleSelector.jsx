@@ -11,7 +11,7 @@ export default function StyleSelector({ styles, selectedStyleId, selectedStylePo
 
   return (
     <div id="style-selector-rows-container" className="overview" onClick={trackingFunction}>
-      <div id="style-name" className="overview"> <b className="overview style-title"> Style > </b> {styles[selectedStyleId].name} </div>
+      <div id="style-name" className="overview"> <b className="overview style-title"> STYLE > </b> {styles[selectedStyleId].name.toUpperCase()} </div>
       {rows.map((row, i) => {
         return (<ThumbnailRow key={i} rowKey={i} row={row} selectedStylePosition={selectedStylePosition} clickStyle={clickStyle}/>)
       })}

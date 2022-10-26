@@ -34,17 +34,21 @@ export default function ProductHeading({ productInfo, styles, selectedStyleId, r
           <a id="reviews-link" className="overview" href="#ratings-reviews-section">Read All {numberOfReviews} Reviews</a>
         </div>
       }
-      <h4 id="category" className="overview" onClick={trackingFunction}>{productInfo[0].category}</h4>
-      <h2 id="product-name" className="overview" onClick={trackingFunction}>{productInfo[0].name}</h2>
-      {styles[selectedStyleId].sale_price === null &&
-        <div id="original-price" className="overview" onClick={trackingFunction}>${styles[selectedStyleId].original_price}</div>
-      }
-      {styles[selectedStyleId].sale_price !== null &&
-        <div id="sales-price" className="overview" onClick={trackingFunction}>
-          <div id="red-sales-price" className="overview" style={{color: "red"}}>${styles[selectedStyleId].sale_price}</div>
-          <div id="og-price-struckthru" className="overview" style={{textDecoration: "line-through"}}>${styles[selectedStyleId].original_price}</div>
-        </div>
-      }
+      <div id="product-heading">
+        <h4 id="category" className="overview" onClick={trackingFunction}>{productInfo[0].category.toUpperCase()}</h4>
+        <h2 id="product-name" className="overview" onClick={trackingFunction}>{productInfo[0].name}</h2>
+        {styles[selectedStyleId].sale_price === null &&
+          <div id="original-price" className="overview" onClick={trackingFunction}>
+            ${styles[selectedStyleId].original_price}
+          </div>
+        }
+        {styles[selectedStyleId].sale_price !== null &&
+          <div id="sales-price" className="overview" onClick={trackingFunction}>
+            <div id="red-sales-price" className="overview" style={{color: "red"}}>${styles[selectedStyleId].sale_price}</div>
+            <div id="og-price-struckthru" className="overview" style={{textDecoration: "line-through"}}>${styles[selectedStyleId].original_price}</div>
+          </div>
+        }
+      </div>
     </div>
   );
 };
