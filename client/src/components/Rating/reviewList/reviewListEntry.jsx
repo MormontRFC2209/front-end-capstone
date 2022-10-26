@@ -41,7 +41,7 @@ export default function ReviewListEntry(props) {
     <RatingStars rating={props.review.rating}/>
     <small style={{float:'right'}}>{props.review.reviewer_name},{date}</small>
     </div>
-    <div>{props.review.body}</div>
+    <textarea rows="3" cols="100" readonly="readonly">{props.review.body}</textarea>
     {props.review.recommend ? <div>☑️ I recommend this product</div> : null}
     {!!props.review.response ? <div>response from seller: {props.review.response}</div> : null}
     <div style={{display:'flex',

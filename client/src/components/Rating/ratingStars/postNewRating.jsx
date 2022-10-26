@@ -66,7 +66,7 @@ export default function NewRating(props) {
 
 
   return (
-    <ul style={{display: 'inline-block',width:'100%',overflow:'hidden'}}>
+    <ol style={{display: 'inline-block',width:'100%',overflow:'hidden'}}>
       <h5>YOUR RATING</h5>
       {countArr.map((id,key)=>{
         return (
@@ -74,6 +74,6 @@ export default function NewRating(props) {
         )
       })}
       <span>{selectEmoji} {selectMood}</span>
-    </ul>
+    </ol>
   )
 }

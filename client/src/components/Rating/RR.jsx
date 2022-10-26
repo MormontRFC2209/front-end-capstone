@@ -2,6 +2,8 @@ import {useState, useEffect} from "react";
 import axios from 'axios';
 import ReviewList from "./reviewList/reviewList.jsx";
 import BreakDown from './reviewBreakDown/breakDown.jsx';
+import WriteRview from "./reviewList/writeReview.jsx";
+import styles from './reviewList/review.css'
 // import AveRating from './ratingStars/aveRating.jsx';
 
 let starList = []
@@ -10,6 +12,8 @@ export default function RANDR(props) {
   const [metaData,setMetaData]=useState({})
   const [sortReviewsByStar,setSortReviewsByStar]=useState([])
   const [loading, setLoading] = useState(true);
+  const [write,setWrite] = useState(false)
+  const [ratingSum,setRatingSum]=useState(0)
 
 
   useEffect(() => {
@@ -23,6 +27,12 @@ export default function RANDR(props) {
         console.log('response.data',response.data)
         setMetaData(response.data)
         props.setReviews(response.data)
+        let sum = 0;
+        let ratings = response.data.ratings
+        for(var k in ratings){
+          sum+=Number(ratings[k])
+        }
+        setRatingSum(sum)
         setLoading(false);
       })
     }
@@ -30,6 +40,10 @@ export default function RANDR(props) {
 
   if (loading) {
     return <div>Currently Loading...</div>
+  }
+
+  const writeReview = ()=>{
+    setWrite(true)
   }
 
   const usefulClick = (review_id)=>{
@@ -72,12 +86,17 @@ export default function RANDR(props) {
 
   return (
     <>
-
-    <h5>RATINGS  REVIEWS</h5>
-    {/* <AveRating aveRating={'3.4'}/> */}
-    <div style={{width:'80%',margin:'0 300px',position:'relative'}}>
+    <div className='ratingTitle'>
+    <h1>REVIEWS</h1>
+    <button className='button-writeReview' onClick={writeReview}>WRITE A REVIEW</button>
+    </div>
+    <hr />
+    <div className='ratingRoot'>
+    <div className='ratingContainer'>
+    {write?<WriteRview metaData={metaData} addReview={addReview} setWrite={setWrite} product_id={props.product_id} productName={props.productName}/>:null}
     {(reviews.length>0 && Object.keys(metaData).length > 0)?<BreakDown reviews={reviews} metaData={metaData} setSortByStar={setSortByStar} />:null}
-    {(reviews.length>0 && Object.keys(metaData).length > 0)?<ReviewList metaData={metaData} product_id={props.productId} reviews={reviews} usefulClick={usefulClick} addReview={addReview} report={report} sortReviewsByStar={sortReviewsByStar} productName={props.productName}/>:null}
+    {(reviews.length>0 && Object.keys(metaData).length > 0)?<ReviewList metaData={metaData} product_id={props.productId} reviews={reviews} usefulClick={usefulClick} addReview={addReview} report={report} sortReviewsByStar={sortReviewsByStar} productName={props.productName} ratingSum={ratingSum}/>:null}
+    </div>
     </div>
     </>
   )

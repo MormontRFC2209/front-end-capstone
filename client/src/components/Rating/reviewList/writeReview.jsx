@@ -1,5 +1,5 @@
 import React, { useState } from 'react'
-import styles from './writeReview.css'
+import styles from './review.css'
 import NewRating from '../ratingStars/postNewRating.jsx'
 import UpLoadImg from './upLoadImg.jsx'
 import Characteristics from './characteristics.jsx'
