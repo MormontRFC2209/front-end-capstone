@@ -68,7 +68,7 @@ export default function DefaultImageGallery({ styles, selectedStyleId, trackingF
         <ExpandedImageGallery photos={photos} photoId={photoId} expanded={expanded} setExpanded={setExpanded} setPhotoId={setPhotoId} handleBackArrowClick={handleBackArrowClick} handleForwardArrowClick={handleForwardArrowClick} trackingFunction={trackingFunction}/>
       }
       <div>
-        <img id="main-image" className="overview" src={photos[photoId].url} alt={styles[selectedStyleId].name} onClick={trackingFunction}></img>
+        <img id="main-image" className="overview" src={photos[photoId].url} alt="main image" onClick={trackingFunction}></img>
         <div id="thumbnail-image-view">
           {columnId !== 0 &&
             <UpArrow handleUpArrowClick={handleUpArrowClick}/>
