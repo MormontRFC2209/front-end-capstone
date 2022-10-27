@@ -69,7 +69,6 @@ export default function DefaultImageGallery({ styles, selectedStyleId, trackingF
       }
       <div>
         <img id="main-image" className="overview" src={photos[photoId].url} alt="main image" onClick={trackingFunction}></img>
-        {console.log(window.innerWidth)}
         {window.innerWidth >= 400 &&
           <div id="thumbnail-image-view">
             {columnId !== 0 &&
