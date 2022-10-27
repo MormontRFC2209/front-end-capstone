@@ -5,7 +5,9 @@
   justify-content: start;
   flex-direction: column;
   height: 700px;
+  width: 1100px;
 }
+
 #ANSWERPHOTOBOX {
   display: flex;
   margin-left: 36px;
@@ -13,6 +15,7 @@
   margin-right: 600px;
   overflow: auto;
 }
+
 #ANSWERPHOTO {
   height: 70px;
   padding: 3px;
@@ -22,101 +25,120 @@
   border-width: thin;
 }
 
-
 #QACONTAINER {
-  display: block;
-  margin-left: auto;
-  margin-right: auto;
-  position:'relative';
-  margin-bottom: 100px;
+  width: 900px;
+  height: auto;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  margin: 0 auto 100px auto;
 }
+
 #INDQUESTIONCONTAINER {
   /* display:flex; */
-  margin: auto;
+  width: 900px;
+  margin: 20px auto 0 auto;
   justify-content: left;
-  margin-left: 350px;
-  margin-right: 350px;
-  margin-bottom: 35px;
 }
+
 #Q-HEADER {
   font-weight: bolder;
 
 }
+
 #INDQUESTIONHEADER {
   display: flex;
-  margin-bottom: 10px
+  margin-bottom: 10px;
 }
+
 #QREPORT {
   justify-content: right;
-  margin-left:5px
+  margin-left: 5px;
 }
+
 #A-HEADER {
   font-weight: bolder;
-  font-size: 20px
+  font-size: 20px;
 }
+
 #ANSWERBODY {
   margin-left: 15px;
 }
+
 #QBODY {
   margin-left: 15px;
   font-weight: bolder;
 }
+
 #QADDANSWER {
   justify-content: right;
-  margin-left:3px
+  margin-left: 3px;
 }
+
 #USERACTIVITYCONTAINER {
   font-size: 12px;
   margin-right: 0;
   margin-left: auto;
 }
+
 #QCONTAINER {
   font-size: 20px;
 }
+
 #INDANSWERCONTAINER {
   font-size: 12px;
   margin-left: 36px;
 }
+
 #ANSWERACCORDIAN {
   margin-left: 36px;
   font-size: 15px;
   font-weight: bold;
 }
+
+#QUESTIONVIEWBTNS {
+  width: 900px;
+  margin: 0 auto;
+  display: flex;
+  justify-content: center;
+}
+
 #QAACCORDIAN {
   background-color: white;
   border: 1px solid black;
-  margin-left: 350px;
   width: 250px;
   height: 45px;
+  margin: 10px;
 }
+
 #ADDAQUESTION {
   background-color: white;
   border: 1px solid black;
-  margin-left: 30px;
   height: 45px;
   width: 200px;
+  margin: 10px;
 }
+
 #QASEARCH {
-  margin-left: 350px;
-  margin-right: 350px;
-  width: 62.5%;
-  height: 80px;
+  margin: 0 auto;
+  width: 900px;
+  height: 60px;
+  padding: 20px;
+  font-weight: 500;
+  font-size: 20px
 }
-#QASEARCH[type=text] {
-  padding-left: 20px;
-  font-size: xx-large;
-  font-weight: 100;
-}
+
 #QATITLE {
-  margin-left: 350px;
+  margin: 10px auto;
+  width: 900px;
   font-weight: 100;
-  margin-bottom: 5px;
   font-size: 25px;
 }
+
 #ADDAQUESTIONUNDER4 {
   background-color: white;
   border: 1px solid black;
   height: 45px;
   width: 200px;
-  margin-left: 350px;
 }
