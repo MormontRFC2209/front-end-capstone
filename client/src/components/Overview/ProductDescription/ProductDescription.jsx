@@ -6,8 +6,12 @@ export default function ProductDescription({ productInfo, trackingFunction }) {
       {productInfo[0].description &&
         <div id="product-description-container">
           <div id="slogan-description">
-            <h4 id="slogan" className="overview" onClick={trackingFunction}>{productInfo[0].slogan}</h4>
-            <div id="product-description" className="overview" onClick={trackingFunction}>{productInfo[0].description}</div>
+            <div id="slogan" className="overview" onClick={trackingFunction}>
+              {productInfo[0].slogan}
+            </div>
+            <div id="product-description" className="overview" onClick={trackingFunction}>
+              {productInfo[0].description}
+            </div>
           </div>
           <div id="vertical-line"></div>
           <ul id="features-view">

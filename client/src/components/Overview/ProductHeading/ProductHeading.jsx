@@ -34,7 +34,7 @@ export default function ProductHeading({ productInfo, styles, selectedStyleId, r
         </div>
       }
       <div id="product-heading">
-        <h4 id="category" className="overview" onClick={trackingFunction}>{productInfo[0].category.toUpperCase()}</h4>
+        <div id="category" className="overview" onClick={trackingFunction}>{productInfo[0].category.toUpperCase()}</div>
         <h2 id="product-name" className="overview" onClick={trackingFunction}>{productInfo[0].name}</h2>
         {styles[selectedStyleId].sale_price === null &&
           <div id="original-price" className="overview" onClick={trackingFunction}>
