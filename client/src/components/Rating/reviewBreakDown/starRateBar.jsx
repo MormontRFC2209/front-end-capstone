@@ -36,14 +36,16 @@ export default class StarRateBar extends Component {
   render() {
     const progressStyle = {
       display: 'flex',
+      minWidth:'20vh',
       color: this.state.progressColor,
-      marginTop:'10px'
+      marginTop:'10px',
+      justifyContent:'start'
     };
 
     const progressArticleStyle = {
-      position:'relative',
+      display: 'flex',
       height: '10px',
-      width: '77%',
+      width: '80%',
       display: 'flex',
       overflow: 'hidden',
       marginTop: '5px',
@@ -55,8 +57,7 @@ export default class StarRateBar extends Component {
         display: 'flex',
         alignItems: 'center',
         justifycontent: 'center',
-        width: '45px',
-        marginRight:'5px',
+        width: '20%',
         background: '#ffffff',
         textDecoration:`${this.state.underline}`,
         outline: 'none',

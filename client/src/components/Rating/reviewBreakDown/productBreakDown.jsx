@@ -19,7 +19,7 @@ render() {
 
 
   return (
-    <div style={{marginTop:'20px'}}>
+    <div style={{marginTop:'20px',boxSizing:'border-box'}}>
     {Object.keys(this.props.metaData.characteristics).map((name,id)=>{
       return (
             <div key={id}>{name}

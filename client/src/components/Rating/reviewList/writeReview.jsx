@@ -1,5 +1,5 @@
 import React, { useState } from 'react'
-import styles from './writeReview.css'
+import styles from './review.css'
 import NewRating from '../ratingStars/postNewRating.jsx'
 import UpLoadImg from './upLoadImg.jsx'
 import Characteristics from './characteristics.jsx'
@@ -45,7 +45,6 @@ export default function WriteRview(props) {
       photos:photos,
       characteristics:characteristic
     }
-    // console.log('newReview',newReview)
     props.addReview(newReview)
     handleClick()
     props.setWrite(false);

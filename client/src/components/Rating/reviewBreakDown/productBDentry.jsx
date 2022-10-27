@@ -30,8 +30,8 @@ render() {
 
 
 
-  const largeWidth={width:'44%'}
-  const smallWidth={width:'22%'}
+  const largeWidth={width:'50%'}
+  const smallWidth={width:'23%'}
   const progressArticleStyle = {
     position:'relative',
     height: '10px',

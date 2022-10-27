@@ -8,6 +8,7 @@ export default function ReviewListEntry(props) {
   let date = new Date(props.review.date).toLocaleDateString(undefined,options);
   const [usefulClick,setUsefulClick]=useState(false)
   const [reportClick,setReportClick]=useState('Report')
+  const [usefulStyle,setUsefulStyle]=useState('')
 
   const onHelpful = (e)=>{
     e.preventDefault()
@@ -15,10 +16,12 @@ export default function ReviewListEntry(props) {
          .then((result) => {
           setHelpfulCount(1)
           setUsefulClick(true)
+          setUsefulStyle('button-clicked')
         })
         .catch((error) => {
           console.log(error)
         })
+    // e.target.setAttribute('aria-valid','clicked')
   }
   const onReport = (e)=>{
     e.preventDefault()
@@ -38,7 +41,7 @@ export default function ReviewListEntry(props) {
     <RatingStars rating={props.review.rating}/>
     <small style={{float:'right'}}>{props.review.reviewer_name},{date}</small>
     </div>
-    <div>{props.review.body}</div>
+    <textarea rows="3" cols="100" readonly="readonly">{props.review.body}</textarea>
     {props.review.recommend ? <div>☑️ I recommend this product</div> : null}
     {!!props.review.response ? <div>response from seller: {props.review.response}</div> : null}
     <div style={{display:'flex',
@@ -51,7 +54,7 @@ export default function ReviewListEntry(props) {
         )
     }):null}
     </div>
-    <div>Was this review helpful? <button onClick={onHelpful} disabled={usefulClick}>Yes</button>{props.review.helpfulness+helpfulCount} | <button onClick={onReport}>{reportClick}</button></div>
+    <div>Was this review helpful? <button className={`button-thumbsUp ${usefulStyle}`}onClick={onHelpful} disabled={usefulClick}>{props.review.helpfulness+helpfulCount}</button> | <a className='report-style'onClick={onReport}>{reportClick}</a></div>
     </div>
   )
 }

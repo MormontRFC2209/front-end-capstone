@@ -1,0 +1,240 @@
+/* .ratingRoot{
+  box-sizing: border-box;
+  display: flex;
+  justify-content: center;
+  margin: 0;
+  min-height: 100vh;
+  min-width: 10vh;
+} */
+
+
+.ratingTitle {
+  width:100%;
+  min-height: 10vh;
+  display: flex;
+  /* justify-content: space-between; */
+  align-items: center;
+  justify-content:space-around;
+}
+
+hr{
+  border:0;
+  background-color:#D3D3D3;
+  height:1px
+}
+
+.ratingContainer {
+  width:100%;
+  min-height: 60vh;
+  min-width: 1vh;
+  display: flex;
+  /* align-items: flex-start; */
+  justify-content:space-around;
+}
+
+ul,ol{
+  padding: 0;
+}
+
+textarea {
+  border:none; outline: none; resize: none;
+}
+
+.button-writeReview {
+  --b: 3px;   /* border thickness */
+  --s: .45em; /* size of the corner */
+  --color: #373B44;
+
+  padding: calc(.5em + var(--s)) calc(.9em + var(--s));
+  color: var(--color);
+  --_p: var(--s);
+  background:
+    conic-gradient(from 90deg at var(--b) var(--b),#0000 90deg,var(--color) 0)
+    var(--_p) var(--_p)/calc(100% - var(--b) - 2*var(--_p)) calc(100% - var(--b) - 2*var(--_p));
+  transition: .3s linear, color 0s, background-color 0s;
+  outline: var(--b) solid #0000;
+  outline-offset: .6em;
+
+  border: 0;
+  cursor: pointer;
+
+  user-select: none;
+  -webkit-user-select: none;
+  touch-action: manipulation;
+}
+
+.button-writeReview:hover,
+.button-writeReview:focus-visible{
+  --_p: 0px;
+  outline-color: transparent;
+  outline-offset: .05em;
+}
+
+.button-writeReview:active {
+  background: var(--color);
+  color: #fff;
+}
+
+/* writeBox popUp */
+
+.writeBox {
+  box-sizing: border-box;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 0;
+  min-height: 100vh;
+}
+
+.container {
+  position: fixed;
+  top: 0;
+  right: 0;
+  left: 0;
+  bottom: 0;
+  background-color: rgba(0, 0, 0, 0.6);
+  justify-content: center;
+  align-items: center;
+  display: none;
+  z-index: 999;
+}
+
+.container.active {
+  display: flex;
+}
+
+.Popup {
+  width: 800px;
+  /* height: 00px; */
+  padding: 20px;
+  background-color: white;
+  border-radius: 6px;
+  box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.3);
+  position: relative;
+}
+
+
+/* writeInput style */
+.writeInput {
+  width: 80%;
+  color: #f1f1f1;
+  outline: none;
+  display: block;
+/*   margin: 0; */
+  font-weight: 1000;
+  line-height: 1.6;
+  /* padding: 3px 3px 3px 10px; */
+  border-radius: 20px;
+  border: 1px solid #8c8c8c;
+  background-color: transparent;
+  transition: border-color 0.2s ease-in-out;
+  background-repeat: no-repeat;
+  background-position: right 2% center;
+  background-size: 1rem 1rem;
+  background-image: url('data:image/svg+xml;base64,PHN2ZyB4bWxucz0naHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmcnIHdpZHRoPScxMicgaGVpZ2h0PScxMicgZmlsbD0nbm9uZScgc3Ryb2tlPScjZGU0NDM3JyB2aWV3Qm94PScwIDAgMTIgMTInPjxjaXJjbGUgY3g9JzYnIGN5PSc2JyByPSc0LjUnLz48cGF0aCBzdHJva2UtbGluZWpvaW49J3JvdW5kJyBkPSdNNS44IDMuNmguNEw2IDYuNXonLz48Y2lyY2xlIGN4PSc2JyBjeT0nOC4yJyByPScuNicgZmlsbD0nI2RlNDQzNycgc3Ryb2tlPSdub25lJy8+PC9zdmc+');
+}
+
+.writeInput:focus {
+  border-color: #de4437;
+}
+
+
+.writeInput[aria-valid="inValid"] {
+  /* border-color: #de4437; */
+  color: black;
+  background-image: url('data:image/svg+xml;base64,PHN2ZyB4bWxucz0naHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmcnIHdpZHRoPScxMicgaGVpZ2h0PScxMicgZmlsbD0nbm9uZScgc3Ryb2tlPScjZGU0NDM3JyB2aWV3Qm94PScwIDAgMTIgMTInPjxjaXJjbGUgY3g9JzYnIGN5PSc2JyByPSc0LjUnLz48cGF0aCBzdHJva2UtbGluZWpvaW49J3JvdW5kJyBkPSdNNS44IDMuNmguNEw2IDYuNXonLz48Y2lyY2xlIGN4PSc2JyBjeT0nOC4yJyByPScuNicgZmlsbD0nI2RlNDQzNycgc3Ryb2tlPSdub25lJy8+PC9zdmc+');
+}
+
+.writeInput[aria-valid="notice"] {
+  border-color: #de4437;
+  background-image: url('data:image/svg+xml;base64,PHN2ZyB4bWxucz0naHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmcnIHdpZHRoPScxMicgaGVpZ2h0PScxMicgZmlsbD0nbm9uZScgc3Ryb2tlPScjZGU0NDM3JyB2aWV3Qm94PScwIDAgMTIgMTInPjxjaXJjbGUgY3g9JzYnIGN5PSc2JyByPSc0LjUnLz48cGF0aCBzdHJva2UtbGluZWpvaW49J3JvdW5kJyBkPSdNNS44IDMuNmguNEw2IDYuNXonLz48Y2lyY2xlIGN4PSc2JyBjeT0nOC4yJyByPScuNicgZmlsbD0nI2RlNDQzNycgc3Ryb2tlPSdub25lJy8+PC9zdmc+');
+}
+
+.writeInput[aria-valid="process"] {
+  color: black;
+  border-color: #77FFCC;
+  background-image: url('https://img.icons8.com/plasticine/100/000000/circled-right-2.png');
+}
+
+.writeInput[aria-valid="valid"] {
+  color: black;
+  border-color:#00FF00;
+  background-image: url('data:image/svg+xml;base64,PHN2ZyB4bWxucz0naHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmcnIHdpZHRoPSc4JyBoZWlnaHQ9JzgnIHZpZXdCb3g9JzAgMCA4IDgnPjxwYXRoIGZpbGw9JyMzN0M2MjUnIGQ9J00yLjMgNi43M0wuNiA0LjUzYy0uNC0xLjA0LjQ2LTEuNCAxLjEtLjhsMS4xIDEuNCAzLjQtMy44Yy42LS42MyAxLjYtLjI3IDEuMi43bC00IDQuNmMtLjQzLjUtLjguNC0xLjEuMXonLz48L3N2Zz4=');
+}
+
+.form-control {
+  margin-top: 5px;
+}
+
+.breakContainer{
+  display: flex;
+  /* width: 50%; */
+  flex: 1;
+  margin-right: 5vh;
+  min-width: 20vh;
+  flex-direction: column;
+}
+
+.reviewListContainer {
+  flex: 2;
+  margin-right: 0;
+}
+
+.breakTitle {
+  width:100%;
+  min-height: 5vh;
+  min-width: 20vh;
+  display: flex;
+  align-items: center;
+  justify-content:start;
+}
+
+/* helpful button style */
+
+.button-thumbsUp {
+  height: 24px;
+  align-items: center;
+  /* text-align:end; */
+  padding-left: 30px;
+  appearance: none;
+  background-image: url('https://svgsilh.com/png-512/2154792.png');
+  background-repeat: no-repeat;
+  background-position: 8px;
+  background-color: transparent;
+  background-size: 16px 16px;
+  border-style: none;
+  /* border: 1px solid #8c8c8c; */
+  box-shadow: rgba(0, 0, 0, .2) 0 3px 5px -1px,rgba(0, 0, 0, .14) 0 6px 5px 0,rgba(0, 0, 0, .12) 0 1px 5px 0;
+  box-sizing: border-box;
+  cursor: pointer;
+  display: inline-flex;
+  letter-spacing: .25px;
+  line-height: normal;
+  max-width: 100%;
+  overflow: visible;
+  position: relative;
+  text-transform: none;
+  transition: box-shadow 280ms cubic-bezier(.4, 0, .2, 1),opacity 15ms linear 30ms,transform 270ms cubic-bezier(0, 0, .2, 1) 0ms;
+  user-select: none;
+  -webkit-user-select: none;
+  touch-action: manipulation;
+  width: auto;
+  will-change: transform,opacity;
+  z-index: 0;
+}
+
+.button-thumbsUp:hover {
+  background-color: #F6F9FE;
+}
+
+.button-clicked {
+  background-image: url('https://svgsilh.com/svg/1312747.svg');
+  background-color: transparent;
+  box-shadow: none;
+  color: red;
+}
+
+.report-style {
+  text-decoration: underline;
+  cursor: pointer;
+}
