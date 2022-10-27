@@ -69,20 +69,23 @@ export default function DefaultImageGallery({ styles, selectedStyleId, trackingF
       }
       <div>
         <img id="main-image" className="overview" src={photos[photoId].url} alt="main image" onClick={trackingFunction}></img>
-        <div id="thumbnail-image-view">
-          {columnId !== 0 &&
-            <UpArrow handleUpArrowClick={handleUpArrowClick}/>
-          }
-          {columnId === 0 &&
-            <div id="arrow-placeholder"></div>
-          }
-          {columns[columnId].map((photo, k) => {
-            return (<ThumbnailPhoto key={k} photoKey={k} columnId={columnId} photo={photo} photoId={photoId} setPhotoId={setPhotoId} trackingFunction={trackingFunction}/>)
-          })}
-          {columnId !== (columnsOfThumbnails - 1) &&
-            <DownArrow handleDownArrowClick={handleDownArrowClick}/>
-          }
-        </div>
+        {console.log(window.innerWidth)}
+        {window.innerWidth >= 400 &&
+          <div id="thumbnail-image-view">
+            {columnId !== 0 &&
+              <UpArrow handleUpArrowClick={handleUpArrowClick}/>
+            }
+            {columnId === 0 &&
+              <div id="arrow-placeholder"></div>
+            }
+            {columns[columnId].map((photo, k) => {
+              return (<ThumbnailPhoto key={k} photoKey={k} columnId={columnId} photo={photo} photoId={photoId} setPhotoId={setPhotoId} trackingFunction={trackingFunction}/>)
+            })}
+            {columnId !== (columnsOfThumbnails - 1) &&
+              <DownArrow handleDownArrowClick={handleDownArrowClick}/>
+            }
+          </div>
+        }
         {photoId !== 0 &&
           <BackArrow expanded={expanded} handleBackArrowClick={handleBackArrowClick}/>
         }
