@@ -59,6 +59,9 @@ export default function Overview({ productId, reviews, trackingFunction }) {
 
   return (
     <div id="overview-view">
+      {styles[0].photos[0].url &&
+        <link rel="preload" as="image" href={styles[0].photos[0].url}></link>
+      }
       <div id="top-product-overview">
         <div id='left-product-overview'>
           <Suspense fallback={renderLoader()}>
