@@ -48,6 +48,12 @@ export default function App() {
     console.log(trackingObject)
   }
 
+  if (loading) {
+    return <div>Currently Loading...</div>
+  }
+
+
+
 
   return (
     <div className='app'>
