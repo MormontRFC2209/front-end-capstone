@@ -2,14 +2,16 @@ require("dotenv").config();
 
 const express = require("express");
 const app = express();
-const path = require("path");
-const controllers = require("./controllers.js");
+const path = require('path');
+const controllers = require('./controllers.js');
 const configs = require('../config.js');
 const axios = require('axios');
+const compression = require('compression');
 
 
 app.use(express.json({limit: '50mb'}));
 app.use(express.urlencoded({limit: '50mb'}));
+app.use(compression());
 app.use(express.static(path.join(__dirname, '../client/dist')));
 
 app.get('/info', (req, res) => {
