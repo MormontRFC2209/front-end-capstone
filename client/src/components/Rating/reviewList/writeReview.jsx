@@ -45,7 +45,14 @@ export default function WriteRview(props) {
       photos:photos,
       characteristics:characteristic
     }
+    console.log(newReview)
     props.addReview(newReview)
+        .then(result=>{
+          console.log('hello success')
+    })
+        .catch((error) => {
+   console.log('failed', error)
+ })
     handleClick()
     props.setWrite(false);
   }
@@ -142,17 +149,16 @@ export default function WriteRview(props) {
           <div className="Popup" onClick={(e) => e.stopPropagation()}>
             <section>
       <form>
-      <header>
+      <header style={{position:'relative'}}>
         <h2>Write a Review</h2>
         <small>{props.productName}</small>
-        <button style={{float:'right'}}onClick={handleClick}>Close</button>
+        <button style={{right:'30%',top:'5%',position:'fixed'}} id='reviewClose' onClick={handleClick}>X</button>
       </header>
       <br/>
       <div>
       <NewRating getRating={setRating}/>
       <Characteristics metaData={props.metaData} setCharacteristics={setCharacteristics}/>
       </div>
-        <br/>
         <label style={{display: 'block'}}>
         <span style={{display: 'block'}}>Review Headline</span>
           <input
@@ -171,8 +177,8 @@ export default function WriteRview(props) {
         <textarea
             className='writeInput'
             onChange={checkBody}
-            cols="68"
-            rows="4"
+            cols="80"
+            rows="3"
             name="Comments"
             placeholder="How you use the product.Things that are great about it"
             required
@@ -202,9 +208,10 @@ export default function WriteRview(props) {
           <small>{emailLimit}</small>
         <div>
         <br/>
-        </div>
         <UpLoadImg setPhotos={setPhotos}/>
-        <input type='button' onClick={onSubmit} value='SUBMIT REVIEW'/>
+        </div>
+        <input style={{margin:'2vh 0'}}type='button' onClick={onSubmit} value='SUBMIT REVIEW'/>
+        <br/>
       </form>
     </section>
           </div>

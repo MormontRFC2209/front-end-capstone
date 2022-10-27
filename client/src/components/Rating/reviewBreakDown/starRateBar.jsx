@@ -65,9 +65,10 @@ export default class StarRateBar extends Component {
     }
 
     const active = {
-      borderRadius: '10%',
       boxShadow: `inset 0px -2px 6px rgba(255, 252, 252, 0.1),
                   inset 4px 5px 10px rgba(0, 0, 0, 0.1)`,
+      transform:'translate(5px)',
+      backgroundImage: 'linear-gradient(to top, #dad4ec 0%, #dad4ec 1%, #f3e7e9 100%)'
     }
     const onClick = (e) =>{
       if(this.props.reviews.length===0){
@@ -86,8 +87,8 @@ export default class StarRateBar extends Component {
     }
 
     return (
-      <>
-      <div style={progressStyle}>
+      <div style={{transition: '1s'}}>
+      <div style={this.state.click?progressStyle:Object.assign(progressStyle,active)}>
       <h5
       style={this.state.click?defaultStyle:Object.assign(defaultStyle,active)}
       onClick={onClick}
@@ -96,7 +97,7 @@ export default class StarRateBar extends Component {
         </h5>
         <div style={progressArticleStyle}>{this.state.rate>0?this.renderProgress():null}</div>
       </div>
-      </>
+      </div>
     );
   }
 }

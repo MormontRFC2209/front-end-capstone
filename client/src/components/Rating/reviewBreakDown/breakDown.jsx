@@ -29,7 +29,7 @@ export default function BreakDown(props) {
     <div style={{marginTop:'5px'}}>
     <h5 style={{display: 'block'}}>{recommendRate} of reviews recommend this product</h5>
     </div >
-    <div>
+    <div style={{transition: '1s'}}>
     {[5,4,3,2,1].map((star,key)=>{
        let currentList = props.reviews.filter(review=>review.rating===star)
       return (

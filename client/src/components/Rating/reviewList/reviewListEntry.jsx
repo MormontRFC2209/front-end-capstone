@@ -1,5 +1,6 @@
 import {useState, useEffect} from "react";
 import RatingStars from '../ratingStars/singleRatingStars.jsx';
+import Image from './imageExpand.jsx'
 
 
 export default function ReviewListEntry(props) {
@@ -9,6 +10,11 @@ export default function ReviewListEntry(props) {
   const [usefulClick,setUsefulClick]=useState(false)
   const [reportClick,setReportClick]=useState('Report')
   const [usefulStyle,setUsefulStyle]=useState('')
+  const [bodyText,setBodyText]=useState(props.review.body.slice(0,70))
+  const [readmoreChoice,setreadmoreChoice]= useState('...readmore')
+  const [readmoreState,setReadmoreState]=useState(props.review.body.length>70)
+  // const [summary,setSummary] = useState('')
+
 
   const onHelpful = (e)=>{
     e.preventDefault()
@@ -34,27 +40,36 @@ export default function ReviewListEntry(props) {
         })
   }
 
+  const moreText = ()=>{
+    setBodyText(props.review.body)
+    setReadmoreState(false)
+  }
+
   return (
-    <div>
-    <div>
-    <h1 style={{display:'inline-block'}}>{props.review.summary}</h1>
-    <RatingStars rating={props.review.rating}/>
-    <small style={{float:'right'}}>{props.review.reviewer_name},{date}</small>
-    </div>
-    <textarea rows="3" cols="100" readonly="readonly">{props.review.body}</textarea>
-    {props.review.recommend ? <div>☑️ I recommend this product</div> : null}
-    {!!props.review.response ? <div>response from seller: {props.review.response}</div> : null}
+    <div className='singleReviewList'>
+    <div className='reviewListTitle'>
+      <div className='singleReviewListTitle'>
+        <h3>{props.summary} </h3>
+        <RatingStars rating={props.review.rating}/>
+      </div>
+      <div><small>{props.name},{date}</small></div>
+    </div >
+    <div className='singleReviewListBody'>
+      <div className='singleReviewListBodyText'>
+      {bodyText}<br/>{readmoreState?<small style={{fontWeight:'bold',cursor:'pointer'}} onClick={moreText}>{readmoreChoice}</small>:null}
+      </div>
     <div style={{display:'flex',
     flexWrap: 'wrap'}}>
     {props.review.photos.length>0?props.review.photos.map((image,index)=>{
       return (
-        <div key={image.id} style={{marginBottom:"10px",marginTop:"10px"}}>
-          <img src={image.url} style={{width:'150px',height:'90px',marginRight:'5px',objectFit: 'cover'}}></img>
-        </div>
+        <Image key={image.id} src={image.url}/>
         )
     }):null}
-    </div>
-    <div>Was this review helpful? <button className={`button-thumbsUp ${usefulStyle}`}onClick={onHelpful} disabled={usefulClick}>{props.review.helpfulness+helpfulCount}</button> | <a className='report-style'onClick={onReport}>{reportClick}</a></div>
+        </div>
+      </div>
+    {props.review.recommend ? <div style={{marginBottom:'1vh'}}>☑️ I recommend this product</div> : null}
+    {!!props.review.response ? <div>response from seller: {props.review.response}</div> : null}
+    <div style={{marginBottom:'1vh',fontSize:'12px'}}>Helpful?<button className={`button-thumbsUp ${usefulStyle}`}onClick={onHelpful} disabled={usefulClick}>{props.review.helpfulness+helpfulCount}</button>| <a className='report-style'onClick={onReport}>  {reportClick}</a></div>
     </div>
   )
 }
