@@ -7,8 +7,7 @@
     "react-dev": "webpack --mode development --watch",
     "server-dev": "npx nodemon server/index.js",
     "test": "jest",
-    "testWatch": "jest --watchAll",
-    "sassCompile": "sass --watch client/dist/sassStyles.scss client/dist/sassStyles.css"
+    "testWatch": "jest --watchAll"
   },
   "author": "Sarah Handley, Caleb Underwood, and Xincheng Zhou",
   "devDependencies": {
@@ -41,8 +40,7 @@
     "imagekit": "^4.1.1",
     "jest-transform-css": "^6.0.0",
     "react": "^16.4",
-    "react-dom": "^16.4",
-    "sass": "^1.55.0"
+    "react-dom": "^16.4"
   },
   "jest": {
     "moduleNameMapper": {
