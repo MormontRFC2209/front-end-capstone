@@ -20,6 +20,7 @@ export default function RANDR(props) {
     if(props.productId > 0){
       axios.get("/info", {params: {route: '/reviews/', apiParams: {product_id:props.productId,count:100}}})
       .then((response) => {
+        console.log(response.data)
         setReviews(response.data.results)
       })
       axios.get("/info", {params: {route: '/reviews/meta', apiParams: {product_id:props.productId,count:100}}})

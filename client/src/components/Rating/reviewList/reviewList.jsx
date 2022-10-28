@@ -57,7 +57,6 @@ export default function ReviewList(props) {
       // num += 2;
       setList(props.reviews)
       setLoadReviews('Scroll');
-      // e.target.setAttribute('disappear','after')
       // loading?setLoading(false):setLoading(true);
       // loading?setLoading(false):setLoading(true);
       if(props.reviews.length <= num){

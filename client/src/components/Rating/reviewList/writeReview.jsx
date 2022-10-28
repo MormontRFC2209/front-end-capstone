@@ -44,6 +44,7 @@ export default function WriteRview(props) {
       photos:photos,
       characteristics:characteristic
     }
+    console.log(newReview)
     props.addReview(newReview)
         .then(result=>{
     })

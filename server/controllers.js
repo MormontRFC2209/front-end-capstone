@@ -14,10 +14,12 @@ var imagekit = new ImageKit({
 
 module.exports.makeGETAPICall = (apiObject, callback) => {
   var route = configs.apiServer + apiObject[0].route
+  console.log(route)
 
   if(apiObject[1]) {
 
     var kvPair = apiObject[1].params
+    console.log(kvPair)
     axios.get(route, {headers: {Authorization: configs.token}, params: kvPair} )
     .then((result) => {
       callback(result.data, null)
