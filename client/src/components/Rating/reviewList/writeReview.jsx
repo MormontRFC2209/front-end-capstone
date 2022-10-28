@@ -109,6 +109,13 @@ export default function WriteRview(props) {
         setBGCOLOR('#00FF00')
         checkBd = true;
       }
+      if(e.target.value.length >= 1000){
+        setBodyLimit(`Current input ${e.target.value.length} characters, Maximum 1000 characters`)
+        e.target.setAttribute('aria-valid','inValid')
+        setFontColor('black')
+        setBGCOLOR('red')
+        checkBd = false;
+      }
       setBody(e.target.value)
   }
 
