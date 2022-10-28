@@ -19,7 +19,7 @@
   line-height: 1.5;
   -webkit-font-smoothing: antialiased;
  }
- 
+
  img,
  picture,
  video,
@@ -296,6 +296,7 @@
 
  #dropdown-container {
   display: flex;
+  justify-content: right;
  }
 
  .size,
@@ -308,18 +309,24 @@
  }
 
  #size-selector,
+ #size-selector-expanded,
  #quantity-selector,
  .add-to-cart-btn {
   border: 1px solid black;
  }
 
  .size {
-  width: 66%;
+  width: 190px;
  }
 
  .quantity {
-  width: 33%;
+  width: 90px;
   max-height: 35px;
+ }
+
+ #size-selector-expanded {
+  position: absolute;
+  translate: -97px 0;
  }
 
  .add-to-cart-btn {
