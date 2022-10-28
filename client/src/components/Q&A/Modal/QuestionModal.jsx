@@ -3,6 +3,7 @@ import ReactDOM from 'react-dom';
 import './Modal.css';
 import {useState, useEffect} from "react";
 import axios from 'axios';
+import ProgressBar from '../../subComponents/ProgressBar.jsx';
 
 
 const initialValues = {
@@ -19,7 +20,8 @@ let checkEmail = false;
 
 const Modal = ({isShowing, hide, id}) => {
 
-
+  const [complete, setCompleted] = useState(0);
+  const [backgroundColor, setBGCOLOR] = useState('#90EE90')
 
   const [currentInput, setInput] = useState(initialValues);
 
@@ -62,6 +64,17 @@ const Modal = ({isShowing, hide, id}) => {
       }else{
         e.target.setAttribute('aria-valid','valid')
         checkEmail = true;
+      }
+    }
+
+    if(name === 'answerform') {
+      console.log('hello')
+      setCompleted(currentInput.answerform.length / 10)
+      if(currentInput.answerform.length > 500) {
+        setBGCOLOR('#eed202')
+        if(currentInput.answerform.length > 1000) {
+          setBGCOLOR('#cf142b')
+        }
       }
     }
 
@@ -144,6 +157,8 @@ const Modal = ({isShowing, hide, id}) => {
                 onChange={handleInputChange}
 
                 ></textarea>
+                <ProgressBar bgcolor={backgroundColor} completed={complete}/>
+                <span>You have {1000 - currentInput.answerform.length} characters left.</span>
             </div>
 
             <div id="USERNAMEDIV">

@@ -162,3 +162,26 @@
   border-style: solid;
   border-width: thin;
 }
+
+
+#progresscontainer {
+  height: 10px;
+  width: 80%;
+  background-color: rgb(224, 224, 222);
+  border-radius: 5px;
+  margin: 10px;
+  margin-left: 0px;
+}
+
+#progressbar {
+  height: 100%;
+  background-color: rgb(106, 27, 154);
+  border-radius: inherit;
+  text-align: right;
+}
+
+#progresslabel {
+  padding: 5px;
+  color: white;
+  font-weight: bold;
+}
