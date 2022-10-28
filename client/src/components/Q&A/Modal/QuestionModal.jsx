@@ -68,7 +68,6 @@ const Modal = ({isShowing, hide, id}) => {
     }
 
     if(name === 'answerform') {
-      console.log('hello')
       setCompleted(currentInput.answerform.length / 10)
       if(currentInput.answerform.length > 500) {
         setBGCOLOR('#eed202')

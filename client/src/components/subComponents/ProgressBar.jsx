@@ -4,9 +4,11 @@ import {useState} from 'react';
 const ProgressBar = (props) => {
   const {bgcolor, completed, characters} = props;
 
-  console.log(completed, bgcolor, props)
 
 
+  if (completed > 100) {
+    completed = 100;
+  }
 
 
   const fillerStyles = {
