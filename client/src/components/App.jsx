@@ -8,10 +8,11 @@ import { useLocation, useParams, useSearchParams } from 'react-router-dom';
 
 
 export default function App() {
-  const [productId, setProductId] = useState(66646);
+  const [productId, setProductId] = useState(0);
   const [productName, setProductName] = useState('Heir Force Ones');
   const [loading, setLoading] = useState(productId === 0);
   const [reviews, setReviews] = useState([]);
+
 
   const useQuery = () => new URLSearchParams(useLocation().search);
 
@@ -31,11 +32,13 @@ export default function App() {
       .catch((err) => console.log('err'))
   };
 
+
   useEffect(() => {
     if(product) {
       setProductId(product)
+      setLoading(false);
     }
-    if (productId === 0) {
+    if (!product) {
       getProductId()
         .catch((err) => console.log(err))
     }
@@ -80,7 +83,7 @@ export default function App() {
       <div className="website-banner">
         <h1 className='website-title'> <em>HOUSE MORMONT</em> </h1>
       </div>
-      <Overview productId={productId} reviews={reviews} trackingFunction={trackingFunction}/>
+      <Overview productId={productId} reviews={reviews} trackingFunction={trackingFunction} setProductName={setProductName}/>
       <QANDA productId={productId} trackingFunction={trackingFunction}/>
       <a id='ratings-reviews-section'></a>
       <RANDR productId={productId} productName={productName} setReviews={setReviews} reviews={reviews}/>
