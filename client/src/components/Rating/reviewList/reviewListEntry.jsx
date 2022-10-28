@@ -49,7 +49,7 @@ export default function ReviewListEntry(props) {
     <div className='singleReviewList'>
     <div className='reviewListTitle'>
       <div className='singleReviewListTitle'>
-        <h3>{props.summary} </h3>
+        <h3>{props.summary.slice(0,30)} </h3>
         <RatingStars rating={props.review.rating}/>
       </div>
       <div><small>{props.name},{date}</small></div>

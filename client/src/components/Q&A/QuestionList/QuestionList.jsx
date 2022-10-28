@@ -8,7 +8,7 @@ import '../QANDA.css';
 
 export default function QuestionList(props) {
 
-
+  console.log(props.id)
 
 
   return (
