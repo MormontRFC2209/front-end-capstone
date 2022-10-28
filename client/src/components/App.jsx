@@ -4,13 +4,23 @@ import QANDA from "./Q&A/Q&A.jsx";
 import RANDR from "./Rating/RR.jsx";
 import RIANDCOMP from "./RI&COMP/RI&COMP.jsx";
 import axios from 'axios';
+import { useLocation, useParams, useSearchParams } from 'react-router-dom';
 
 
 export default function App() {
-  const [productId, setProductId] = useState(66646);
+  const [productId, setProductId] = useState(0);
   const [productName, setProductName] = useState('Heir Force Ones');
   const [loading, setLoading] = useState(productId === 0);
   const [reviews, setReviews] = useState([]);
+
+
+  const useQuery = () => new URLSearchParams(useLocation().search);
+
+  const query = useQuery();
+
+  const product = query.get('productid')
+
+
 
   const getProductId = () => {
     return axios.get("/info", {params: {route: '/products', apiParams: {page: '1', count: '5'}}})
@@ -22,8 +32,13 @@ export default function App() {
       .catch((err) => console.log('err'))
   };
 
+
   useEffect(() => {
-    if (productId === 0) {
+    if(product) {
+      setProductId(product)
+      setLoading(false);
+    }
+    if (!product) {
       getProductId()
         .catch((err) => console.log(err))
     }
@@ -68,7 +83,7 @@ export default function App() {
       <div className="website-banner">
         <h1 className='website-title'> <em>HOUSE MORMONT</em> </h1>
       </div>
-      <Overview productId={productId} reviews={reviews} trackingFunction={trackingFunction}/>
+      <Overview productId={productId} reviews={reviews} trackingFunction={trackingFunction} setProductName={setProductName}/>
       <QANDA productId={productId} trackingFunction={trackingFunction}/>
       <a id='ratings-reviews-section'></a>
       <RANDR productId={productId} productName={productName} setReviews={setReviews} reviews={reviews}/>

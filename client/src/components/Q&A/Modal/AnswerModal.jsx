@@ -3,6 +3,7 @@ import ReactDOM from 'react-dom';
 import './Modal.css';
 import {useState, useEffect} from "react";
 import axios from 'axios';
+import ProgressBar from '../../subComponents/ProgressBar.jsx';
 
 
 const initialValues = {
@@ -37,6 +38,8 @@ const Modal = ({isShowing, hide, id}) => {
 
   const [currentInput, setInput] = useState(initialValues)
   const [imageInput, setImageInput] = useState(submittedImages)
+  const [complete, setCompleted] = useState(0);
+  const [backgroundColor, setBGCOLOR] = useState('#90EE90')
 
   var handleInputChange = (e) => {
     const {name, value} = e.target;
@@ -77,6 +80,19 @@ const Modal = ({isShowing, hide, id}) => {
       }else{
         e.target.setAttribute('aria-valid','valid')
         checkEmail = true;
+      }
+    }
+
+    if(name === 'answerform') {
+      if(currentInput.answerform.length < 500) {
+        setBGCOLOR('#90EE90')
+      }
+      setCompleted(currentInput.answerform.length / 10)
+      if(currentInput.answerform.length > 500) {
+        setBGCOLOR('#eed202')
+        if(currentInput.answerform.length > 1000) {
+          setBGCOLOR('#cf142b')
+        }
       }
     }
 
@@ -151,6 +167,9 @@ const Modal = ({isShowing, hide, id}) => {
           forceUpdate();
 
         })
+        .catch((err) => {
+          console.log(err, 'failed to upload image')
+        })
     })
 
 
@@ -199,6 +218,8 @@ const Modal = ({isShowing, hide, id}) => {
                 onChange={handleInputChange}
 
                 ></textarea>
+                <ProgressBar bgcolor={backgroundColor} completed={complete}/>
+                <span>You have {1000 - currentInput.answerform.length} characters left.</span>
             </div>
 
             <div id="USERNAMEDIV">
