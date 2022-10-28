@@ -6,15 +6,23 @@ const ProgressBar = (props) => {
 
 
 
-  if (completed > 100) {
-    completed = 100;
-  }
 
 
-  const fillerStyles = {
+
+  var fillerStyles = {
 
     width: `${completed}%`,
     backgroundColor: bgcolor
+
+  }
+
+  if (completed > 100) {
+    var fillerStyles = {
+
+      width: '100%',
+      backgroundColor: bgcolor
+
+    }
 
   }
 
