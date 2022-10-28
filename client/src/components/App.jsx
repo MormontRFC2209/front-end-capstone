@@ -4,6 +4,7 @@ import QANDA from "./Q&A/Q&A.jsx";
 import RANDR from "./Rating/RR.jsx";
 import RIANDCOMP from "./RI&COMP/RI&COMP.jsx";
 import axios from 'axios';
+import { useLocation, useParams, useSearchParams } from 'react-router-dom';
 
 
 export default function App() {
@@ -11,6 +12,14 @@ export default function App() {
   const [productName, setProductName] = useState('Heir Force Ones');
   const [loading, setLoading] = useState(productId === 0);
   const [reviews, setReviews] = useState([]);
+
+  const useQuery = () => new URLSearchParams(useLocation().search);
+
+  const query = useQuery();
+
+  const product = query.get('productid')
+
+
 
   const getProductId = () => {
     return axios.get("/info", {params: {route: '/products', apiParams: {page: '1', count: '5'}}})
@@ -23,6 +32,9 @@ export default function App() {
   };
 
   useEffect(() => {
+    if(product) {
+      setProductId(product)
+    }
     if (productId === 0) {
       getProductId()
         .catch((err) => console.log(err))
