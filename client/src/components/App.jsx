@@ -44,8 +44,14 @@ export default function App() {
     var moduleName = event.target.className.split(' ')[0];
     var locationName = event.target.className.split(' ').slice(1).join(' ') + (event.target.id);
 
-    var trackingObject = {Module: moduleName, Location: locationName, Time: dateTime}
-    console.log(trackingObject)
+    var trackingObject = {widget: moduleName, element: locationName, time: dateTime}
+    axios.post('/info',trackingObject, {params: {route: '/interactions'}})
+      .then((result) => {
+        console.log('click tracked', result)
+      })
+      .catch((error) => {
+        console.log('failed', error)
+      })
   }
 
   if (loading) {

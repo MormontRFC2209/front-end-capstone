@@ -8,8 +8,10 @@ import axios from 'axios';
 
 axios.defaults.baseURL='http://localhost:3000';
 
+  console.log(userEvent)
 
 describe('Jest Workshop', function() {
+
   const user = userEvent.setup();
 
   it('should render the App', () => {

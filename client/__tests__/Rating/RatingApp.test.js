@@ -5,7 +5,7 @@ import ReviewList from "../../src/components/Rating/reviewList/reviewList.jsx";
 import BreakDown from '../../src/components/Rating/reviewBreakDown/breakDown.jsx';
 
 import { productId, productName, avgRating, totalReviews,reviews, reviewMetaData} from "./fakeRatingData.js";
-import Adapter from "enzyme-adapter-react-16";
+
 configure({ adapter: new Adapter() });
 
 describe('Overview RANDR', () => {
