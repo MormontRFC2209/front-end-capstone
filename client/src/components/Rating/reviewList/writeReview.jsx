@@ -3,6 +3,7 @@ import styles from './review.css'
 import NewRating from '../ratingStars/postNewRating.jsx'
 import UpLoadImg from './upLoadImg.jsx'
 import Characteristics from './characteristics.jsx'
+import ProgressBar from '../../subComponents/ProgressBar.jsx'
 
 let characteristics = {}
 let checkSr = false;
@@ -24,6 +25,9 @@ export default function WriteRview(props) {
   const [nameLimit,setNameLimit]=useState('The most helpful reviews are 250 characters.')
   const [emailLimit,setEmailLimit]=useState('Please input correct Email address')
   const [fontColor,setFontColor]=useState('black')
+  const [complete, setCompleted] = useState(0);
+  const [backgroundColor, setBGCOLOR] = useState('#90EE90')
+
   const handleClick = () => {
     setState(false)
     props.setWrite(false)
@@ -88,8 +92,11 @@ export default function WriteRview(props) {
         setBodyLimit('The most helpful reviews are 250 characters.')
         checkBd = false;
         setFontColor('black')
+        setBGCOLOR('rgb(224, 224, 222)')
       }
       if(e.target.value.length >= 1){
+        setCompleted(e.target.value.length)
+        setBGCOLOR('#eed202')
         e.target.setAttribute('aria-valid','process')
         checkBd = false;
         setFontColor('red')
@@ -99,6 +106,7 @@ export default function WriteRview(props) {
         setBodyLimit(`Current input ${e.target.value.length} characters, Minimum reached`)
         e.target.setAttribute('aria-valid','valid')
         setFontColor('black')
+        setBGCOLOR('#00FF00')
         checkBd = true;
       }
       setBody(e.target.value)
@@ -168,7 +176,7 @@ export default function WriteRview(props) {
           {/* <span id="checktext1"></span> */}
         </label>
         <br/>
-        <label style={{display: 'block'}}>
+        <div>
         <span style={{display: 'block'}}>Comments</span>
         <textarea
             className='writeInput'
@@ -179,8 +187,9 @@ export default function WriteRview(props) {
             placeholder="How you use the product.Things that are great about it"
             required
           ></textarea>
+          <ProgressBar bgcolor={backgroundColor} completed={complete}/>
           <small style={{color:fontColor}}>{bodyLimit}</small>
-        </label>
+        </div>
         <br/>
         <label htmlFor='radio' onClick={recommendClick}>
         <input name="recommend"  required type="radio" id='recommend'/>
