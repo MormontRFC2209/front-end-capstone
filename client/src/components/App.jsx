@@ -7,9 +7,9 @@ import axios from 'axios';
 
 
 export default function App() {
-  const [productId, setProductId] = useState(0);
-  const [productName, setProductName] = useState('');
-  const [loading, setLoading] = useState(true);
+  const [productId, setProductId] = useState(66646);
+  const [productName, setProductName] = useState('Heir Force Ones');
+  const [loading, setLoading] = useState(productId === 0);
   const [reviews, setReviews] = useState([]);
 
   const getProductId = () => {
@@ -23,8 +23,10 @@ export default function App() {
   };
 
   useEffect(() => {
-    getProductId()
-      .catch((err) => console.log(err))
+    if (productId === 0) {
+      getProductId()
+        .catch((err) => console.log(err))
+    }
   }, []);
 
   if (loading) {
