@@ -25,7 +25,6 @@ export default function RANDR(props) {
       })
       axios.get("/info", {params: {route: '/reviews/meta', apiParams: {product_id:props.productId,count:100}}})
       .then((response) => {
-        // console.log('response.data',response.data)
         setMetaData(response.data)
         props.setReviews(response.data)
         let sum = 0;
@@ -61,7 +60,6 @@ export default function RANDR(props) {
 
 
   const setSortByStar = (star,toggle)=>{
-    // console.log('star',star,toggle)
     toggle?starList.push(star):starList.splice(starList.indexOf(star),1)
     let newList = []
     axios.get("/info", {params: {route: '/reviews/', apiParams: {product_id:props.productId,count:100}}})

@@ -56,7 +56,7 @@ export default function ReviewList(props) {
     if(props.reviews.length > num){
       // num += 2;
       setList(props.reviews)
-      setLoadReviews('Scroll Down');
+      setLoadReviews('Scroll');
       // loading?setLoading(false):setLoading(true);
       // loading?setLoading(false):setLoading(true);
       if(props.reviews.length <= num){

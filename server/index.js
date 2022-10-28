@@ -15,7 +15,6 @@ app.use(compression());
 app.use(express.static(path.join(__dirname, '../client/dist')));
 
 app.get('/info', (req, res) => {
-  console.log('getwhat',req.query)
   var apiObject = [];
   apiObject.push({route: req.query.route});
   if (req.query.apiParams) {
@@ -46,7 +45,6 @@ app.post('/info', (req, res) => {
       console.log('error posting', err)
       return;
     }
-    console.log('IT WORKS!')
     res.send(result)
   })
 });
