@@ -87,6 +87,7 @@ export default function App() {
       <QANDA productId={productId} trackingFunction={trackingFunction}/>
       <a id='ratings-reviews-section'></a>
       <RANDR productId={productId} productName={productName} setReviews={setReviews} reviews={reviews}/>
+      <div id="app-whitespace"></div>
     </div>
   );
 }
