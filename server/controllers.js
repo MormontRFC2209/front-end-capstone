@@ -13,7 +13,6 @@ var imagekit = new ImageKit({
 
 
 module.exports.makeGETAPICall = (apiObject, callback) => {
-  console.log(apiObject)
   var route = configs.apiServer + apiObject[0].route
   console.log(route)
 
@@ -52,7 +51,6 @@ module.exports.makePOSTAPICall = (apiObject, callback) => {
 
     var paramsObject = apiObject[2].params
 
-    // console.log(route, bodyObject, paramsObject)
 
     axios.post(route, bodyObject ,{headers: {Authorization: configs.token}, params: paramsObject})
       .then((result) => {
@@ -106,7 +104,6 @@ module.exports.makePUTAPICall = (apiObject, callback) => {
 
 module.exports.makeImageAPIPOSTCall = (apiObject, callback) => {
 
-  // console.log(apiObject)
 
   var base64Img = apiObject[0].body.base64Img;
   var nameGiven = apiObject[0].body.nameGiven;
