@@ -67,7 +67,7 @@ render() {
 
 
   return (
-    <div style={{overflow:'hidden'}}>
+    <div style={{display:'flex',marginBottom:'1vh'}}>
     {this.props.moods.map((mood,id)=>{
       return (
       <div key={id} style={id===1?Object.assign(largeWidth,progressArticleStyle):Object.assign(smallWidth,progressArticleStyle)}>
