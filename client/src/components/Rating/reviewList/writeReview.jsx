@@ -29,7 +29,6 @@ export default function WriteRview(props) {
     props.setWrite(false)
   }
   const onSubmit = ()=>{
-    console.log('hello')
     if(!(checkSr&&checkBd&&checkUn&checkEm)){
       alert('pls check every input')
       return false
@@ -48,7 +47,6 @@ export default function WriteRview(props) {
     console.log(newReview)
     props.addReview(newReview)
         .then(result=>{
-          console.log('hello success')
     })
         .catch((error) => {
    console.log('failed', error)
@@ -143,9 +141,7 @@ export default function WriteRview(props) {
   return (
     <div>
       <div className='writeBox'>
-        <div
-          className={`container ${state ? 'active' : ''}`}
-        >
+        <div className={`container ${state ? 'active' : ''}`}>
           <div className="Popup" onClick={(e) => e.stopPropagation()}>
             <section>
       <form>

@@ -6,7 +6,8 @@ export default function AddToCart({ styles, selectedStyleId, trackingFunction })
   const [selectSize, setSelectSize] = useState("Select Size");
   const [selectSizeAfterClick, setSelectSizeAfterClick] = useState(false);
   const [selectQuantity, setSelectQuantity] = useState("1");
-  const [visibleOptions, setVisibleOptions] = useState(1);
+  // const [visibleOptions, setVisibleOptions] = useState(1);
+  const [sizeExpanded, setSizeExpanded] = useState(false);
 
   const makeSkuArray = () => {
     setSkus([styles[selectedStyleId].skus]);
@@ -42,7 +43,8 @@ export default function AddToCart({ styles, selectedStyleId, trackingFunction })
 
   const clickWithoutSize = (e) => {
     setSelectSizeAfterClick(true);
-    setVisibleOptions(Object.keys(skus[0]).length + 1);
+    // setVisibleOptions(Object.keys(skus[0]).length + 1);
+    setSizeExpanded(true);
     trackingFunction(e);
   };
 
@@ -57,8 +59,15 @@ export default function AddToCart({ styles, selectedStyleId, trackingFunction })
 
   useEffect(() => {
     setSelectSizeAfterClick(false);
-    setVisibleOptions(1);
+    // setVisibleOptions(1);
   }, [selectSize]);
+
+  useEffect(() => {
+    let $select = document.querySelector("#size-selector");
+    if ($select) {
+      $select.value = selectSize;
+    }
+  }, [sizeExpanded]);
 
   return (
     <div id="add-to-cart-container">
@@ -71,8 +80,19 @@ export default function AddToCart({ styles, selectedStyleId, trackingFunction })
             <option> OUT OF STOCK </option>
           </select>
         }
-        {!styles[selectedStyleId].skus.null && skus.length > 0 &&
-          <select id="size-selector" className="overview size" onClick={trackingFunction} size={visibleOptions} onChange={(e) => setSelectSize(e.target.value)}>
+        {!styles[selectedStyleId].skus.null && skus.length > 0 && !sizeExpanded &&
+          <select id="size-selector" className="overview size" onClick={trackingFunction} onChange={(e) => setSelectSize(e.target.value)}>
+            <option className="overview size-option">Select Size</option>
+            {Object.keys(skus[0]).map((sku, i) => {
+              return (<option className="overview size-option" key={i} value={sku}>{skus[0][sku].size}</option>)
+            })}
+          </select>
+        }
+        {!styles[selectedStyleId].skus.null && skus.length > 0 && sizeExpanded &&
+          <select id="size-selector-expanded" className="overview size" onClick={trackingFunction} size={Object.keys(skus[0]).length + 1} onChange={(e) => {
+            setSelectSize(e.target.value);
+            setSizeExpanded(false);
+            }}>
             <option className="overview size-option">Select Size</option>
             {Object.keys(skus[0]).map((sku, i) => {
               return (<option className="overview size-option" key={i} value={sku}>{skus[0][sku].size}</option>)
