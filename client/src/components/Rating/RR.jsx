@@ -18,13 +18,14 @@ export default function RANDR(props) {
 
   useEffect(() => {
     if(props.productId > 0){
-      axios.get("/info", {params: {route: '/reviews/', apiParams: {product_id:props.productId}}})
+      axios.get("/info", {params: {route: '/reviews/', apiParams: {product_id:props.productId,count:100}}})
       .then((response) => {
+        console.log(response.data)
         setReviews(response.data.results)
       })
-      axios.get("/info", {params: {route: '/reviews/meta', apiParams: {product_id:props.productId}}})
+      axios.get("/info", {params: {route: '/reviews/meta', apiParams: {product_id:props.productId,count:100}}})
       .then((response) => {
-        console.log('response.data',response.data)
+        // console.log('response.data',response.data)
         setMetaData(response.data)
         props.setReviews(response.data)
         let sum = 0;
@@ -51,16 +52,7 @@ export default function RANDR(props) {
   }
 
   const addReview = (newReview)=>{
-    axios.post('/info',newReview, {params: {route: '/reviews'}})
-         .then(result=>{
-      axios.get("/info", {params: {route: '/reviews/', apiParams: {product_id:props.productId}}})
-      .then((response) => {
-        setReviews(response.data.results)
-      })
-     })
-         .catch((error) => {
-    console.log('failed', error)
-  })
+    return axios.post('/info',newReview, {params: {route: '/reviews'}})
   }
 
   const report = (review_id)=>{
@@ -72,7 +64,7 @@ export default function RANDR(props) {
     // console.log('star',star,toggle)
     toggle?starList.push(star):starList.splice(starList.indexOf(star),1)
     let newList = []
-    axios.get("/info", {params: {route: '/reviews/', apiParams: {product_id:props.productId}}})
+    axios.get("/info", {params: {route: '/reviews/', apiParams: {product_id:props.productId,count:100}}})
     .then((response) => {
       starList.forEach(value=>{
         let currentList = response.data.results.filter(review=>review.rating===Number(value))
@@ -90,10 +82,9 @@ export default function RANDR(props) {
     <h1>REVIEWS</h1>
     <button className='button-writeReview' onClick={writeReview}>WRITE A REVIEW</button>
     </div>
-    <hr />
     <div className='ratingRoot'>
     <div className='ratingContainer'>
-    {write?<WriteRview metaData={metaData} addReview={addReview} setWrite={setWrite} product_id={props.product_id} productName={props.productName}/>:null}
+    {write?<WriteRview metaData={metaData} addReview={addReview} setWrite={setWrite} product_id={props.productId} productName={props.productName}/>:null}
     {(reviews.length>0 && Object.keys(metaData).length > 0)?<BreakDown reviews={reviews} metaData={metaData} setSortByStar={setSortByStar} />:null}
     {(reviews.length>0 && Object.keys(metaData).length > 0)?<ReviewList metaData={metaData} product_id={props.productId} reviews={reviews} usefulClick={usefulClick} addReview={addReview} report={report} sortReviewsByStar={sortReviewsByStar} productName={props.productName} ratingSum={ratingSum}/>:null}
     </div>
