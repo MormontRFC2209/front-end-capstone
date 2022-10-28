@@ -10,7 +10,7 @@ export default function RatingStars({rating}) {
   }
 
   return (
-    <ol style={{display: 'inline-block'}}>
+    <ol style={{display: 'inline-block' ,marginLeft:'1vw'}}>
       {countArr.map((id,key)=>{
           const outlineStar = {
             display: 'inline-block',
