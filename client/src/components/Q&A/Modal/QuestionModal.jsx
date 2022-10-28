@@ -109,6 +109,8 @@ const Modal = ({isShowing, hide, id}) => {
       .then((result) => {
         console.log('question submitted', result)
         setInput(initialValues);
+        setBGCOLOR('#90EE90');
+        setCompleted(0);
         hide();
       })
       .catch((error) => {

@@ -8,7 +8,7 @@ import AddToCart from "./AddToCart/AddToCart.jsx";
 import ProductDescription from "./ProductDescription/ProductDescription.jsx";
 import ShareMedia from "./ShareMedia/ShareMedia.jsx";
 
-export default function Overview({ productId, reviews, trackingFunction }) {
+export default function Overview({ productId, reviews, trackingFunction, setProductName }) {
   const [loadingProductInfo, setLoadingProductInfo] = useState(true);
   const [loadingStyles, setLoadingStyles] = useState(true);
   const [productInfo, setProductInfo] = useState([]);
@@ -48,6 +48,11 @@ export default function Overview({ productId, reviews, trackingFunction }) {
       .then(() => setLoadingStyles(false))
       .catch((err) => console.log(err))
   }, [productId]);
+  useEffect(() => {
+    if(productInfo.length > 0) {
+      setProductName(productInfo[0].name)
+    }
+  })
 
   if (loadingProductInfo || loadingStyles) {
     return (<div className='overview-load loading'></div>)

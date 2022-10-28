@@ -18,7 +18,7 @@ var count = 4;
 export default function QANDA(props) {
 
 
-
+  console.log(props.productId)
   const {isShowing, toggle} = useModal();
 
   const [currentQuestions, setQuestions] = useState(renderedQuestions);
@@ -31,6 +31,8 @@ export default function QANDA(props) {
   const grabQuestions = () => {
     axios.get('/info', {params:{route:'/qa/questions/', apiParams:{product_id: props.productId, count: 25}}})
       .then((resultData) => {
+
+        console.log(resultData)
 
         var rawQuestions = resultData.data.results
 
