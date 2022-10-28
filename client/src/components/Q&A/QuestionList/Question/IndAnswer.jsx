@@ -60,8 +60,8 @@ export default function IndAnswer({answer, seller, trackingFunction}) {
       <div>
         <div id="INDANSWERCONTAINER">
           {seller ? <span className="QANDA" id="ANSWERNAME" onClick={trackingFunction}>BY {answer.answerer_name}, {date}  |</span> : <span  className="QANDA" id="ANSWERNAME" onClick={trackingFunction}>by {answer.answerer_name}, {date}    |</span>}
-          <span  className="QANDA" id="ANSWERHELPFUL" onClick={(e)=>{trackingFunction(e); increaseHelpfulCount(e);}}>   Helpful? Yes ({count})    |</span>
-          <span  className="QANDA" id="ANSWERREPORT" onClick={(e)=>{trackingFunction(e); reportComment(e);}}>   {reportedClicked}</span>
+          <span style ={{cursor: 'pointer'}} className="QANDA" id="ANSWERHELPFUL" onClick={(e)=>{trackingFunction(e); increaseHelpfulCount(e);}}>   Helpful? Yes ({count})    |</span>
+          <span style ={{cursor: 'pointer'}} className="QANDA" id="ANSWERREPORT" onClick={(e)=>{trackingFunction(e); reportComment(e);}}>   {reportedClicked}</span>
         </div>
 
 

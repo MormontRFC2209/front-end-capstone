@@ -167,7 +167,7 @@ export default function QANDA(props) {
 
         <div id="QUESTIONVIEWBTNS">
           {currentQuestions.length < 4 ? null : <button className="QANDA" id="QAACCORDIAN" onClick={(event) => {event.preventDefault(); manipulateAccordian(); props.trackingFunction(event);}}>{currentList}</button>}
-          {currentQuestions.length < 4 ? <button onClick={toggle} className="QANDA" id="ADDAQUESTIONUNDER4">Add a Question</button> : <button onClick={toggle} className="QANDA" id="ADDAQUESTION">Add a Question</button>}
+          {currentQuestions.length < 4 ? <button style ={{cursor: 'pointer'}} onClick={toggle} className="QANDA" id="ADDAQUESTIONUNDER4">Add a Question</button> : <button style ={{cursor: 'pointer'}} onClick={toggle} className="QANDA" id="ADDAQUESTION">Add a Question</button>}
         </div>
 
         <div id="QuestionFlex">
