@@ -18,7 +18,7 @@ export default class Characteristics extends React.Component{
 render() {
 
   return (
-    <div style={{marginTop:'20px'}}>
+    <div style={{marginTop:'3vh'}}>
     {Object.keys(this.props.metaData.characteristics).map((character,id)=>{
       return <CharacterEntry key={id} character={character} mood={this.state[character]} moodId={this.props.metaData.characteristics[character].id} setCharacteristics={this.props.setCharacteristics}/>
     })}

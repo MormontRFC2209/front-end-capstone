@@ -46,7 +46,7 @@ export default function UpLoadImg(props) {
   }
 
   return (
-    <>
+    <div style={{display:'flex',maxHeigth:'2vh'}}>
     <input
         type="file"
         id="file"
@@ -60,6 +60,6 @@ export default function UpLoadImg(props) {
           return <img style={{display:'inline-block',float:'left',width:'50px'}} src={singleImage} key={Math.random()}></img>
         }): null}
         {/* </div> */}
-        </>
+        </div>
   )
 }
