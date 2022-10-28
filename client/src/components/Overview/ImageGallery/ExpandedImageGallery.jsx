@@ -50,12 +50,12 @@ export default function ExpandedImageGallery({ photos, photoId, expanded, setExp
             backgroundImage: `url(${photos[photoId].url})`,
             backgroundSize: `${zoomSize}`,
             backgroundPosition: `${expandedDimensions[0]}% ${expandedDimensions[1]}%`
-            }} onMouseMove={zoomIn} onClick={handleZoomCloseClick}>
-            <img id="zoomed-main-image" className="overview" src={photos[photoId].url} alt="zoomed main image"></img>
+            }} onMouseMove={zoomIn} onError={(e) => console.log(e)} onClick={handleZoomCloseClick}>
+            <img id="zoomed-main-image" className="overview" src={photos[photoId].url} alt="zoomed main image" onError={(e) => console.log(e)}></img>
           </figure>
         }
         {!zoom &&
-          <img id="expanded-main-image" className="overview" src={photos[photoId].url} onClick={handleZoomOpenClick}></img>
+          <img id="expanded-main-image" className="overview" src={photos[photoId].url} onError={(e) => console.log(e)} onClick={handleZoomOpenClick}></img>
         }
         {!zoom &&
           <div id="expanded-thumbnail-view">

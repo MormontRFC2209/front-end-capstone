@@ -1,12 +1,12 @@
-import { useState, useEffect, lazy, Suspense } from "react";
+import { useState, useEffect } from "react";
 import axios from "axios";
 
-const DefaultImageGallery = lazy(() => import("./ImageGallery/DefaultImageGallery.jsx"));
-const ProductHeading = lazy(() => import("./ProductHeading/ProductHeading.jsx"));
-const StyleSelector = lazy(() => import("./StyleSelector/StyleSelector.jsx"));
-const AddToCart = lazy(() => import("./AddToCart/AddToCart.jsx"));
-const ProductDescription = lazy(() => import("./ProductDescription/ProductDescription.jsx"));
-const ShareMedia = lazy(() => import("./ShareMedia/ShareMedia.jsx"));
+import DefaultImageGallery from "./ImageGallery/DefaultImageGallery.jsx";
+import ProductHeading from "./ProductHeading/ProductHeading.jsx";
+import StyleSelector from "./StyleSelector/StyleSelector.jsx";
+import AddToCart from "./AddToCart/AddToCart.jsx";
+import ProductDescription from "./ProductDescription/ProductDescription.jsx";
+import ShareMedia from "./ShareMedia/ShareMedia.jsx";
 
 export default function Overview({ productId, reviews, trackingFunction }) {
   const [loadingProductInfo, setLoadingProductInfo] = useState(true);
@@ -64,28 +64,16 @@ export default function Overview({ productId, reviews, trackingFunction }) {
       }
       <div id="top-product-overview">
         <div id='left-product-overview'>
-          <Suspense fallback={renderLoader()}>
-            <DefaultImageGallery styles={styles} selectedStyleId={selectedStyleId} trackingFunction={trackingFunction}/>
-          </Suspense>
+          <DefaultImageGallery styles={styles} selectedStyleId={selectedStyleId} trackingFunction={trackingFunction}/>
         </div>
         <div id="right-product-overview">
-          <Suspense fallback={renderLoader()}>
-            <ProductHeading productInfo={productInfo} styles={styles} selectedStyleId={selectedStyleId} reviews={reviews} trackingFunction={trackingFunction}/>
-          </Suspense>
-          <Suspense fallback={renderLoader()}>
-            <StyleSelector styles={styles} selectedStyleId={selectedStyleId} selectedStylePosition={selectedStylePosition} clickStyle={clickStyle} trackingFunction={trackingFunction}/>
-            </Suspense>
-          <Suspense fallback={renderLoader()}>
-            <AddToCart styles={styles} selectedStyleId={selectedStyleId} trackingFunction={trackingFunction}/>
-          </Suspense>
-          <Suspense fallback={renderLoader()}>
-            <ShareMedia styles={styles} selectedStyleId={selectedStyleId} trackingFunction={trackingFunction}/>
-          </Suspense>
+          <ProductHeading productInfo={productInfo} styles={styles} selectedStyleId={selectedStyleId} reviews={reviews} trackingFunction={trackingFunction}/>
+          <StyleSelector styles={styles} selectedStyleId={selectedStyleId} selectedStylePosition={selectedStylePosition} clickStyle={clickStyle} trackingFunction={trackingFunction}/>
+          <AddToCart styles={styles} selectedStyleId={selectedStyleId} trackingFunction={trackingFunction}/>
+          <ShareMedia styles={styles} selectedStyleId={selectedStyleId} trackingFunction={trackingFunction}/>
         </div>
       </div>
-      <Suspense fallback={renderLoader()}>
-        <ProductDescription productInfo={productInfo} trackingFunction={trackingFunction}/>
-      </Suspense>
+      <ProductDescription productInfo={productInfo} trackingFunction={trackingFunction}/>
     </div>
   );
 }
