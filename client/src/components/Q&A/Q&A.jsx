@@ -58,6 +58,8 @@ export default function QANDA(props) {
         console.log(error);
       })
   }
+  console.log('questionsArray',questionsArray)
+  console.log('renderedQuestions',renderedQuestions)
 
 
 
@@ -121,9 +123,9 @@ export default function QANDA(props) {
       searchResultArray = [];
 
       //iterate through the questions array
-      for(let i = 0; i < count; i++) {
+      for(let i = 0; i < questionsArray.length; i++) {
+        console.log(questionsArray[i])
         var questionBody = questionsArray[i].question_body.toUpperCase();
-        console.log(questionsArray[i].question_body)
         //every question that contains the string add to the array
         if(questionBody.includes(searchInput.toUpperCase())) {
           searchResultArray.push(questionsArray[i])

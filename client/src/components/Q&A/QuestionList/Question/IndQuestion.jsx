@@ -34,7 +34,7 @@ export default function IndQuestion({question, id, trackingFunction}) {
     rawAnswerArray.push(question.answers[key])
   }
 
-  console.log('raw answer ARRAY', rawAnswerArray)
+
 
   var sortedAnswers = rawAnswerArray.sort((a,b) => (a.helpfulness > b.helpfulness) ? -1 : 1)
   if(sortedAnswers.length <= 2) {
@@ -43,7 +43,7 @@ export default function IndQuestion({question, id, trackingFunction}) {
     renderedAnswers = sortedAnswers.slice(0, 2)
   }
 
-  console.log('rendered',renderedAnswers)
+
 
 
   const [accordian, setAccordian] = useState('See more answers')
