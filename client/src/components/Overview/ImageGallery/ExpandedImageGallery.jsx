@@ -62,13 +62,12 @@ export default function ExpandedImageGallery({ photos, photoId, expanded, setExp
             {photos.map((photo, i) => {
               return (
                 <div key={i}>
-                  {i === photoId &&
+                  {i === photoId ?
                     <div className="overview expanded-thumbnail-shadow" onClick={trackingFunction}>
                       <i className="overview fa-solid fa-circle circle-icon"></i>
                     </div>
-                  }
-                  {i !== photoId &&
-                    <div className="overview expanded-thumbnail-shadow" onClick={trackingFunction}>
+                    :
+                    <div className="overview expanded-thumbnail-shadow" onClick=  {trackingFunction}>
                       <i className="overview fa-regular fa-circle circle-icon" onClick={() => setPhotoId(i)}></i>
                     </div>
                   }
