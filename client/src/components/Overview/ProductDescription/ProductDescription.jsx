@@ -16,7 +16,7 @@ export default function ProductDescription({ productInfo, trackingFunction }) {
           <div id="vertical-line"></div>
           <ul id="features-view">
             {productInfo[0].features.map((feature, i) => {
-              return <li className="overview feature" key={i} onClick={trackingFunction}> {feature.feature}: {feature.value}</li>
+              return <li className="overview feature" key={i} onClick={trackingFunction}> {feature.feature}: {feature.value.split(" ").join("").split(/(?=[A-Z]+)/).join(" ")}</li>
             })}
           </ul>
         </div>
