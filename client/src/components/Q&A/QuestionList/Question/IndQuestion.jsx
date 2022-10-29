@@ -116,9 +116,9 @@ export default function IndQuestion({question, id, trackingFunction}) {
         </div>
         <div id="USERACTIVITYCONTAINER">
           <span onClick={trackingFunction}className="QANDA" id="QHELPFUL">Helpful? </span>
-          <span onClick={(e)=>{increaseHelpfulCount(e); trackingFunction(e);} }className="QANDA" id="QYES">Yes ({count})    |</span>
-          <span onClick={(e)=>{increaseHelpfulCount(e); trackingFunction(e);} }className="QANDA" id="QREPORT">Report?    |</span>
-          <span data-testid="addanswer" onClick={(e)=>{toggle(); trackingFunction(e);}} className="QANDA" id="QADDANSWER"> Add Answer</span>
+          <span style ={{cursor: 'pointer'}} onClick={(e)=>{increaseHelpfulCount(e); trackingFunction(e);} }className="QANDA" id="QYES">Yes ({count})    |</span>
+          <span style ={{cursor: 'pointer'}} onClick={(e)=>{increaseHelpfulCount(e); trackingFunction(e);} }className="QANDA" id="QREPORT">{reportedClicked}    |</span>
+          <span style ={{cursor: 'pointer'}} data-testid="addanswer" onClick={(e)=>{toggle(); trackingFunction(e);}} className="QANDA" id="QADDANSWER"> Add Answer</span>
         </div>
 
 
